@@ -202,7 +202,7 @@
     body{ 
 
       min-height: 100vh;
-      background:url('/assets/images/backgrounds/asiaone1.png') no-repeat center center fixed; 
+      background:url('/shopee/assets/images/backgrounds/asiaone1.png') no-repeat center center fixed; 
       -webkit-background-size: cover;
      -moz-background-size: cover;
      -o-background-size: cover;
@@ -231,8 +231,8 @@
   <!-- <script src="../assets/libs/jquery/dist/jquery.min.js"></script> -->
   <script src="/shopee/assets/libs/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
   
-  <script src="/shopee/assets/js/util.js"></script>
-  <script src="/shopee/assets/js/login.js"></script>
+  <script src="/shopee/assets/js/util.js?v=1"></script>
+  <script src="/shopee/assets/js/login.js?v=1"></script>
 
   <script>
 
@@ -242,7 +242,7 @@
 
       document.getElementById('myBody').style.backgroundImage = `url('/shopee/assets/images/backgrounds/${bgimage[xx] }')`
         setTimeout(() => {
-            const audio  = new Audio('intro.mp3')
+            const audio  = new Audio('/shopee/intro.mp3')
             audio.play().catch(error => {
                 console.error("Audio playback failed:", error);
             });
