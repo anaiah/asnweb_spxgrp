@@ -1268,7 +1268,7 @@ const asn = {
          //console.log('first osndp.getAll() index.js')
          //osndp.getAll("1","MALL001")
         
-         document.getElementById('img-profile').src=`/assets/images/profile/${util.getCookie('f_pic')}`
+         document.getElementById('img-profile').src=`/shopee/assets/images/profile/${util.getCookie('f_pic')}`
         //pyright
        ////document.getElementById('copyright').innerHTML='Copyright Â© EO-OSNDP '+ new Date().getFullYear();
 
@@ -1292,7 +1292,7 @@ const asn = {
 } //======================= end admin obj==========//
 //osndp.Bubbl
 window.scrollTo(0,0);
-
+asn.init()
 
 document.addEventListener('DOMContentLoaded', function() {
     // let bgimage = ['asiaone1.png', 'bgrnd.png']
@@ -1308,7 +1308,7 @@ document.addEventListener('DOMContentLoaded', function() {
     //       document.getElementById('myCard').classList.add('show');
     //   }, 2000); // Delay of 1000 milliseconds (1 second)
 
-    asn.init()
+   
     
 });
 

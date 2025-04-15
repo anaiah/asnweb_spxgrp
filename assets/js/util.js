@@ -1248,7 +1248,6 @@ const util = {
                     xmsg = "<div><i class='fa fa-spinner fa-pulse' ></i>  Searching Database please wait...</div>"
                     util.alertMsg( xmsg,'danger','loginPlaceHolder')
                     util.loginPost(frm ,frmModal,`${myIp}/loginpost/${objfrm.uid}/${objfrm.pwd}`)
-                  //  util.loginPost(frm ,frmModal,`https://asianow_apiV2.onrender.com/loginpost/${objfrm.uid}/${objfrm.pwd}`)
                 break
 				
 				case "#newempForm":
@@ -1287,8 +1286,6 @@ const util = {
                     console.log('==posting newSiteModal data ==',objfrm);
 				break;
 
-
-
                 case "#commentsForm":
                     console.log('===POSTING ISSUES===')
                 break
@@ -1316,16 +1313,11 @@ const util = {
                 //////// === hide ko muna voice ha? paki-balik pag prod na -->util.speak(data.voice)
                 util.alertMsg(data.message,'success','loginPlaceHolder')
                 
-                util.setGroupCookie(data.region, data.fname, data.grp_id, data.email, data.voice, data.pic)/*=== SET GROUP COOKIE */
+                util.setGroupCookie(data.id, data.region, data.fname, data.grp_id, data.email, data.voice, data.pic)/*=== SET GROUP COOKIE */
                 
                 // if(data.grp_id=="2"){//business dev0
                //location.href = '/main.html'
                 location.href = '/spx/dashboard'
-                /*
-                }else if( data.grp_id=="1" || data.grp_id=="0"){//engr/architect/acctg
-                    location.href = '/dashboard.html'
-                }
-                */
                         
             }else{
                 util.speak(data.voice)
@@ -1341,13 +1333,15 @@ const util = {
         })
     },
 
-    setGroupCookie:(xregion, xname,xgrp,xemail,xvoice,xpic)=>{
+    setGroupCookie:(xid, xregion, xname,xgrp,xemail,xvoice,xpic)=>{
         util.setCookie("f_region",xregion,0)
         util.setCookie("fname",xname,0)
         util.setCookie("grp_id",xgrp,0)
         util.setCookie("f_email",xemail,0)
         util.setCookie("f_voice",xvoice,0)
         util.setCookie("f_pic",xpic,0)
+        util.setCookie("f_id",xpic,0)
+        
     },
 
     //new site posting 
