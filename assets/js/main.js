@@ -1066,8 +1066,8 @@ const asn = {
             document.getElementById('rider').innerHTML = ""
             document.getElementById('rider').innerHTML = text
             
-            util.scrollsTo('claimsupdate')
-            asn.getClaimsUpdate()
+            util.scrollsTo('claims_grid_update')
+            //asn.getClaimsUpdate()
        
         })	
         .catch((error) => {
@@ -1105,8 +1105,7 @@ const asn = {
             document.getElementById('xgtotal').innerHTML= `Claims Recent Transaction 
                 <span class='text-primary fw-semibold'>P ${document.getElementById('gxtotal').value} </span>`
 
-            util.scrollsTo('current_projects')
-        
+           
             if(util.getCookie('grp_id')!=="2"){
                 asn.getListPdf(1) // call List of ATDs
             }else{

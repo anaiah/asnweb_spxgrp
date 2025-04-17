@@ -196,3 +196,6 @@ var table = new Tabulator("#claim_grid_update", {
         return `<i class='ti ti-database-search'></i>&nbsp;Showing ${pageSize}  rows of ${totalRows} total`;
     }
 });
+
+util.scrollsTo('current_projects')
+        
