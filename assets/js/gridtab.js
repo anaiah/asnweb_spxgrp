@@ -59,7 +59,7 @@ var claims_grid = new Tabulator("#claims_grid_update", {
             formatter:"html", 
             headerSort:false, 
             headerHozAlign:"center", 
-            frozen: true 
+            resizable:false
         },  
 
         { title: "Total", 
@@ -81,6 +81,7 @@ var claims_grid = new Tabulator("#claims_grid_update", {
                 precision:2,
                 decimal:"."
             },
+            resizable:false
         },  
         /*
         { title: "Delivered", 
