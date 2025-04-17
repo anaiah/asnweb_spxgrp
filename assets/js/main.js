@@ -1365,9 +1365,9 @@ const asn = {
 
 	}//END init
 } //======================= end admin obj==========//
-//osndp.Bubbl
+
 window.scrollTo(0,0);
-//asn.init()
+asn.init()
 
 document.addEventListener('DOMContentLoaded', function() {
     // let bgimage = ['asiaone1.png', 'bgrnd.png']
