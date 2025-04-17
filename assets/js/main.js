@@ -1225,6 +1225,7 @@ const asn = {
 
     //===========GETMENU==========
     getmenu: async(grp_id) =>{
+        console.log('=====FIRING ggetmenu()==========')
         await fetch(`${myIp}/menu/${grp_id}`,{
             cache:'reload'
         })
