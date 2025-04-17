@@ -1083,9 +1083,9 @@ const asn = {
         let xparam = ""
 
         if(util.getCookie('grp_id')=="2"){
-           xparam = `/${util.getCookie('f_region')}/${util.getCookie('f_email')}`    
+           xparam = `/${util.getCookie('f_region')}/${util.getCookie('grp_id')}/${util.getCookie('f_email')}`    
         }else{
-            xparam = `/${util.getCookie('f_region')}/${util.getCookie('f_email')}`
+            xparam = `/${util.getCookie('f_region')}/${util.getCookie('grp_id')}/${util.getCookie('f_email')}`
         }//eif
 
         await fetch(`${myIp}/claimsupdate${xparam}`,{
