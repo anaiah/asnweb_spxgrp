@@ -55,7 +55,7 @@ var claims_grid = new Tabulator("#claims_grid_update", {
 
     columns: [ // Define Table Columns
         { title: "Date", 
-            field: "xdata.", 
+            field: "xdate", 
             formatter:"html", 
             headerSort:false, 
             headerHozAlign:"center", 
@@ -66,7 +66,7 @@ var claims_grid = new Tabulator("#claims_grid_update", {
             field: "total",  
             headerSort:false, 
             headerHozAlign:"center", 
-            hozAlign:"center", 
+            hozAlign:"right", 
             formatter:'money',
             formatterParams: {
                 decimal: ".",
@@ -78,7 +78,8 @@ var claims_grid = new Tabulator("#claims_grid_update", {
             bottomCalcFormatter: "money",
             bottomCalcFormatterParams:  {
                 thousand: ",",
-                precision:0
+                precision:2,
+                decimal:"."
             },
         },  
         /*
