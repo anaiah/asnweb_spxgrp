@@ -37,8 +37,8 @@ const  gridtab = {
 }//=======end gridtab obj==========
 
 // Create Tabulator on DOM element with id "table"
-var table = new Tabulator("#claims_grid_update", {
-    ajaxURL: `${myIp}/claimsupdate/${util.getCookie('f_region')}/${util.getCookie('grp_id')}/${util.getCookie('f_email')}`, // URL of your API endpoint
+var claims_grid = new Tabulator("#claims_grid_update", {
+    //ajaxURL: `${myIp}/claimsupdate/${util.getCookie('f_region')}/${util.getCookie('grp_id')}/${util.getCookie('f_email')}`, // URL of your API endpoint
     height: "311px", // height of table
     
     layout:'fitData',
@@ -55,7 +55,7 @@ var table = new Tabulator("#claims_grid_update", {
 
     columns: [ // Define Table Columns
         { title: "Date", 
-            field: "xdate", 
+            field: "xdata.", 
             formatter:"html", 
             headerSort:false, 
             headerHozAlign:"center", 

@@ -1067,7 +1067,7 @@ const asn = {
             document.getElementById('rider').innerHTML = text
             
             util.scrollsTo('claims_grid_update')
-            //asn.getClaimsUpdate()
+            asn.getClaimsUpdate()
        
         })	
         .catch((error) => {
@@ -1091,27 +1091,31 @@ const asn = {
         await fetch(`${myIp}/claimsupdate${xparam}`,{
             cache:'reload'
         })
-        .then(res => res.text() )
+        .then( (res) => res.json() )
 
-        .then(text => {	
-            
-            const myul = document.getElementById('claimsupdate')
-            
-            myul.innerHTML = text
-            
-            console.log( text)
-            console.log('claims total', document.getElementById('gxtotal').value)
-            
-            document.getElementById('xgtotal').innerHTML= `Claims Recent Transaction 
-                <span class='text-primary fw-semibold'>P ${document.getElementById('gxtotal').value} </span>`
+        .then( (data)  => {	
 
-           
-            if(util.getCookie('grp_id')!=="2"){
-                asn.getListPdf(1) // call List of ATDs
-            }else{
-                document.getElementById('list_atd').remove()
+            console.log( data )
+
+            // const myul = document.getElementById('claimsupdate')
+            
+            // myul.innerHTML = text
+            
+            // console.log( text)
+            // console.log('claims total', document.getElementById('gxtotal').value)
+            
+            // document.getElementById('xgtotal').innerHTML= `Claims Recent Transaction 
+            //     <span class='text-primary fw-semibold'>P ${document.getElementById('gxtotal').value} </span>`
+
+            // util.scrollsTo('current_projects')
+        
+
+            // if(util.getCookie('grp_id')!=="2"){
+            //     asn.getListPdf(1) // call List of ATDs
+            // }else{
+            //     document.getElementById('list_atd').remove()
                 
-            }//eif
+            // }//eif
         })	
         .catch((error) => {
             //util.Toast(`Error:, ${error}`,1000)
