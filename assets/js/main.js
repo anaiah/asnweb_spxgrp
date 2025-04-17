@@ -999,7 +999,7 @@ const asn = {
                       background: "linear-gradient(to right, #00b09b, #96c93d)",
                     }
                 }).showToast();
-    
+  
             }
             
         })
@@ -1009,7 +1009,6 @@ const asn = {
             console.error('Error:', error)
         })    
 
-
     },
 
     //==get top 5 hub pasaway
@@ -1018,9 +1017,9 @@ const asn = {
         let xparam = ""
 
         if(util.getCookie('grp_id')=="2"){
-            xparam = `/${util.getCookie('f_region')}/${util.getCookie('f_email')}`    
+            xparam = `/${util.getCookie('f_region')}/${util.getCookie('grp_id')}/${util.getCookie('f_email')}`    
         }else{
-            xparam = `/${util.getCookie('f_region')}/${util.getCookie('f_email')}`
+            xparam = `/${util.getCookie('f_region')}/${util.getCookie('grp_id')}/${util.getCookie('f_email')}`
         }//eif
 
         await fetch(`${myIp}/gethub${xparam}`,{
@@ -1053,9 +1052,9 @@ const asn = {
         let xparam = ""
 
         if(util.getCookie('grp_id')=="2"){
-            xparam = `/${util.getCookie('f_region')}/${util.getCookie('f_email')}` 
+            xparam = `/${util.getCookie('f_region')}/${util.getCookie('grp_id')}/${util.getCookie('f_email')}` 
         }else{
-            xparam = `/${util.getCookie('f_region')}/${util.getCookie('f_email')}`
+            xparam = `/${util.getCookie('f_region')}/${util.getCookie('grp_id')}/${util.getCookie('f_email')}`
         }//eif
 
         await fetch(`${myIp}/getrider${xparam}`,{
@@ -1064,12 +1063,8 @@ const asn = {
         .then(res => res.text() )
 
         .then(text => {	
-        //    // console.log('what the text? ',text)
-        //     osndp.notif('',true)
             document.getElementById('rider').innerHTML = ""
             document.getElementById('rider').innerHTML = text
-        //     document.getElementById('project-badge').innerHTML = parseInt(document.getElementById('reccount').innerHTML)
-        //     console.log( '**rec count** ',document.getElementById('reccount').innerHTML)
             
             util.scrollsTo('claimsupdate')
             asn.getClaimsUpdate()
