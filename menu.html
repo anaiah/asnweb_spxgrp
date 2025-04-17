@@ -11,19 +11,24 @@
   
 
   <title>AsiaNow Enc. Inc.</title>
-  <!-- <link rel="shortcut icon" type="image/png" href="../shopee/assets/images/logos/favicon.png" /> -->
-  <link rel="shortcut icon" href="/shopee/assets/images/logos/asiaoneico.png" type="image/x-icon" sizes="32x32">  
-  <!-- <link rel="stylesheet" href="../shopee/assets/bootstrap/css/bootstrap.min.css?h=0516002ac6166f9bc5a60df257b0e1f8">
+  <!-- <link rel="shortcut icon" type="image/png" href="../html/assets/images/logos/favicon.png" /> -->
+  <link rel="shortcut icon" href="/assets/images/logos/asiaoneico.png" type="image/x-icon" sizes="32x32">  
+  <!-- <link rel="stylesheet" href="../html/assets/bootstrap/css/bootstrap.min.css?h=0516002ac6166f9bc5a60df257b0e1f8">
     -->
-  <link rel="stylesheet" href="/shopee/assets/css/styles.min.css" />
+  <link rel="stylesheet" href="/assets/css/styles.min.css" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/core@1.0.0/dist/css/tabler.min.css">
+  <!-- <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/core@1.1.1/dist/css/tabler.min.css"> -->
+  
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@latest/dist/tabler-icons.min.css" />
+  
+
+  <!-- https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@latest/dist/tabler-icons.css -->
 
   <!---//toastify cdn-->
   <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css">
   
-  <link rel="stylesheet" href="/shopee/assets/css/osndp.css" />
+  <link rel="stylesheet" href="/assets/css/osndp.css" />
 </head>
 
 <body>
@@ -37,8 +42,8 @@
       <div id="leftsidebar" >
         <!--//LOGO//-->
         <div class="brand-logo d-flex align-items-center justify-content-between">
-          <a href="/spx" class="text-nowrap logo-img">
-            <img src="/shopee/assets/images/logos/asiaone_.png" width="180" alt="" />
+          <a href="/jtx" class="text-nowrap logo-img">
+            <img src="/assets/images/logos/asiaone_.png" width="180" alt="" />
           </a>
           <div class="close-btn d-xl-none d-block sidebartoggler cursor-pointer" id="sidebarCollapse">
             <i class="ti ti-x fs-8"></i>
@@ -111,127 +116,31 @@
         </nav>
       </header>
       <!--  Header End -->
-      
-      <!--//CURRENT PROJECTS//-->
-      <div class="container-fluid" id="current_projects">
-        <div class=" mb-2 mt-3 sm-0 ms-2">
-          <h5 class="card-title fw-semibold"><i style="font-size:25px;" class="ti ti-user-exclamation text-primary"></i>&nbsp;Claims</h5>
-        </div>
-
-        <!-- for to act as "row" -->
-        <form id="searchForm" name="searchForm" class="row gy-2 gx-2 d-flex align-items-start ms-2" method="GET" novalidate>
-                    
-          <div class="col-sm-4">
-            <div class="form-outline">
-              <!-- <label for="filter_number" class="text-nowrap form-label">Filter by Employee Number</label> -->
-              <input  value="" placeholder="Search Employee Number" minlength="4" type="text" onchange="" class="form-control" id="filter_number" name="filter_number">
-              <div class="invalid-feedback">
-                *Minimum Length of Input is 5
-              </div>
-              <div class="valid-feedback">
-                Looking Good!
-              </div>
-            </div>
-          </div>
-
-          <div class="col-sm-4">
-            <div class="form-outline">
-              <!-- <label for="filter_name" class="text-nowrap form-label">Filter by Employee Name</label> -->
-              <input value=""  placeholder="Search for Name" type="text" minlength="5" onchange="" class="form-control" id="filter_name" name="filter_name">
-              <div class="invalid-feedback">
-                *Minimum Length of Input is 5
-              </div>
-              <div class="valid-feedback">
-                Looking Good!
-              </div>
-            </div>
-          </div>
-
-          <div class="col-sm-2 align-self-start">
-          <div class="form-outline">
-            <button class="btn btn-primary"  id="search-btn" onclick="javascript:asn.getRecord(`${document.getElementById('filter_number').value}`,`${document.getElementById('filter_name').value}`)" type="button">
-              <i id="i-save" class="ti ti-file-search"></i> &nbsp;&nbsp; Search
-            </button>
-          </div>
-        </div>
-
-        </form>
-        <!-- end form -->
-      </div> 
-      <!-- end container fluid -->
-
-      <!-- ENTER SEARCH RESULT HERE -->
-      <div id="search_claim"></div> 
  
-      <div class="mb-0 container-fluid" id="list_atd">
+      <div class="container-fluid" >  
         <div class="col-lg-6 d-flex align-items-start">
-          <div class="card w-100">
-            <div class="card-body p-4">
-              <div class="mt-0 mb-4">
-                <h5 class="card-title fw-semibold"><svg  style="color:green" xmlns="http://www.w3.org/2000/svg"  width="48"  height="48"  viewBox="0 0 24 24"  fill="none"  stroke="currentColor"  stroke-width="2"  stroke-linecap="round"  stroke-linejoin="round"  class="icon icon-tabler icons-tabler-outline icon-tabler-file-type-pdf"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M14 3v4a1 1 0 0 0 1 1h4" /><path d="M5 12v-7a2 2 0 0 1 2 -2h7l5 5v4" /><path d="M5 18h1.5a1.5 1.5 0 0 0 0 -3h-1.5v6" /><path d="M17 18h2" /><path d="M20 15h-3v6" /><path d="M11 15v6h1a2 2 0 0 0 2 -2v-2a2 2 0 0 0 -2 -2h-1z" /></svg>&nbsp;Printed ATD</h5>
+          <div class="card w-100 ">
+            <!-- margin of the inside -->
+            <div class="card-body p-2"> 
+              <div class="mt-3 mb-4">
+                <h6 class="card-title fw-semibold">
+                  <i style="color:blue;font-size:20px;" class="ti ti-calendar"></i>&nbsp;
+                  Transaction for  this Month
+                </h6>
               </div>
-              <div id="claims_select" class="table-responsive">
+
+              <div id="month_transaction" class="table-responsive">
+              ewan  
               </div> 
               
             </div>
           </div>
         </div>
-        
-      </div>
 
-      <!--//=== ENTER TOP 10 HUB/RIDER HERE==== -->
-      <div class="mt-0 container-fluid" id="claims_pasaways">
-        
-        <div class="row ">
-          
-          <!-- RIDERS INFO -->
-          <div class="col-lg-6 d-flex align-items-start">
-            <div class="card w-100">
-              <div class="card-body p-4">
-                <div class="mt-0 mb-4">
-                  <h5 class="card-title fw-semibold"><i style="color:green;font-size:25px;" class="ti ti-moped"></i>&nbsp;Top 5 Rider</h5>
-                </div>
-                <div id="rider" class="table-responsive">
-                </div> 
-                
-              </div>
-            </div>
-          </div>
-          
-          <!--//HUB INFO -->
-          <div class="col-lg-6 d-flex align-items-start">
-            <div class="card w-100">
-              <div class="card-body p-4">
-                <div class="mb-4">
-                  <h5 class="card-title fw-semibold"><i style="color:green;font-size:25px;" class="ti ti-home"></i>&nbsp;Top 5 Hub</h5>
-                </div>
-                <div id="hub" class="table-responsive">
-
-                </div> 
-              </div>
-            </div>
-          </div>
-
-      </div>  
-      <!-- END ROW -->
-
-      <!-- ===ENTER CLAIMS UPDATE===//-->
-      <div class="row">
-        <div class="col-lg-6 d-flex align-items-stretch">
-          <div class="card w-100">
-            <div class="card-body p-4">
-              <div class="mb-4">
-                <h5  id='xgtotal' name="xgtotal" class="card-title fw-semibold"></h5>
-              </div>
-              <ul id='claimsupdate' class="timeline-widget mb-0 position-relative mb-n5">
-              
-            </div>
-          </div>
-        </div>
         <!-- =====chart ========-->
         <div class="col-lg-6 d-flex align-items-stretch">
           <div class="card w-100">
-            <div class="card-body p-4">
+            <div class="card-body p-1">
               <div class="mb-4">
                 <h5 class="card-title fw-semibold"></h5>
               </div>
@@ -241,14 +150,12 @@
             </div>
           </div>
         </div>
-      </div>
-
-    
-      <!--//END CHARTS-->
+        
+      </div><!--//end container-fluid//-->
+          
     </div>
-
     <!--//END BODY-WRAPPER-->
-
+    <!--//==========================================THIS SECTION  IS FOR MODALS===================================-->
     <!--//image Modal//-->
     <div class="modal fade" id="imageModal" tabindex="-1" aria-labelledby="imageModalLabel" aria-hidden="true">
       <div class="modal-dialog modal-fullscreen modal-dialog-scrollable">
@@ -557,7 +464,7 @@
                                 <tbody>
                                   <tr>
                                     <td class="border-bottom-0"><h6 class="fw-semibold mb-0">
-                                      <img id='avatar-profile' src="/shopee/assets/images/profile/aperez.jpg" alt="" width="35" height="35" class="avatar">
+                                      <img id='avatar-profile' src="/assets/images/profile/aperez.jpg" alt="" width="35" height="35" class="avatar">
                                     </h6></td>
                                     <td class="border-bottom-0">
                                         <h6 class="fw-semibold mb-1">April Perez</h6>
@@ -579,7 +486,7 @@
                                   </tr> 
                                   <tr>
                                     <td class="border-bottom-0"><h6 class="fw-semibold mb-0">
-                                      <img id='avatar-profile' src="/shopee/assets/images/profile/user-1.jpg" alt="" width="35" height="35" class="avatar">
+                                      <img id='avatar-profile' src="/assets/images/profile/user-1.jpg" alt="" width="35" height="35" class="avatar">
                                     </h6></td>
                                     <td class="border-bottom-0">
                                         <h6 class="fw-semibold mb-1">Norvin Magpayo</h6>
@@ -735,7 +642,11 @@
 <!--//end claimsModal//-->
 
   <!--//end container description modal-->
-<!--//Modal for adding New Site //-->
+
+<!--// call with 
+
+"javascript:util.modalShow('newempModal')"
+-->
 <div class="modal fade" id="newempModal" tabindex="-1" aria-labelledby="newsiteModalLabel" aria-hidden="true">
   <div class="modal-dialog modal-fullscreen modal-dialog-scrollable">
       <div class="modal-content">
@@ -841,32 +752,255 @@
 </div>					
 <!--//end newsiteModal//-->
 
-
-  </div>
-
-  <script src="https://cdn.jsdelivr.net/npm/@tabler/core@1.0.0/dist/js/tabler.min.js"></script>
-
-
-  <script src="/shopee/assets/libs/jquery/dist/jquery.min.js"></script> <!--//sidebarmenu dependent-->
-  <script src="/shopee/assets/libs/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
-  <script src="/shopee/assets/js/sidebarmenu.js"></script>
-  <script src="/shopee/assets/js/app.min.js"></script>
-  <script src="/shopee/assets/libs/apexcharts/dist/apexcharts.min.js"></script>
-  <script src="/shopee/assets/libs/simplebar/dist/simplebar.js"></script>
-  <script src="/shopee/assets/js/dashboard.js"></script>
+<!--// ==================MODAL FOR RIDER'S WORK INPUT===================== //-->
+<div class="modal fade" id="dataEntryModal" tabindex="-1" aria-labelledby="dataEntryModalLabel" aria-hidden="true">
   
+  <div class="modal-dialog modal-fullscreen modal-dialog-scrollable">
+    
+    <div class="modal-content">
+      <div class="modal-header bg-primary">
+        <h4 class="modal-title"><img src="/assets/images/logos/asiaoneico.png" width="32px"> Transaction Entry</h4>
+        <button class="btn-close" type="button" data-bs-dismiss="modal"></button>
+      </div>
+
+      <!--//modal body-->
+      <div class="modal-body">
+
+          <div class="container-fluid" >	
+            <!--//form goes here -->
+            <!--//FORM SIGNUP-->
+            <form id="dataEntryForm" class="needs-validation row gy-2 gx-2 align-items-center" method="GET" novalidate>
+            
+            <!-- <div class="row mb-4"> -->
+            <div class="row">   
+              <!-- serial no. -->
+                <div class="col-lg-4 mb-3">
+                    <div class="form-outline">
+                        <label class="form-label mb-0" for="f_transnumber">Transaction Number</label>
+                        <input readonly type="text" id="f_transnumber" name="f_transnumber" class="form-control" />
+                    </div>
+                </div>
+             
+                <div class="col-lg-4 mb-3">
+                  <div class="form-outline">
+                      <label class="form-label mb-0" for="f_parcel">Parcel Qty.</label>
+                      <input value="1" onclick="this.select()" type="number" step="1" onblur="" id="f_parcel" name="f_parcel" placeholder="0" class="form-control equipmentx" min="1" required />
+                      <div class="invalid-feedback">
+                          Required Field
+                      </div>
+                      <div class="valid-feedback">
+                          Looking Good!
+                      </div>
+                  </div>
+              </div>
+            </div>
+
+            <div class="row">
+               
+                <div class="col-lg-4 mb-3">
+                    <div class="form-outline">
+                        <label class="form-label mb-0" for="f_amount">Amount</label>
+                        <input value="1000" type="number" step="0.01" onblur="" id="f_amount" name="f_amount" placeholder="0.00" class="form-control equipmentx" min="20"  required />
+                        <div class="invalid-feedback">
+                            Required Field
+                        </div>
+                        <div class="valid-feedback">
+                            Looking Good!
+                        </div>
+                    </div>
+                </div>
+                
+            </div>
+          
+            </form>
+            <!--//end form -->
+          
+          </div><!--//end container-fluid//-->
+        
+      </div><!--//end modal-body-->
+      
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+        <button class="btn btn-primary" id="start-btn" onclick="javascript:util.validateMe('dataEntryModal','#dataEntryForm','equipmentx')" type="button">
+          <i id="i-save" class="fa fa-floppy-o"></i> &nbsp;&nbsp; Save
+          </button>
+      </div>
+
+    </div><!--end modal-content-->
+  </div><!--//end modal-dialog-->
+
+</div>
+
+<!--// === MODAL FOR RIDERS REMITTANCE-->
+<div class="modal fade" id="remittanceModal" tabindex="-1" aria-labelledby="remittanceModalLabel" aria-hidden="true">
+  
+  <div class="modal-dialog modal-fullscreen modal-dialog-scrollable">
+    
+    <div class="modal-content">
+      <div class="modal-header bg-primary">
+        <h4 class="modal-title"><img src="/assets/images/logos/asiaoneico.png" width="32px">  Remmittance Entry</h4  >
+        <button class="btn-close" type="button" data-bs-dismiss="modal"></button>
+      </div>
+
+      <!--//modal body-->
+      <div class="modal-body">
+
+          <div class="my-container" >  
+            <!-- gutter2px	
+            //form goes here -->
+
+              <div class="col-lg-12 d-flex align-items-start">
+                <div class="card w-100  ms-auto">
+                  <div class="card-body p-1">
+                    <div class="mt-0 mb-4">
+                      <h6 class="card-title fw-semibold">
+                        <i style="color:green;font-size:20px;" class="ti ti-category-plus"></i>&nbsp;
+                        Transaction Information
+                      </h6>
+                    </div>
+
+                    <div id="" class="table-responsive">
+                      <table class="table">
+                        <thead>
+                          <tr>
+                            <th>Transaction No.</th>
+                            <th>Parcel Qty.</th>
+                            <th>Parcel Amount</th>                            
+                          </tr>
+                        </thead>
+                        <tbody id="trans_tbody">
+                        </tbody>
+                      </table>
+                    </div> 
+                    
+                  </div>
+                </div>
+              </div>
+            
+
+            <!--//FORM SIGNUP-->
+            <form id="remittanceForm" name="remittanceForm" class="needs-validation row gy-2 gx-2 align-items-center" method="GET" novalidate>
+            
+            <!-- <div class="row mb-4"> -->
+            <div class="row">   
+               <div class="col-lg-4 mb-3">
+                  <div class="form-outline">
+                      <label class="form-label mb-0" for="ff_parcel">Actual Parcel(s) Returned</label>
+                      <input value="1" onclick="this.select()" type="number" step="1" onblur="" id="ff_parcel" name="ff_parcel" placeholder="0" class="form-control equipmentx" min="1" required />
+                      <div class="invalid-feedback">
+                          Required Field
+                      </div>
+                      <div class="valid-feedback">
+                          Looking Good!
+                      </div>
+                  </div>
+              </div>
+            </div>
+
+            <div class="row">
+               
+                <div class="col-lg-4 mb-3">
+                    <div class="form-outline">
+                        <label class="form-label mb-0" for="ff_amount">Actual Amount Remitted</label>
+                        <input value="1000" type="number" step="0.01" onblur="" id="ff_amount" name="ff_amount" placeholder="0.00" class="form-control equipmentx" min="20"  required />
+                        <div class="invalid-feedback">
+                            Required Field
+                        </div>
+                        <div class="valid-feedback">
+                            Looking Good!
+                        </div>
+                        <input hidden type="text" value="" id="ff_empid" name="ff_empid" >
+                    </div>
+                </div>
+            </div>
+            
+            <div class="row">
+                <div class="col-lg-4 mb-0">
+                    <div class="form-outline">
+                        <label class="form-label mb-0" style="text-transform: uppercase" for="ff_remarks">Remarks</label>
+                        <textarea class="form-control equipmentx" id="ff_remarks" name="ff_remarks" rows="4"></textarea>
+                        
+                        <input hidden stype="text" id="ff_transnumber" name="ff_transnumber"  class="form-control equipmentx" />
+                      
+                      </div>
+                </div>  
+            </div>
+            </form>
+            <!--//end form -->
+            
+            <div class="row">
+              <div class="col-lg-4 mt-2 mb-0">
+                <!-- form file upload -->
+                <form id="remittanceUploadForm" name="remittanceUploadForm"  enctype="multipart/form-data" method="post">
+                  <div class="form-outline">
+                    <label class="form-label mb-0" for="ff_uploaded_file">Upload Remittance Receipt</label>
+                    
+                    <!-- ONCHANGE=ASN.CHECKFILESIZE() -->
+                    <input onchange="" class="form-control equipmentxx" type="file" name="ff_uploaded_file" id="ff_uploaded_file" accept='image/*' capture="environment"  required />
+                    
+                    <div class="invalid-feedback">
+                      Required Field!!!
+                    </div>
+                    <div class="valid-feedback">
+                        Looking Good!
+                    </div>
+                    
+                    <input id="remittance_upload_btn" name="remittance_upload_btn" class="btn btn-warning lets-hide" type="submit" value="Upload">
+                    <p><span id="ff_size"></span></p>
+                    <div id="ff_blindspot"></div>
+                  </div>
+                </form>
+              </div>
+            </div>
+            
+          </div><!--//end container-fluid//-->
+        
+
+
+      </div><!--//end modal-body-->
+      
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+        <button class="btn btn-primary" id="remittance-btn" onclick="javascript:util.validateMe('remittanceModal','#remittanceForm','equipmentx')" type="button">
+          <i id="i-remittance-psave" class="fa fa-floppy-o"></i> &nbsp;&nbsp; Save
+          </button>
+      </div>
+
+    </div><!--end modal-content-->
+  </div><!--//end modal-dialog-->
+
+</div>
+
+  <script src="https://cdn.jsdelivr.net/npm/@tabler/core@1.1.1/dist/js/tabler.min.js"></script>
+
+
+  <script src="/assets/libs/jquery/dist/jquery.min.js"></script> <!--//sidebarmenu dependent-->
+  <script src="/assets/libs/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="/assets/js/sidebarmenu.js"></script>
+  <script src="/assets/js/app.min.js"></script>
+
+  <script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>  
+  <!-- <script src="/assets/libs/apexcharts/dist/apexcharts.min.js"></script> -->
+
+  <script src="/assets/libs/simplebar/dist/simplebar.js"></script>
+
+
+  <!-- take out charting <script src="/assets/js/dashboard.js"></script>-->
+
   <!-- toastify -->
   <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
 
   <!-- offline version -->
-  <!-- <script src="http://192.168.7.221:10000/socket.io/socket.io.js"></script>
-   -->
-  <!-- //online version//-->
-  <script src="https://asn-api.onrender.com/socket.io/socket.io.js"></script>
+  <script src="http://192.168.38.221:10000/socket.io/socket.io.js"></script>
   
-  <script src="/shopee/assets/js/util.js?v=1"></script>
-  <script src="/shopee/assets/js/main.js?v=1"></script>
-  <script> </script>
+  <!-- //online version//-->
+
+  <!-- <script src="https://asn-jtgrp-api.onrender.com/socket.io/socket.io.js"></script>
+   -->
+  <script src="/assets/js/util.js?v=8"></script>
+  <script src="/assets/js/main.js?v=8"></script>
+  
+  <script src="/menu.js?v=8"> </script>
 
 </body>
 
