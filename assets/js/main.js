@@ -1097,6 +1097,8 @@ const asn = {
 
             console.log( data )
 
+            claims_grid.setData( data.xdata )
+
             // const myul = document.getElementById('claimsupdate')
             
             // myul.innerHTML = text
