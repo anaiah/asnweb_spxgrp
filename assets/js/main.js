@@ -1103,7 +1103,7 @@ const asn = {
             if(util.getCookie('grp_id') =="2"){ //cfo
                  //asn.getListPdf(1) // call List of ATDs
                  //get all printed pdf
-                 asn.getprintPdf()
+                 //asn.getprintPdf()
              }else{
                 document.getElementById('list_atd').remove()
              }//eif
@@ -1159,7 +1159,7 @@ const asn = {
 
             console.log( data.xdata )
 
-            pdf_grid.setData( data.xdata )
+            ///pdf_grid.setData( data.xdata )
 
             //document.getElementById('print_atd').innerHTML = texts
             //util.scrollsTo('')
