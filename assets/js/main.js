@@ -1146,21 +1146,23 @@ const asn = {
     //===== show List of printed/uploaded/completed PDFs
     getprintPdf: async() =>{
         
+        console.log('==asn.getprintPdf()====')
         const xparam = `${util.getCookie('f_region')}/${util.getCookie('grp_id')}/${util.getCookie('f_email')}` 
         
         document.getElementById('print_atd').innerHTML = "" //reset
         
-        await fetch(`${myIp}/getprintpdf/${xparam}}`,{
+        await fetch(`${myIp}/getprintpdf/${xparam}`,{
             cache:'reload'
         })
         .then( (res) => res.json() )
         .then( (data) => {
 
             console.log( data.xdata )
+
             pdf_grid.setData( data.xdata )
 
             //document.getElementById('print_atd').innerHTML = texts
-
+            //util.scrollsTo('')
            
             return true
         })  
