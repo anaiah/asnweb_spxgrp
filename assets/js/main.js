@@ -1157,7 +1157,8 @@ const asn = {
         .then( (data) => {
 
             console.log( data.xdata )
-            
+            print_grid.setData( data.xdata )
+
             //document.getElementById('print_atd').innerHTML = texts
 
            
