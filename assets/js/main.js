@@ -1113,7 +1113,9 @@ const asn = {
         
 
             if(util.getCookie('grp_id') =="2"){ //cfo
-                 asn.getListPdf(1) // call List of ATDs
+                 //asn.getListPdf(1) // call List of ATDs
+                 //get all printed pdf
+                 asn.getprintPdf()
              }else{
                 document.getElementById('list_atd').remove()
              }//eif
@@ -1153,26 +1155,24 @@ const asn = {
         })    
     },
 
-    //===== show List of completed PDFs
-    getListPdf: async( nPage) =>{
-
-        document.getElementById('claims_select').innerHTML = "" //reset
+    //===== show List of printed/uploaded/completed PDFs
+    getprintPdf: async() =>{
         
-        await fetch(`${myIp}/getlistpdf/1/${nPage}`,{
+        const xparam = `/${util.getCookie('f_region')}/${util.getCookie('grp_id')}/${util.getCookie('f_email')}` 
+        
+        document.getElementById('print_atd').innerHTML = "" //reset
+        
+        await fetch(`${myIp}/getprintpdf/${xparam}}`,{
             cache:'reload'
         })
-        .then(res => res.text() )
-        .then(text => {
+        .then( (res) => res.json() )
+        .then( (data) => {
 
-            const texts =`<div class="container-fluid">
-                <div>${text}</div>
-                </div>
-                `
+            console.log( data.xdata )
+            
+            //document.getElementById('print_atd').innerHTML = texts
 
-            document.getElementById('claims_select').innerHTML = texts
-
-            console.log( '**rec count** ',document.getElementById('reccount').innerHTML)
-
+           
             return true
         })  
         .catch((error) => {
@@ -1180,7 +1180,6 @@ const asn = {
             //util.Toast(`Error:, ${error}`,1000)
             console.error('Error:', error)
         })    
-            
     
     },
 
