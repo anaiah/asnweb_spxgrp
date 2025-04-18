@@ -2,7 +2,7 @@
 // Create Tabulator on DOM element with id "table"
 var pdf_grid = new Tabulator("#pdfprint", {
 
-    ajaxURL: `${myIp}/getprintpdf/${util.getCookie('f_region')}/${util.getCookie('grp_id')}/${util.getCookie('f_email')}`, // URL of your API endpoint
+   // ajaxURL: `${myIp}/getprintpdf/${util.getCookie('f_region')}/${util.getCookie('grp_id')}/${util.getCookie('f_email')}`, // URL of your API endpoint
     
     height: "311px", // height of table
     
@@ -14,6 +14,7 @@ var pdf_grid = new Tabulator("#pdfprint", {
 
     //layout:"fitDataFill",
     responsiveLayout:"collapse",
+
     rowHeader:{
         formatter:"responsiveCollapse",
     },
@@ -43,6 +44,20 @@ var pdf_grid = new Tabulator("#pdfprint", {
         {
             title: "Hub", 
             field: "hub", 
+            headerSort:false, 
+            headerHozAlign:"center", 
+            resizable:false,
+            // formatter: function(cell, formatterParams, onRendered){
+            //     // Access the row data
+            //     var data = cell.getData();
+            //     // Combine data from multiple fields
+            //     return `<span><i class='ti ti-caret-down-filled'></i>&nbsp;${cell.getRow().getData().rider}</span><br>
+            //     ${cell.getRow().getData().emp_id}
+            // ` 
+            // }
+        },{
+            title: "Emp ID", 
+            field: "emp_id", 
             headerSort:false, 
             headerHozAlign:"center", 
             resizable:false,
@@ -169,22 +184,22 @@ var pdf_grid = new Tabulator("#pdfprint", {
     //     */
     // ],
 
-    locale:"en-us",
-    langs:{
-        "en-us":{
-            "pagination":{
-                "page_size":"Page Size", //label for the page size select element
-                "first":"<i class='ti ti-player-skip-back-filled'></i>", //text for the first page button
-                "first_title":"First Page", //tooltip text for the first page button
-                "last":"<i class='ti ti-player-skip-forward-filled'></i>",
-                "last_title":"Last Page",
-                "prev":"Prev",
-                "prev_title":"Prev Page",
-                "next":"Next",
-                "next_title":"Next Page",
-            },
-        }
-    },
+    // locale:"en-us",
+    // langs:{
+    //     "en-us":{
+    //         "pagination":{
+    //             "page_size":"Page Size", //label for the page size select element
+    //             "first":"<i class='ti ti-player-skip-back-filled'></i>", //text for the first page button
+    //             "first_title":"First Page", //tooltip text for the first page button
+    //             "last":"<i class='ti ti-player-skip-forward-filled'></i>",
+    //             "last_title":"Last Page",
+    //             "prev":"Prev",
+    //             "prev_title":"Prev Page",
+    //             "next":"Next",
+    //             "next_title":"Next Page",
+    //         },
+    //     }
+    // },
     
    // pagination:true, //enable pagination
     //paginationMode:"local", //enable remote pagination
@@ -194,5 +209,5 @@ var pdf_grid = new Tabulator("#pdfprint", {
     // }
 });
 
-pdf_grid.setData( asn.printpdf_data )
+//pdf_grid.setData( asn.printpdf_data )
 

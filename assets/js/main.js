@@ -1155,10 +1155,11 @@ const asn = {
             pdf_grid.on("tableBuilt", function(){
                 pdf_grid.updateData( result.zdata )
             });
+
             //pdf_grid.updateData( printpdf_data)
 
            
-            return true
+            //return true
         })  
         .catch((error) => {
             //zonked.notif('','p-notif',true)
