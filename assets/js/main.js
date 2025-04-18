@@ -1112,12 +1112,11 @@ const asn = {
             // util.scrollsTo('current_projects')
         
 
-            // if(util.getCookie('grp_id')!=="2"){
-            //     asn.getListPdf(1) // call List of ATDs
-            // }else{
-            //     document.getElementById('list_atd').remove()
-                
-            // }//eif
+            if(util.getCookie('grp_id')!=="2"){ //cfo
+                 asn.getListPdf(1) // call List of ATDs
+             }else{
+                document.getElementById('list_atd').remove()
+             }//eif
         })	
         .catch((error) => {
             //util.Toast(`Error:, ${error}`,1000)
