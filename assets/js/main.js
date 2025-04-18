@@ -1059,7 +1059,8 @@ const asn = {
             document.getElementById('rider').innerHTML = text
             
             util.scrollsTo('claims_grid_update')
-            //ooff muna asn.getClaimsUpdate()
+            
+            asn.getClaimsUpdate() //===fire getclaimsupdate()
        
         })	
         .catch((error) => {
@@ -1085,7 +1086,7 @@ const asn = {
 
             console.log( 'claimsupdte()==', data )
 
-            //claims_grid.setData(data.xdata )
+            claims_grid.setData( data )
 
         
             if(util.getCookie('grp_id') =="2"){ //cfo
