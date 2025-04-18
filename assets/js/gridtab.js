@@ -192,136 +192,137 @@ var pdf_grid = new Tabulator("#print_atd", {
             row.getElement().style.backgroundColor = "lemonchiffon"; //mark rows with age greater than or equal to 18 as successful;
         }
     },
+    
+    autoColumns: true,
+    // columns: [ // Define Table Columns
+    //     {
+    //         title: "Rider", 
+    //         field: "rider", 
+    //         headerSort:false, 
+    //         headerHozAlign:"center", 
+    //         resizable:false,
+    //         // formatter: function(cell, formatterParams, onRendered){
+    //         //     // Access the row data
+    //         //     var data = cell.getData();
+    //         //     // Combine data from multiple fields
+    //         //     return `<span><i class='ti ti-caret-down-filled'></i>&nbsp;${cell.getRow().getData().rider}</span><br>
+    //         //     ${cell.getRow().getData().emp_id}
+    //         // ` 
+    //         // }
+    //     },
 
-    columns: [ // Define Table Columns
-        {
-            title: "Rider", 
-            field: "rider", 
-            headerSort:false, 
-            headerHozAlign:"center", 
-            resizable:false,
-            // formatter: function(cell, formatterParams, onRendered){
-            //     // Access the row data
-            //     var data = cell.getData();
-            //     // Combine data from multiple fields
-            //     return `<span><i class='ti ti-caret-down-filled'></i>&nbsp;${cell.getRow().getData().rider}</span><br>
-            //     ${cell.getRow().getData().emp_id}
-            // ` 
-            // }
-        },
 
-
-        // { title: "Total", 
-        //     field: "total",  
-        //     headerSort:false, 
-        //     headerHozAlign:"center", 
-        //     hozAlign:"right", 
-        //     formatter:'money',
-        //     formatterParams: {
-        //         decimal: ".",
-        //         thousand: ",",
-        //         symbol: "",
-        //         precision:2
-        //     },
-        //     bottomCalc:"sum" ,
-        //     bottomCalcFormatter: "money",
-        //     bottomCalcFormatterParams:  {
-        //         thousand: ",",
-        //         precision:2,
-        //         decimal:"."
-        //     },
-        //     resizable:false
-        // },  
-        /*
-        { title: "Delivered", 
-            field: "delivered", 
-            headerSort:false, 
-            headerHozAlign:"center", 
-            hozAlign:"center",
-            //formatter:'html',
-            bottomCalc:'sum',
-            bottomCalcFormatter: "money",
-            bottomCalcFormatterParams:  {
-                thousand: ",",
-                precision:0
-            },
-            //formatter:'html',
-            formatter:(cell)=>{
-                if(cell.getRow().getData().parcel > 0){
-                    if(cell.getRow().getData().parcel > cell.getRow().getData().delivered){
-                        console.log('dito')
-                        return "<span><i class='ti ti-caret-down-filled'></i>&nbsp;"+ cell.getValue()+"</span>"
-                        //return "<span style='color:red'>"+cell.getValue()+"</span>"
-                    }else{
-                        return cell.getValue()
-                    }//eif
-                }else{
-                    return 0
-                }//eif
+    //     // { title: "Total", 
+    //     //     field: "total",  
+    //     //     headerSort:false, 
+    //     //     headerHozAlign:"center", 
+    //     //     hozAlign:"right", 
+    //     //     formatter:'money',
+    //     //     formatterParams: {
+    //     //         decimal: ".",
+    //     //         thousand: ",",
+    //     //         symbol: "",
+    //     //         precision:2
+    //     //     },
+    //     //     bottomCalc:"sum" ,
+    //     //     bottomCalcFormatter: "money",
+    //     //     bottomCalcFormatterParams:  {
+    //     //         thousand: ",",
+    //     //         precision:2,
+    //     //         decimal:"."
+    //     //     },
+    //     //     resizable:false
+    //     // },  
+    //     /*
+    //     { title: "Delivered", 
+    //         field: "delivered", 
+    //         headerSort:false, 
+    //         headerHozAlign:"center", 
+    //         hozAlign:"center",
+    //         //formatter:'html',
+    //         bottomCalc:'sum',
+    //         bottomCalcFormatter: "money",
+    //         bottomCalcFormatterParams:  {
+    //             thousand: ",",
+    //             precision:0
+    //         },
+    //         //formatter:'html',
+    //         formatter:(cell)=>{
+    //             if(cell.getRow().getData().parcel > 0){
+    //                 if(cell.getRow().getData().parcel > cell.getRow().getData().delivered){
+    //                     console.log('dito')
+    //                     return "<span><i class='ti ti-caret-down-filled'></i>&nbsp;"+ cell.getValue()+"</span>"
+    //                     //return "<span style='color:red'>"+cell.getValue()+"</span>"
+    //                 }else{
+    //                     return cell.getValue()
+    //                 }//eif
+    //             }else{
+    //                 return 0
+    //             }//eif
                 
-            },
+    //         },
 
-                //formatter sampl
-                // formatter: "money",
-                // bottomCalc: "sum",
-                // bottomCalcParams: {
-                // precision: 3
-                // },
-                // bottomCalcFormatter: "money",
-                // bottomCalcFormatterParams:  {
-                // decimal: ".",
-                // thousand: ",",
-                // symbol: "$"
-                // },
-                // formatterParams: {
-                // decimal: ".",
-                // thousand: ",",
-                // symbol: "$"
-                // }
+    //             //formatter sampl
+    //             // formatter: "money",
+    //             // bottomCalc: "sum",
+    //             // bottomCalcParams: {
+    //             // precision: 3
+    //             // },
+    //             // bottomCalcFormatter: "money",
+    //             // bottomCalcFormatterParams:  {
+    //             // decimal: ".",
+    //             // thousand: ",",
+    //             // symbol: "$"
+    //             // },
+    //             // formatterParams: {
+    //             // decimal: ".",
+    //             // thousand: ",",
+    //             // symbol: "$"
+    //             // }
 
-         },
-        { title: "Amount", 
-            field: "total_amount",
-            headerSort:false, 
-            headerHozAlign:"center",
-            hozAlign:"right",
-            formatter:"money", 
-            formatterParams:{ thousand:","},
-            bottomCalc:'sum',
-            //bottomCalcParams:{ precision: 1},
-            bottomCalcFormatter: "money",
-            bottomCalcFormatterParams:  {
-                decimal: ".",
-                thousand: ",",
-                precision: 2
+    //      },
+    //     { title: "Amount", 
+    //         field: "total_amount",
+    //         headerSort:false, 
+    //         headerHozAlign:"center",
+    //         hozAlign:"right",
+    //         formatter:"money", 
+    //         formatterParams:{ thousand:","},
+    //         bottomCalc:'sum',
+    //         //bottomCalcParams:{ precision: 1},
+    //         bottomCalcFormatter: "money",
+    //         bottomCalcFormatterParams:  {
+    //             decimal: ".",
+    //             thousand: ",",
+    //             precision: 2
 
-            // symbol: "$"
-            },
+    //         // symbol: "$"
+    //         },
             
-        },
-        { title: "Remitted",
-            field: "amount_remitted", 
-            headerSort:false, 
-            headerHozAlign:"center", 
-            hozAlign:"right" ,
-            formatter:"money", 
-            formatterParams:{ 
-                thousand:",", 
-                precision:2
-            },
-            bottomCalc:'sum',
-           // bottomCalcParams:{ precision: 1},            
-            bottomCalcFormatter: "money",
-            bottomCalcFormatterParams:  {
-                decimal: ".",
-                thousand: ",",
-                precision: 2
-            // symbol: "$"
-            }
-        },    
-        { title: "Remarks", field: "remarks", formatter:"textarea", headerHozAlign:"center", headerSort:false }
-        */
-    ],
+    //     },
+    //     { title: "Remitted",
+    //         field: "amount_remitted", 
+    //         headerSort:false, 
+    //         headerHozAlign:"center", 
+    //         hozAlign:"right" ,
+    //         formatter:"money", 
+    //         formatterParams:{ 
+    //             thousand:",", 
+    //             precision:2
+    //         },
+    //         bottomCalc:'sum',
+    //        // bottomCalcParams:{ precision: 1},            
+    //         bottomCalcFormatter: "money",
+    //         bottomCalcFormatterParams:  {
+    //             decimal: ".",
+    //             thousand: ",",
+    //             precision: 2
+    //         // symbol: "$"
+    //         }
+    //     },    
+    //     { title: "Remarks", field: "remarks", formatter:"textarea", headerHozAlign:"center", headerSort:false }
+    //     */
+    // ],
 
     locale:"en-us",
     langs:{

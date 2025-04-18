@@ -1143,6 +1143,9 @@ const asn = {
         })    
     },
 
+
+    printpdf:null,
+
     //===== show List of printed/uploaded/completed PDFs
     getprintPdf: async() =>{
         
@@ -1158,8 +1161,8 @@ const asn = {
         .then( (data) => {
 
             console.log( data.xdata )
-
-            ///pdf_grid.setData( data.xdata )
+            
+            //pdf_grid.setData( data.xdata )
 
             //document.getElementById('print_atd').innerHTML = texts
             //util.scrollsTo('')
