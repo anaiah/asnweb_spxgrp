@@ -7,7 +7,7 @@ var pdf_grid = new Tabulator("#pdfprint", {
     
     height: "311px", // height of table
     
-    layout:'fitColumns',
+    layout:'fitDataTable',
 
     htmlOutputConfig:{
         formatCells: true
@@ -37,14 +37,15 @@ var pdf_grid = new Tabulator("#pdfprint", {
                 // Access the row data
                 var data = cell.getData();
                 // Combine data from multiple fields
-                return `<span><i class='ti ti-caret-down-filled'></i>&nbsp;${cell.getRow().getData().rider}</span><br>
-                ${cell.getRow().getData().emp_id}
+                return `<span class="a2">${cell.getRow().getData().rider}</span><br>
+                <span class="a3">${cell.getRow().getData().emp_id}</span><br>
+                <span class="a3">${cell.getRow().getData().hub}</span>
             ` 
             }
         },
         {
-            title: "Hub", 
-            field: "hub", 
+            title: "Batch",
+            field: "pdf_batch", 
             headerSort:false, 
             headerHozAlign:"center", 
             resizable:false,
