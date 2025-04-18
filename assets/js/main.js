@@ -1085,14 +1085,13 @@ const asn = {
 
             console.log( 'claimsupdte()==', data )
 
-            claims_grid.setData(data.xdata )
+            //claims_grid.setData(data.xdata )
 
-            util.scrollsTo('current_projects')
         
-
             if(util.getCookie('grp_id') =="2"){ //cfo
                  //asn.getListPdf(1) // call List of ATDs
                  //get all printed pdf
+                 util.scrollsTo('current_projects')
                  asn.getprintPdf()
              }else{
                 document.getElementById('list_atd').remove()
@@ -1151,6 +1150,7 @@ const asn = {
         .then( (data) => {
 
             console.log( 'getprintpdf()', data )
+            
             pdf_grid.setData( data.xdata )
 
             //document.getElementById('print_atd').innerHTML = texts
