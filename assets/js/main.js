@@ -1153,6 +1153,7 @@ const asn = {
 
             printpdf_data = xdata.zdata
 
+            pdf_grid.updateData( printpdf_data)
             
             //document.getElementById('print_atd').innerHTML = texts
             //util.scrollsTo('')
