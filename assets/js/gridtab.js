@@ -192,26 +192,26 @@ var pdf_grid = new Tabulator("#print_atd", {
             row.getElement().style.backgroundColor = "lemonchiffon"; //mark rows with age greater than or equal to 18 as successful;
         }
     },
-    
-    autoColumns: true,
-    // columns: [ // Define Table Columns
-    //     {
-    //         title: "Rider", 
-    //         field: "rider", 
-    //         headerSort:false, 
-    //         headerHozAlign:"center", 
-    //         resizable:false,
-    //         // formatter: function(cell, formatterParams, onRendered){
-    //         //     // Access the row data
-    //         //     var data = cell.getData();
-    //         //     // Combine data from multiple fields
-    //         //     return `<span><i class='ti ti-caret-down-filled'></i>&nbsp;${cell.getRow().getData().rider}</span><br>
-    //         //     ${cell.getRow().getData().emp_id}
-    //         // ` 
-    //         // }
-    //     },
 
+    //autoColumns: true,
+    columns: [ // Define Table Columns
+        {
+            title: "Rider", 
+            field: "xdata.rider", 
+            headerSort:false, 
+            headerHozAlign:"center", 
+            resizable:false,
+            // formatter: function(cell, formatterParams, onRendered){
+            //     // Access the row data
+            //     var data = cell.getData();
+            //     // Combine data from multiple fields
+            //     return `<span><i class='ti ti-caret-down-filled'></i>&nbsp;${cell.getRow().getData().rider}</span><br>
+            //     ${cell.getRow().getData().emp_id}
+            // ` 
+            // }
+        },
 
+    ]
     //     // { title: "Total", 
     //     //     field: "total",  
     //     //     headerSort:false, 
