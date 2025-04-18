@@ -797,6 +797,9 @@ const asn = {
         
         if ( nn > -1 ){
             xmsg = "<div class='text-wrap' style='width: 20rem;'>PLS CHECK YOUR INPUT, THERE'S ERROR!</div>"
+            
+            asn.speaks(`PLEASE CHECK YOUR INPUT, THERE'S AN ERROR!!!`)
+
             Toastify({
                 text: xmsg ,
                 duration:3000,
@@ -818,6 +821,8 @@ const asn = {
             return false         
         }else{
             console.log('redy to search')
+            asn.speaks( 'Ready to Search!!!')
+
             let xurl = ""
             if(e_num!=="" && e_name==""){
                 //SEARCH BY EMP ID
@@ -835,31 +840,9 @@ const asn = {
             .then(res => res.text() )
 
             .then(text => {	
-            //    // console.log('what the text? ',text)
-            //     osndp.notif('',true)
-                let divchild = `   
-                    <div class="row">
-                    <div class="col-lg-8 d-flex ">
-                    <div class="card w-100">
-                        <div class="card-body p-4">
-                        <div class="mb-4">
-                            <h5 class="card-title fw-semibold"><i style="color:green;font-size:25px;" class="ti ti-list-search"></i>&nbsp;Search Result</h5>
-                        </div>
-                        <div id="claim_search">
-        
-                        </div>
-                        </div>
-                    </div>
-                    </div>
-                    </div>`
-
-                document.getElementById('search_claim' ).classList.add('container-fluid')
-                document.getElementById('search_claim' ).classList.add('ms-3')
                 
-                document.getElementById('search_claim').innerHTML = divchild
-
-                document.getElementById('claim_search').innerHTML = ""
-                document.getElementById('claim_search').innerHTML = text
+                document.getElementById('search_claim').innerHTML = ""
+                document.getElementById('search_claim').innerHTML = text
                 
                 util.scrollsTo('search_claim')
             
