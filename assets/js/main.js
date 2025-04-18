@@ -1146,12 +1146,14 @@ const asn = {
             cache:'reload'
         })
         .then( (res) => res.json() )
-        .then( (xdata) => {
+        .then( (result) => {
 
-            console.log( 'getprintpdf()', xdata )
+            console.log( 'getprintpdf()', result )
 
-            printpdf_data = xdata.zdata
-
+            printpdf_data = result.zdata
+            pdf_grid.on("tableBuilt", function(){
+                pdf_grid.updateData( result.zdata )
+            });
             //pdf_grid.updateData( printpdf_data)
 
            
