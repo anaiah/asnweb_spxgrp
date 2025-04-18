@@ -1151,10 +1151,9 @@ const asn = {
 
             console.log( 'getprintpdf()', xdata )
 
-            pdf_grid.setData( xdata.zdata )
-
-            $("#print_atd").tabulator("redraw")
-
+            pdf_grid.on("tableBuilt", function(){
+                pdf_grid.setData( xdata.zdata )
+            });
             //document.getElementById('print_atd').innerHTML = texts
             //util.scrollsTo('')
            
