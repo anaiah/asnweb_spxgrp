@@ -41,12 +41,17 @@ var claims_grid = new Tabulator("#claims_grid_update", {
     //ajaxURL: `${myIp}/claimsupdate/${util.getCookie('f_region')}/${util.getCookie('grp_id')}/${util.getCookie('f_email')}`, // URL of your API endpoint
     height: "311px", // height of table
     
-    layout:'fitColumns',
+    //layout:'fitColumns',
 
     htmlOutputConfig:{
         formatCells: true
     },
 
+    layout:"fitDataFill",
+    responsiveLayout:"collapse",
+    rowHeader:{
+        formatter:"responsiveCollapse",
+    },
     rowFormatter:function(row){
         if(row.getData().total == ""){
             row.getElement().style.backgroundColor = "lemonchiffon"; //mark rows with age greater than or equal to 18 as successful;
