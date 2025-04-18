@@ -1147,11 +1147,11 @@ const asn = {
             cache:'reload'
         })
         .then( (res) => res.json() )
-        .then( (data) => {
+        .then( (xdata) => {
 
-            console.log( 'getprintpdf()', data )
-            
-            pdf_grid.setData( data.xdata )
+            console.log( 'getprintpdf()', xdata )
+
+            pdf_grid.setData( xdata.zdata )
 
             //document.getElementById('print_atd').innerHTML = texts
             //util.scrollsTo('')
