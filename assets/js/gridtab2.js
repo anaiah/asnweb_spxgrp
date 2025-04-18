@@ -72,7 +72,7 @@ var pdf_grid = new Tabulator("#pdfprint", {
         },{
             title: "Total", 
             field: "total", 
-            width:100,
+            width:100,  
             headerSort:false, 
             headerHozAlign:"center", 
             hozAlign:"right",
@@ -81,7 +81,7 @@ var pdf_grid = new Tabulator("#pdfprint", {
                 // Access the row data
                 var data = cell.getData();
                 // Combine data from multiple fields
-                return `<span class='a3'>${ pdfgrid.addCommas(cell.getRow().getData().total) }</span>
+                return `<span class='a3'>${ pdfgrid.addCommas(parseFloat(cell.getRow().getData().total).toFixed(2)) }</span>
             ` 
             },
             formatterParams: {
