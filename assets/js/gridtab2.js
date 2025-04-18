@@ -40,6 +40,21 @@ var pdf_grid = new Tabulator("#print_atd", {
             // ` 
             // }
         },
+        {
+            title: "Hub", 
+            field: "hub", 
+            headerSort:false, 
+            headerHozAlign:"center", 
+            resizable:false,
+            // formatter: function(cell, formatterParams, onRendered){
+            //     // Access the row data
+            //     var data = cell.getData();
+            //     // Combine data from multiple fields
+            //     return `<span><i class='ti ti-caret-down-filled'></i>&nbsp;${cell.getRow().getData().rider}</span><br>
+            //     ${cell.getRow().getData().emp_id}
+            // ` 
+            // }
+        },
 
     ],
     //     // { title: "Total", 
@@ -171,9 +186,9 @@ var pdf_grid = new Tabulator("#print_atd", {
         }
     },
     
-    pagination:true, //enable pagination
-    paginationMode:"local", //enable remote pagination
-    paginationSize: 10, //optional parameter to request a certain number of rows per page
+   // pagination:true, //enable pagination
+    //paginationMode:"local", //enable remote pagination
+    //paginationSize: 10, //optional parameter to request a certain number of rows per page
     // paginationCounter:function(pageSize, currentRow, currentPage, totalRows, totalPages){
     //     return `<i class='ti ti-database-search'></i>&nbsp;Showing ${pageSize}  rows of ${totalRows} total`;
     // }
