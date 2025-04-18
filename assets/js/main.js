@@ -1176,7 +1176,7 @@ const asn = {
             return true
         })  
         .catch((error) => {
-            zonked.notif('','p-notif',true)
+            //zonked.notif('','p-notif',true)
             //util.Toast(`Error:, ${error}`,1000)
             console.error('Error:', error)
         })    
