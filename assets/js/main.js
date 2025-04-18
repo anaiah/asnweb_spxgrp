@@ -1149,16 +1149,7 @@ const asn = {
         .then( (result) => {
 
             console.log( 'getprintpdf()', result )
-
-            asn.printpdf_data = result.zdata
-
-            // pdf_grid.on("tableBuilt", function(){
-            //     pdf_grid.updateData( result.zdata )
-            // });
-
-            //pdf_grid.updateData( printpdf_data)
-
-           
+    
             //return true
         })  
         .catch((error) => {

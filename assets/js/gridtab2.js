@@ -33,14 +33,14 @@ var pdf_grid = new Tabulator("#pdfprint", {
             headerSort:false, 
             headerHozAlign:"center", 
             resizable:false,
-            // formatter: function(cell, formatterParams, onRendered){
-            //     // Access the row data
-            //     var data = cell.getData();
-            //     // Combine data from multiple fields
-            //     return `<span><i class='ti ti-caret-down-filled'></i>&nbsp;${cell.getRow().getData().rider}</span><br>
-            //     ${cell.getRow().getData().emp_id}
-            // ` 
-            // }
+            formatter: function(cell, formatterParams, onRendered){
+                // Access the row data
+                var data = cell.getData();
+                // Combine data from multiple fields
+                return `<span><i class='ti ti-caret-down-filled'></i>&nbsp;${cell.getRow().getData().rider}</span><br>
+                ${cell.getRow().getData().emp_id}
+            ` 
+            }
         },
         {
             title: "Hub", 
