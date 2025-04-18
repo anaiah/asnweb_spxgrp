@@ -1083,27 +1083,17 @@ const asn = {
 
         .then( (data)  => {	
 
-            console.log( data )
+            console.log( 'claimsupdte()==', data )
 
-            claims_grid.setData( data.xdata )
+            claims_grid.setData(data.xdata )
 
-            // const myul = document.getElementById('claimsupdate')
-            
-            // myul.innerHTML = text
-            
-            // console.log( text)
-            // console.log('claims total', document.getElementById('gxtotal').value)
-            
-            // document.getElementById('xgtotal').innerHTML= `Claims Recent Transaction 
-            //     <span class='text-primary fw-semibold'>P ${document.getElementById('gxtotal').value} </span>`
-
-            // util.scrollsTo('current_projects')
+            util.scrollsTo('current_projects')
         
 
             if(util.getCookie('grp_id') =="2"){ //cfo
                  //asn.getListPdf(1) // call List of ATDs
                  //get all printed pdf
-                 //asn.getprintPdf()
+                 asn.getprintPdf()
              }else{
                 document.getElementById('list_atd').remove()
              }//eif
@@ -1160,9 +1150,8 @@ const asn = {
         .then( (res) => res.json() )
         .then( (data) => {
 
-            console.log( data.xdata )
-            
-            //pdf_grid.setData( data.xdata )
+            console.log( 'getprintpdf()', data )
+            pdf_grid.setData( data.xdata )
 
             //document.getElementById('print_atd').innerHTML = texts
             //util.scrollsTo('')
