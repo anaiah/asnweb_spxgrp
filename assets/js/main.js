@@ -1016,12 +1016,8 @@ const asn = {
 
         let xparam = ""
 
-        if(util.getCookie('grp_id')=="2"){
-            xparam = `/${util.getCookie('f_region')}/${util.getCookie('grp_id')}/${util.getCookie('f_email')}`    
-        }else{
-            xparam = `/${util.getCookie('f_region')}/${util.getCookie('grp_id')}/${util.getCookie('f_email')}`
-        }//eif
-
+        xparam = `/${util.getCookie('f_region')}/${util.getCookie('grp_id')}/${util.getCookie('f_email')}`    
+        
         await fetch(`${myIp}/gethub${xparam}`,{
             cache:'reload'
         })
@@ -1050,13 +1046,9 @@ const asn = {
     getTopRider: async() => {
 
         let xparam = ""
-
-        if(util.getCookie('grp_id')=="2"){
-            xparam = `/${util.getCookie('f_region')}/${util.getCookie('grp_id')}/${util.getCookie('f_email')}` 
-        }else{
-            xparam = `/${util.getCookie('f_region')}/${util.getCookie('grp_id')}/${util.getCookie('f_email')}`
-        }//eif
-
+        
+        xparam = `/${util.getCookie('f_region')}/${util.getCookie('grp_id')}/${util.getCookie('f_email')}` 
+        
         await fetch(`${myIp}/getrider${xparam}`,{
             cache:'reload'
         })
@@ -1081,13 +1073,9 @@ const asn = {
     getClaimsUpdate: async() => {
 
         let xparam = ""
-
-        if(util.getCookie('grp_id')=="2"){
-           xparam = `/${util.getCookie('f_region')}/${util.getCookie('grp_id')}/${util.getCookie('f_email')}`    
-        }else{
-            xparam = `/${util.getCookie('f_region')}/${util.getCookie('grp_id')}/${util.getCookie('f_email')}`
-        }//eif
-
+        
+        xparam = `/${util.getCookie('f_region')}/${util.getCookie('grp_id')}/${util.getCookie('f_email')}`    
+        
         await fetch(`${myIp}/claimsupdate${xparam}`,{
             cache:'reload'
         })
@@ -1158,7 +1146,7 @@ const asn = {
     //===== show List of printed/uploaded/completed PDFs
     getprintPdf: async() =>{
         
-        const xparam = `/${util.getCookie('f_region')}/${util.getCookie('grp_id')}/${util.getCookie('f_email')}` 
+        const xparam = `${util.getCookie('f_region')}/${util.getCookie('grp_id')}/${util.getCookie('f_email')}` 
         
         document.getElementById('print_atd').innerHTML = "" //reset
         
