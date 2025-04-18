@@ -193,3 +193,7 @@ var pdf_grid = new Tabulator("#print_atd", {
     //     return `<i class='ti ti-database-search'></i>&nbsp;Showing ${pageSize}  rows of ${totalRows} total`;
     // }
 });
+
+pdf_grid.on("tableBuilt", function(){
+    pdf_grid.setData( asn.printpdf_data )
+});

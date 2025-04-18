@@ -1133,8 +1133,8 @@ const asn = {
     },
 
 
-    printpdf:null,
-
+    printpdf_data:null,
+    
     //===== show List of printed/uploaded/completed PDFs
     getprintPdf: async() =>{
         
@@ -1151,9 +1151,9 @@ const asn = {
 
             console.log( 'getprintpdf()', xdata )
 
-            pdf_grid.on("tableBuilt", function(){
-                pdf_grid.setData( xdata.zdata )
-            });
+            printpdf_data = xdata.zdata
+
+            
             //document.getElementById('print_atd').innerHTML = texts
             //util.scrollsTo('')
            
