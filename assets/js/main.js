@@ -1090,10 +1090,11 @@ const asn = {
 
         
             if(util.getCookie('grp_id') =="2"){ //cfo
-                 //asn.getListPdf(1) // call List of ATDs
-                 //get all printed pdf
+                 
+                //get all printed pdf
                  util.scrollsTo('current_projects')
-                 //asn.getprintPdf()
+                 asn.getprintPdf() // get printed/uploaded pdfs
+
              }else{
                 document.getElementById('list_atd').remove()
              }//eif
@@ -1133,8 +1134,6 @@ const asn = {
         })    
     },
 
-
-    printpdf_data:null,
     
     //===== show List of printed/uploaded/completed PDFs
     getprintPdf: async() =>{
@@ -1150,6 +1149,7 @@ const asn = {
         .then( (result) => {
 
             console.log( 'getprintpdf()', result )
+            pdf_grid.setData( result )
     
             //return true
         })  
