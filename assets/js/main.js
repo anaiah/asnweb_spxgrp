@@ -1150,7 +1150,8 @@ const asn = {
 
             console.log( 'getprintpdf()', result )
 
-            printpdf_data = result.zdata
+            asn.printpdf_data = result.zdata
+
             pdf_grid.on("tableBuilt", function(){
                 pdf_grid.updateData( result.zdata )
             });
