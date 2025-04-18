@@ -69,7 +69,7 @@ var pdf_grid = new Tabulator("#pdfprint", {
                 // Combine data from multiple fields
                 return `<span class='a3'>${cell.getRow().getData().total}</span>
             ` 
-            }
+            },
             formatterParams: {
                 decimal: ".",
                 thousand: ",",
