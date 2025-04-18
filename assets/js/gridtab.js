@@ -211,7 +211,7 @@ var pdf_grid = new Tabulator("#print_atd", {
             // }
         },
 
-    ]
+    ],
     //     // { title: "Total", 
     //     //     field: "total",  
     //     //     headerSort:false, 
