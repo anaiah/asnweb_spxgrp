@@ -167,8 +167,6 @@ var claims_grid = new Tabulator("#claims_grid_update", {
     // }
 });
 
-util.scrollsTo('current_projects')
-        
 
 
 // Create Tabulator on DOM element with id "table"
@@ -196,19 +194,22 @@ var pdf_grid = new Tabulator("#print_atd", {
     },
 
     columns: [ // Define Table Columns
-        { title: "Rider", 
-            formatter:"html", 
+        {
+            title: "Rider", 
+            field: "combined", 
             headerSort:false, 
             headerHozAlign:"center", 
             resizable:false,
-
-            formatter:(cell)=>{ 
+            formatter: function(cell, formatterParams, onRendered){
+                // Access the row data
+                var data = cell.getData();
+                // Combine data from multiple fields
                 return `<span><i class='ti ti-caret-down-filled'></i>&nbsp;${cell.getRow().getData().rider}</span><br>
-                    ${cell.getRow().getData().emp_id}
-                `
-            },
+                ${cell.getRow().getData().emp_id}
+            ` 
+            }
+        },
 
-        },  
 
         // { title: "Total", 
         //     field: "total",  
