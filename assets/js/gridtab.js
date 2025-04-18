@@ -197,7 +197,6 @@ var pdf_grid = new Tabulator("#print_atd", {
 
     columns: [ // Define Table Columns
         { title: "Rider", 
-            field: "rider", 
             formatter:"html", 
             headerSort:false, 
             headerHozAlign:"center", 
