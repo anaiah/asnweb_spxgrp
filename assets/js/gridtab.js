@@ -194,9 +194,9 @@ var claims_grid = new Tabulator("#claims_grid_update", {
     pagination:true, //enable pagination
     paginationMode:"local", //enable remote pagination
     paginationSize: 10, //optional parameter to request a certain number of rows per page
-    paginationCounter:function(pageSize, currentRow, currentPage, totalRows, totalPages){
-        return `<i class='ti ti-database-search'></i>&nbsp;Showing ${pageSize}  rows of ${totalRows} total`;
-    }
+    // paginationCounter:function(pageSize, currentRow, currentPage, totalRows, totalPages){
+    //     return `<i class='ti ti-database-search'></i>&nbsp;Showing ${pageSize}  rows of ${totalRows} total`;
+    // }
 });
 
 util.scrollsTo('current_projects')
