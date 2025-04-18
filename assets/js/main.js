@@ -1153,6 +1153,8 @@ const asn = {
 
             pdf_grid.setData( xdata.zdata )
 
+            $("#print_atd").tabulator("redraw")
+
             //document.getElementById('print_atd').innerHTML = texts
             //util.scrollsTo('')
            
