@@ -61,8 +61,15 @@ var pdf_grid = new Tabulator("#pdfprint", {
             field: "total", 
             headerSort:false, 
             headerHozAlign:"center", 
+            hozAlign:"right",
             resizable:false,
-            formatter:'money',
+            formatter: function(cell, formatterParams, onRendered){
+                // Access the row data
+                var data = cell.getData();
+                // Combine data from multiple fields
+                return `<span class='a3'>${cell.getRow().getData().total}</span>
+            ` 
+            }
             formatterParams: {
                 decimal: ".",
                 thousand: ",",
