@@ -764,12 +764,13 @@ const asn = {
 
     getRecord: (e_num,e_name) =>{
         let xmsg
-        
-        asn.speaks('Searching...')
-
+                
         if(e_num=="" && e_name==""){
             console.log('both blank')
             xmsg = "<div class='text-wrap' style='width: 20rem;'>PLS CHECK YOUR INPUT, YOU CAN SEARCH BY EMPLOYEE NUMBER OR BY EMPLOYEE NAME!</div>"
+            
+            asn.speaks('PLEASE CHECK YOUR INPUT, YOU CAN SEARCH BY EMPLOYEE NUMBER OR BY EMPLOYEE NAME!')
+            
             Toastify({
                 text: xmsg ,
                 duration:6000,
@@ -819,11 +820,13 @@ const asn = {
             console.log('redy to search')
             let xurl = ""
             if(e_num!=="" && e_name==""){
-                xurl = `${myIp}/getrecord/${e_num}/blank/${util.getCookie('grp_id')}/${util.getCookie('f_email')}` 
+                //SEARCH BY EMP ID
+                xurl = `${myIp}/getrecord/${e_num}/blank/${util.getCookie('f_region')}/${util.getCookie('grp_id')}/${util.getCookie('f_email')}` 
             }else if (e_num=="" && e_name!==""){
-                xurl = `${myIp}/getrecord/blank/${e_name}/${util.getCookie('grp_id')}/${util.getCookie('f_email')}` 
+                //SEARCH BY NAME
+                xurl = `${myIp}/getrecord/blank/${e_name}/${util.getCookie('f_region')}/${util.getCookie('grp_id')}/${util.getCookie('f_email')}` 
             }else{
-                xurl = `${myIp}/getrecord/${e_num}/${e_name}/${util.getCookie('grp_id')}/${util.getCookie('f_email')}` 
+                xurl = `${myIp}/getrecord/${e_num}/${e_name}/${util.getCookie('f_region')}/${util.getCookie('grp_id')}/${util.getCookie('f_email')}` 
             }
 
             fetch( xurl ,{
@@ -857,12 +860,8 @@ const asn = {
 
                 document.getElementById('claim_search').innerHTML = ""
                 document.getElementById('claim_search').innerHTML = text
-            //     document.getElementById('project-badge').innerHTML = parseInt(document.getElementById('reccount').innerHTML)
-            //     console.log( '**rec count** ',document.getElementById('reccount').innerHTML)
                 
                 util.scrollsTo('search_claim')
-
-                //asn.getTopRider()
             
             })	
             .catch((error) => {
