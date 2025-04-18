@@ -860,6 +860,15 @@ const asn = {
         }///eif
     },
 
+    //===Hide search Card
+    hideSearch:() =>{
+        const element = document.getElementById('list_atd');
+
+        if (element) {
+        element.style.display = 'none'; // Or 'inline', 'inline-block', '' etc.
+        }
+    },
+
     //===== check if pdf is already produced or not, if produced, don't download again
     checkpdf: (e_num)=> {
         
