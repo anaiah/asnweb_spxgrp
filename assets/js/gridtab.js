@@ -1,41 +1,4 @@
 
-//=======gridtab obj========//
-const  gridtab = {
-    // myformatter: (values, data, calcParams)=> {
-    //     var count = 0, counts = 0
-
-    //     data.forEach(function(data) {
-    //         if(data.total_amount){
-    //             count += data.total_amount
-    //         }
-            
-    //         if(data.amount_remitted){
-    //             counts += data.amount_remitted
-    //         }
-          
-    //     });
-    //     if(data.total_amount){
-    //         return gridtab.addCommas(count.toFixed(2))
-    //     }
-
-    //     if(data.amount_remitted){
-    //         return gridtab.addCommas(counts.toFixed(2))
-    //     }
-      
-    // },
-    // addCommas: (nStr)=> {
-    //     nStr += '';
-    //     x = nStr.split('.');
-    //     x1 = x[0];
-    //     x2 = x.length > 1 ? '.' + x[1] : '';
-    //     var rgx = /(\d+)(\d{3})/;
-    //     while (rgx.test(x1)) {
-    //         x1 = x1.replace(rgx, '$1' + ',' + '$2');
-    //     }
-    //     return x1 + x2;
-    // },
-}//=======end gridtab obj==========
-
 // Create Tabulator on DOM element with id "table"
 var claims_grid = new Tabulator("#claims_grid_update", {
     //ajaxURL: `${myIp}/claimsupdate/${util.getCookie('f_region')}/${util.getCookie('grp_id')}/${util.getCookie('f_email')}`, // URL of your API endpoint
@@ -240,7 +203,7 @@ var pdf_grid = new Tabulator("#print_atd", {
             headerHozAlign:"center", 
             resizable:false,
 
-            formatter:(cell)=>{
+            formatter:(cell)=>{ 
                 return `<span><i class='ti ti-caret-down-filled'></i>&nbsp;${cell.getRow().getData().rider}</span><br>
                     ${cell.getRow().getData().emp_id}
                 `
