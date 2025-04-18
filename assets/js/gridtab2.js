@@ -194,7 +194,7 @@ var pdf_grid = new Tabulator("#pdfprint", {
     // }
 });
 
- pdf_grid.setData( asn.printpdf_data )
+// pdf_grid.setData( asn.printpdf_data )
 
 // pdf_grid.on("tableBuilt", function(){
 //     pdf_grid.setData( asn.printpdf_data )

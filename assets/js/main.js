@@ -1141,7 +1141,6 @@ const asn = {
         console.log('==asn.getprintPdf()====')
         const xparam = `${util.getCookie('f_region')}/${util.getCookie('grp_id')}/${util.getCookie('f_email')}` 
         
-        document.getElementById('print_atd').innerHTML = "" //reset
         
         await fetch(`${myIp}/getprintpdf/${xparam}`,{
             cache:'reload'
@@ -1155,8 +1154,6 @@ const asn = {
 
             //pdf_grid.updateData( printpdf_data)
 
-            //document.getElementById('print_atd').innerHTML = texts
-            //util.scrollsTo('')
            
             return true
         })  
