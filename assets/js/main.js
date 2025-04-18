@@ -843,7 +843,13 @@ const asn = {
                 
                 document.getElementById('search_claim').innerHTML = ""
                 document.getElementById('search_claim').innerHTML = text
-                
+
+                const element = document.getElementById('list_atd');
+
+                if (element) {
+                element.style.display = 'block'; // Or 'inline', 'inline-block', '' etc.
+                }
+                                
                 util.scrollsTo('search_claim')
             
             })	
