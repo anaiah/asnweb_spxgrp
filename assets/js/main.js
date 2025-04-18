@@ -1059,7 +1059,7 @@ const asn = {
             document.getElementById('rider').innerHTML = text
             
             util.scrollsTo('claims_grid_update')
-            asn.getClaimsUpdate()
+            //ooff muna asn.getClaimsUpdate()
        
         })	
         .catch((error) => {
@@ -1092,7 +1092,7 @@ const asn = {
                  //asn.getListPdf(1) // call List of ATDs
                  //get all printed pdf
                  util.scrollsTo('current_projects')
-                 asn.getprintPdf()
+                 //asn.getprintPdf()
              }else{
                 document.getElementById('list_atd').remove()
              }//eif

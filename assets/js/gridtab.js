@@ -1,7 +1,10 @@
 
 // Create Tabulator on DOM element with id "table"
 var claims_grid = new Tabulator("#claims_grid_update", {
-    //ajaxURL: `${myIp}/claimsupdate/${util.getCookie('f_region')}/${util.getCookie('grp_id')}/${util.getCookie('f_email')}`, // URL of your API endpoint
+   
+    ajaxURL: `${myIp}/claimsupdate/${util.getCookie('f_region')}/${util.getCookie('grp_id')}/${util.getCookie('f_email')}`, // URL of your API endpoint
+    ajaxContentType:"json",
+   
     height: "311px", // height of table
     
     layout:'fitColumns',
