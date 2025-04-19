@@ -20,7 +20,7 @@ var pdf_grid = new Tabulator("#pdfprint", {
     
     height: "311px", // height of table
     
-    layout:'fitDataTable',
+    layout:'fitColumns',
 
     htmlOutputConfig:{
         formatCells: true
