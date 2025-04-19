@@ -41,7 +41,7 @@ var pdf_grid = new Tabulator("#pdfprint", {
     //autoColumns: true,
     columns: [ // Define Table Columns
         {
-            title: "Rider", 
+            title: "RiderX", 
             field: "rider", 
             headerSort:false, 
             headerHozAlign:"center", 
