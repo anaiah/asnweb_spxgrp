@@ -26,7 +26,7 @@ var pdf_grid = new Tabulator("#pdfprint", {
         formatCells: true
     },
 
-    layout:"fitDataFill",
+    //layout:"fitDataFill",
     //responsiveLayout:"collapse",
 
     rowHeader:{
@@ -70,28 +70,30 @@ var pdf_grid = new Tabulator("#pdfprint", {
                 return `<span class='a3'><i class='ti ti-file-type-pdf' style='color:red'></i>&nbsp;${cell.getRow().getData().pdf_batch}</span>
             ` 
             }
-        },{
-            title: "Total", 
-            field: "total", 
-            width:100,  
-            headerSort:false, 
-            headerHozAlign:"center", 
-            hozAlign:"right",
-            resizable:false,
-            formatter: function(cell, formatterParams, onRendered){
-                // Access the row data
-                var data = cell.getData();
-                // Combine data from multiple fields
-                return `<span class='a3'>${ pdfgrid.addCommas(parseFloat(cell.getRow().getData().total).toFixed(2)) }</span>
-            ` 
-            },
-            formatterParams: {
-                decimal: ".",
-                thousand: ",",
-                symbol: "",
-                precision:2
-            },
         },
+        
+        // {
+        //     title: "Total", 
+        //     field: "total", 
+        //     width:100,  
+        //     headerSort:false, 
+        //     headerHozAlign:"center", 
+        //     hozAlign:"right",
+        //     resizable:false,
+        //     formatter: function(cell, formatterParams, onRendered){
+        //         // Access the row data
+        //         var data = cell.getData();
+        //         // Combine data from multiple fields
+        //         return `<span class='a3'>${ pdfgrid.addCommas(parseFloat(cell.getRow().getData().total).toFixed(2)) }</span>
+        //     ` 
+        //     },
+        //     formatterParams: {
+        //         decimal: ".",
+        //         thousand: ",",
+        //         symbol: "",
+        //         precision:2
+        //     },
+        // },
 
     ],
     //     // { title: "Total", 
