@@ -63,13 +63,14 @@ var pdf_grid = new Tabulator("#pdfprint", {
             headerSort:false, 
             headerHozAlign:"center", 
             resizable:false,
-            //width:100,
-            formatter: function(cell, formatterParams, onRendered){
-                // Access the row data
-                var data = cell.getData();
-                // Combine data from multiple fields
-                //return `<span class='a3'><i class='ti ti-file-type-pdf' style='color:red'></i>&nbsp;${cell.getRow().getData().pdf_batch}</span>` 
-            }
+            formatter:"html"
+            // //width:100,
+            // formatter: function(cell, formatterParams, onRendered){
+            //     // Access the row data
+            //     var data = cell.getData();
+            //     // Combine data from multiple fields
+            //     //return `<span class='a3'><i class='ti ti-file-type-pdf' style='color:red'></i>&nbsp;${cell.getRow().getData().pdf_batch}</span>` 
+            // }
         },
         
         // {
@@ -96,7 +97,36 @@ var pdf_grid = new Tabulator("#pdfprint", {
         // },
 
     ],
-    //     // { title: "Total", 
+   
+
+    locale:"en-us",
+    langs:{
+        "en-us":{
+            "pagination":{
+                "page_size":"Page Size", //label for the page size select element
+                "first":"<i class='ti ti-player-skip-back-filled'></i>", //text for the first page button
+                "first_title":"First Page", //tooltip text for the first page button
+                "last":"<i class='ti ti-player-skip-forward-filled'></i>",
+                "last_title":"Last Page",
+                "prev":"Prev",
+                "prev_title":"Prev Page",
+                "next":"Next",
+                "next_title":"Next Page",
+            },
+        }
+    },
+    
+    pagination:true, //enable pagination
+    paginationMode:"local", //enable remote pagination
+    paginationSize: 10, //optional parameter to request a certain number of rows per page
+    // paginationCounter:function(pageSize, currentRow, currentPage, totalRows, totalPages){
+    //     return `<i class='ti ti-database-search'></i>&nbsp;Showing ${pageSize} rows of ${totalRows} total`;
+    // }
+});
+
+//pdf_grid.setData( asn.printpdf_data )
+
+ //     // { title: "Total", 
     //     //     field: "total",  
     //     //     headerSort:false, 
     //     //     headerHozAlign:"center", 
@@ -207,31 +237,3 @@ var pdf_grid = new Tabulator("#pdfprint", {
     //     { title: "Remarks", field: "remarks", formatter:"textarea", headerHozAlign:"center", headerSort:false }
     //     */
     // ],
-
-    locale:"en-us",
-    langs:{
-        "en-us":{
-            "pagination":{
-                "page_size":"Page Size", //label for the page size select element
-                "first":"<i class='ti ti-player-skip-back-filled'></i>", //text for the first page button
-                "first_title":"First Page", //tooltip text for the first page button
-                "last":"<i class='ti ti-player-skip-forward-filled'></i>",
-                "last_title":"Last Page",
-                "prev":"Prev",
-                "prev_title":"Prev Page",
-                "next":"Next",
-                "next_title":"Next Page",
-            },
-        }
-    },
-    
-    pagination:true, //enable pagination
-    paginationMode:"local", //enable remote pagination
-    paginationSize: 10, //optional parameter to request a certain number of rows per page
-    // paginationCounter:function(pageSize, currentRow, currentPage, totalRows, totalPages){
-    //     return `<i class='ti ti-database-search'></i>&nbsp;Showing ${pageSize} rows of ${totalRows} total`;
-    // }
-});
-
-//pdf_grid.setData( asn.printpdf_data )
-
