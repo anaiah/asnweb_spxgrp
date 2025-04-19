@@ -47,14 +47,14 @@ var pdf_grid = new Tabulator("#pdfprint", {
             headerHozAlign:"center", 
             resizable:false,
             //width:200,
-            formatter: function(cell, formatterParams, onRendered){
-                // Access the row data
-                var data = cell.getData();
-                // Combine data from multiple fields
-                return `<span class="a2">${cell.getRow().getData().rider}</span><br>
-                <span class="a3">${cell.getRow().getData().emp_id}</span><br>
-                <span class="a3">${cell.getRow().getData().hub}</span>` 
-            }
+            // formatter: function(cell, formatterParams, onRendered){
+            //     // Access the row data
+            //     var data = cell.getData();
+            //     // Combine data from multiple fields
+            //     return `<span class="a2">${cell.getRow().getData().rider}</span><br>
+            //     <span class="a3">${cell.getRow().getData().emp_id}</span><br>
+            //     <span class="a3">${cell.getRow().getData().hub}</span>` 
+            // }
         },
         {
             title: "Batch",
