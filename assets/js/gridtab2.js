@@ -20,17 +20,17 @@ var pdf_grid = new Tabulator("#pdfprint", {
     
     height: "311px", // height of table
     
-    layout:'fitDataTable',
+    layout:'fitColumns',
 
     htmlOutputConfig:{
         formatCells: true
     },
 
-    //layout:"fitDataFill",
-    //responsiveLayout:"collapse",
+    layout:"fitDataFill",
+    responsiveLayout:"collapse",
 
     rowHeader:{
-      //  formatter:"responsiveCollapse",
+      formatter:"responsiveCollapse",
     },
     rowFormatter:function(row){
         if(row.getData().total == ""){
@@ -53,8 +53,7 @@ var pdf_grid = new Tabulator("#pdfprint", {
                 // Combine data from multiple fields
                 return `<span class="a2">${cell.getRow().getData().rider}</span><br>
                 <span class="a3">${cell.getRow().getData().emp_id}</span><br>
-                <span class="a3">${cell.getRow().getData().hub}</span>
-            ` 
+                <span class="a3">${cell.getRow().getData().hub}</span>` 
             }
         },
         {
