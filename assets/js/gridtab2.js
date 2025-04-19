@@ -27,10 +27,10 @@ var pdf_grid = new Tabulator("#pdfprint", {
     },
 
     layout:"fitDataFill",
-    responsiveLayout:"collapse",
+    //responsiveLayout:"collapse",
 
     rowHeader:{
-      formatter:"responsiveCollapse",
+      //formatter:"responsiveCollapse",
     },
     rowFormatter:function(row){
         if(row.getData().total == ""){
