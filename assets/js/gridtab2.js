@@ -36,7 +36,8 @@ var printPdf = new Tabulator("#pdfprint", {
             field: "pdf_batch", 
             formatter:"html", 
             headerSort:false, 
-            headerHozAlign:"center", 
+            headerHozAlign:"center",
+            hozAlign:"center", 
             resizable:false
         },
         { title: "Total", 
