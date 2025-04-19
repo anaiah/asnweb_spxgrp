@@ -1146,8 +1146,8 @@ const asn = {
         .then( (result) => {
 
             console.log( 'getprintpdf()', result )
-            pdf_grid.setData( result )
-            pdf_grid.redraw(true)
+            printPdf.setData( result )
+            //pdf_grid.redraw(true)
             //return true
         })  
         .catch((error) => {
