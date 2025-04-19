@@ -46,7 +46,7 @@ var pdf_grid = new Tabulator("#pdfprint", {
             headerSort:false, 
             headerHozAlign:"center", 
             resizable:false,
-            formatter:'html',
+            formatter:"html"
             //width:200,
             // formatter: function(cell, formatterParams, onRendered){
             //     // Access the row data
