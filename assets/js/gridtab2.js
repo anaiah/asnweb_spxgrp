@@ -68,8 +68,7 @@ var pdf_grid = new Tabulator("#pdfprint", {
                 // Access the row data
                 var data = cell.getData();
                 // Combine data from multiple fields
-                return `<span class='a3'><i class='ti ti-file-type-pdf' style='color:red'></i>&nbsp;${cell.getRow().getData().pdf_batch}</span>
-            ` 
+                //return `<span class='a3'><i class='ti ti-file-type-pdf' style='color:red'></i>&nbsp;${cell.getRow().getData().pdf_batch}</span>` 
             }
         },
         
