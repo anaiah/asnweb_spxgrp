@@ -25,14 +25,20 @@ var printPdf = new Tabulator("#pdfprint", {
     },
 
     columns: [ // Define Table Columns
-        { title: "XRide", 
+        { title: "Rider", 
             field: "rider", 
             formatter:"html", 
             headerSort:false, 
             headerHozAlign:"center", 
             resizable:false
         },  
-
+        { title: "Batch", 
+            field: "pdf_batch", 
+            formatter:"html", 
+            headerSort:false, 
+            headerHozAlign:"center", 
+            resizable:false
+        },
         { title: "Total", 
             field: "total",  
             headerSort:false, 
