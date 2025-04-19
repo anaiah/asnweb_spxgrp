@@ -20,7 +20,7 @@ var pdf_grid = new Tabulator("#pdfprint", {
     
     height: "311px", // height of table
     
-    layout:'fitColumns',
+    layout:'fitDataFill',
 
     htmlOutputConfig:{
         formatCells: true
@@ -33,9 +33,11 @@ var pdf_grid = new Tabulator("#pdfprint", {
       //formatter:"responsiveCollapse",
     },
     rowFormatter:function(row){
+        /*
         if(row.getData().total == ""){
             row.getElement().style.backgroundColor = "lemonchiffon"; //mark rows with age greater than or equal to 18 as successful;
         }
+            */
     },
 
     //autoColumns: true,
