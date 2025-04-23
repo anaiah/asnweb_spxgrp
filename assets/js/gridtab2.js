@@ -34,7 +34,7 @@ var printPdf = new Tabulator("#pdfprint", {
             headerSort:false, 
             headerHozAlign:"center",
             hozAlign:"center", 
-            width:150,
+            width:120,
             resizable:false
         },
         { title: "Total", 
@@ -56,7 +56,7 @@ var printPdf = new Tabulator("#pdfprint", {
                 precision:2,
                 decimal:"."
             },
-            width:150,
+            width:120,
             resizable:false
         },  
         /*
