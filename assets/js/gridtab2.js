@@ -7,17 +7,12 @@ var printPdf = new Tabulator("#pdfprint", {
    
     height: "311px", // height of table
     
-    layout:'fitColumns',
+    layout:'fitDataFill',
 
     htmlOutputConfig:{
         formatCells: true
     },
 
-    //layout:"fitDataFill",
-    responsiveLayout:"collapse",
-    rowHeader:{
-        formatter:"responsiveCollapse",
-    },
     rowFormatter:function(row){
         if(row.getData().total == ""){
             row.getElement().style.backgroundColor = "lemonchiffon"; //mark rows with age greater than or equal to 18 as successful;
@@ -29,6 +24,7 @@ var printPdf = new Tabulator("#pdfprint", {
             field: "rider", 
             formatter:"html", 
             headerSort:false, 
+            width:150,
             headerHozAlign:"center", 
             resizable:false
         },  
