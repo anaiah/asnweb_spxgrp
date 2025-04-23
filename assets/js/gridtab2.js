@@ -56,7 +56,7 @@ var printPdf = new Tabulator("#pdfprint", {
                 precision:2,
                 decimal:"."
             },
-            width:200,
+            width:150,
             resizable:false
         },  
         /*
