@@ -1085,16 +1085,17 @@ const asn = {
 
             claims_grid.setData( data )
 
-        
-            if(util.getCookie('grp_id') =="2"){ //cfo
-                 
-                //get all printed pdf
-                 util.scrollsTo('current_projects')
-                 asn.getprintPdf() // get printed/uploaded pdfs
+            switch(util.getCookie('grp_id') ){
+                case "2"://jennelle
+                case "3":
+                    util.scrollsTo('current_projects')
+                    asn.getprintPdf() // get printed/uploaded pdfs
+                break
+                default:
+                    document.getElementById('list_atd').remove()
+                break
+            }
 
-             }else{
-                document.getElementById('list_atd').remove()
-             }//eif
         })	
         .catch((error) => {
             //util.Toast(`Error:, ${error}`,1000)
