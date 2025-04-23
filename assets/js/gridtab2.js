@@ -24,7 +24,7 @@ var printPdf = new Tabulator("#pdfprint", {
             field: "rider", 
             formatter:"html", 
             headerSort:false, 
-            width:150,
+            width:220,
             headerHozAlign:"center", 
             resizable:false
         },  
@@ -34,6 +34,7 @@ var printPdf = new Tabulator("#pdfprint", {
             headerSort:false, 
             headerHozAlign:"center",
             hozAlign:"center", 
+            width:150,
             resizable:false
         },
         { title: "Total", 
@@ -55,6 +56,7 @@ var printPdf = new Tabulator("#pdfprint", {
                 precision:2,
                 decimal:"."
             },
+            width:200,
             resizable:false
         },  
         /*
