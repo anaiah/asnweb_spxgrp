@@ -895,6 +895,9 @@ const asn = {
 
 
                 asn.speaks('Creating PDF...')
+                return false 
+
+                
             }else{
 
                 asn.speaks(`ERROR! ATD ALREADY DOWNLOADED WITH BATCH ${data.batch}`)
