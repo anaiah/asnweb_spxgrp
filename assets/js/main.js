@@ -753,7 +753,7 @@ const asn = {
 
     collapz: () =>{
         if( !document.getElementById("sidebarCollapse") ){
-            util.scrollsTo('search_claim')
+            util.scrollsTo('current_projects')
             //document.getElementById('filter_number').focus()
         }else{
             document.getElementById("sidebarCollapse").click()
