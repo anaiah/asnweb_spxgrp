@@ -752,7 +752,8 @@ const asn = {
     speaks:null,
 
     collapz: () =>{
-        if( ! document.getElementById("sidebarCollapse") ){
+        if( !document.getElementById("sidebarCollapse") ){
+            util.scrollsTo('search_claim')
             //document.getElementById('filter_number').focus()
         }else{
             document.getElementById("sidebarCollapse").click()
