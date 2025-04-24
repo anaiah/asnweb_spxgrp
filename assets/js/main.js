@@ -754,7 +754,7 @@ const asn = {
     collapz: () =>{
 
         var element =  document.getElementById('collapse_btn');
-        if (typeof(element) != 'undefined' && element != null)
+        if (!element.checkVisibility())
         {
             // Exists.
             util.scrollsTo('current_projects')
