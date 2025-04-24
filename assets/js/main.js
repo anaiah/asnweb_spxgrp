@@ -891,12 +891,9 @@ const asn = {
                 //print if not created
                 
                 console.log( '===PDF BATCH=== ', data.batch )
-                ////asn.createpdf(e_num,data.batch)
-
+                asn.createpdf(e_num,data.batch)
 
                 asn.speaks('Creating PDF...')
-                return false 
-
                 
             }else{
 
