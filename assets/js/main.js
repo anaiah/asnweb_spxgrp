@@ -752,12 +752,13 @@ const asn = {
     speaks:null,
 
     collapz: () =>{
-        if( !document.getElementById("sidebarCollapse") ){
+        if( !document.getElementById("collapse_btn") ){
             util.scrollsTo('current_projects')
             //document.getElementById('filter_number').focus()
         }else{
-            document.getElementById("sidebarCollapse").click()
-            document.getElementById('filter_number').focus()
+            document.getElementById("collapse_btn").click()
+            util.scrollsTo('current_projects')
+            
         }
         /// take out muna document.getElementById("sidebarCollapse").click()
         //focus on emp number claims filter
