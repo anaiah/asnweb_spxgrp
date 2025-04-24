@@ -752,8 +752,15 @@ const asn = {
     speaks:null,
 
     collapz: () =>{
+
+        // var element =  document.getElementById('elementId');
+        // if (typeof(element) != 'undefined' && element != null)
+        // {
+        // // Exists.
+        // }
         if( !document.getElementById("collapse_btn") ){
             util.scrollsTo('current_projects')
+            asn.collapz()
             //document.getElementById('filter_number').focus()
         }else{
             document.getElementById("collapse_btn").click()
