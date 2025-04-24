@@ -889,7 +889,11 @@ const asn = {
         .then( data => {
             if(data.status){
                 //print if not created
-                asn.createpdf(e_num,data.batch)
+                
+                console.log( '===PDF BATCH=== ', data.batch )
+                ////asn.createpdf(e_num,data.batch)
+
+
                 asn.speaks('Creating PDF...')
             }else{
 
