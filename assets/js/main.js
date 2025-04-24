@@ -759,7 +759,8 @@ const asn = {
             // Exists.
             util.scrollsTo('current_projects')
         }else{
-            document.getElementById("collapse_btn").click()
+            element.click()
+            console.log('clicking btn')
             util.scrollsTo('current_projects')
             
         }
