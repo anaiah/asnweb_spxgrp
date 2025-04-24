@@ -1094,6 +1094,9 @@ const asn = {
             switch(util.getCookie('grp_id') ){
                 case "2"://jennelle
                 case "3":
+                case "6":
+                case "7":
+                    
                     util.scrollsTo('current_projects')
                     asn.getprintPdf() // get printed/uploaded pdfs
                 break
