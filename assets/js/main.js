@@ -768,7 +768,7 @@ const asn = {
         //focus on emp number claims filter
     },
 
-    getRecord: (e_num,e_name) =>{
+    getRecord: async (e_num,e_name) =>{
         let xmsg
                 
         if(e_num=="" && e_name==""){
@@ -840,7 +840,7 @@ const asn = {
                 xurl = `${myIp}/getrecord/${e_num}/${e_name}/${util.getCookie('f_region')}/${util.getCookie('grp_id')}/${util.getCookie('f_email')}` 
             }
 
-            fetch( xurl ,{
+            await fetch( xurl ,{
                 cache:'reload'
             })
             .then(res => res.text() )
@@ -856,7 +856,7 @@ const asn = {
                 element.style.display = 'block'; // Or 'inline', 'inline-block', '' etc.
                 }
                                 
-                util.scrollsTo('list_atd')
+                util.scrollsTo('i-save')
             
             })	
             .catch((error) => {
