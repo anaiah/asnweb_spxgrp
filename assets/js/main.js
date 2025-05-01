@@ -856,7 +856,7 @@ const asn = {
                 element.style.display = 'block'; // Or 'inline', 'inline-block', '' etc.
                 }
                                 
-                util.scrollsTo('search_claim')
+                util.scrollsTo('list_atd')
             
             })	
             .catch((error) => {
