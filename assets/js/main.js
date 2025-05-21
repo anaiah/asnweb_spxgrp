@@ -751,21 +751,56 @@ const asn = {
 
     speaks:null,
 
-    collapz: () =>{
+    collapz: () => {
+        console.log('Setting up collapse...');
+        const links = document.querySelectorAll('#sidebarnav a');
+        console.log('Links found:', links.length);
+        
+        console.log('Window width:', window.innerWidth);
+                
 
-        var element =  document.getElementById('collapse_btn');
-        if (!element.checkVisibility())
-        {
-            // Exists.
-            util.scrollsTo('current_projects')
-        }else{
-            element.click()
-            console.log('clicking btn')
-            util.scrollsTo('current_projects')
-            
-        }
-        /// take out muna document.getElementById("sidebarCollapse").click()
-        //focus on emp number claims filter
+        links.forEach(function(link) {
+          link.addEventListener('click', function(e) {
+            e.preventDefault();
+      
+            const hrefAttr = this.getAttribute('href');
+
+            if (hrefAttr.startsWith('#')) {
+                // Handle in-page anchor
+                document.querySelector(hrefAttr).scrollIntoView({ behavior: 'smooth' });
+            } else if (hrefAttr.startsWith('javascript:')) {
+                // Extract and call the function
+                // const funcName = hrefAttr.substring('javascript:'.length);
+                // window[funcName]();
+                // Extract the code after 'javascript:'
+                const jsCode = hrefAttr.substring('javascript:'.length).trim();
+                    
+                // If the code is a function call like util.goNow()
+                // or just an expression, you can use Function constructor:
+
+                try {
+                    // Create a new Function and execute it safely
+                    new Function(jsCode)();
+                } catch (err) {
+                    console.error('Error executing JavaScript from href:', err);
+                }
+
+
+                //window.eval(hrefAttr)
+            }
+
+            if (window.innerWidth < 1200) {
+              const toggleBtn = document.getElementById('sidebarCollapse');
+              if (toggleBtn) {
+                console.log('Clicking sidebarCollapse button');
+                toggleBtn.click();
+              } else {
+                console.log('No sidebarCollapse element found');
+                // fallback: manually hide sidebar
+              }
+            }
+          });
+        });
     },
 
     getRecord: async (e_num,e_name) =>{
@@ -1287,6 +1322,8 @@ const asn = {
     
             })//end foreach
 
+            asn.collapz() //=== load sidebarnav once
+            
             return true;
             
         })	
@@ -1305,7 +1342,6 @@ const asn = {
         asn.getTopHub()
         
         //change form action 
-        //document.getElementById('claimsuploadForm').action=`${myIp}/claims`
         document.getElementById('claimsuploadForm').action=`${myIp}/xlsclaims` //change also in util.modalListeners()
         
         //change form action 
