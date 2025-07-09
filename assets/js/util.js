@@ -1340,7 +1340,7 @@ const util = {
         util.setCookie("f_email",xemail,0)
         util.setCookie("f_voice",xvoice,0)
         util.setCookie("f_pic",xpic,0)
-        util.setCookie("f_id",xpic,0)
+        util.setCookie("f_id",xid,0)
         
     },
 

@@ -926,7 +926,7 @@ const asn = {
                 //print if not created
                 
                 console.log( '===PDF BATCH=== ', data.batch )
-                asn.createpdf(e_num,data.batch)
+                asn.createpdf(e_num,data.batch,util.getCookie('f_id') )
 
                 asn.speaks('Creating PDF...')
                 
@@ -959,8 +959,8 @@ const asn = {
     },
 
     //===============download report
-    createpdf: (e_num, batch) =>{
-        fetch(`${myIp}/createpdf/${e_num}/${batch}`,{
+    createpdf: (e_num, batch, whois) =>{
+        fetch(`${myIp}/createpdf/${e_num}/${batch}/${whois}`,{
             cache:'reload'
         })
         .then(response => { 
@@ -1012,6 +1012,7 @@ const asn = {
        
         .catch((error) => {
             //util.Toast(`Error:, ${error}`,1000)
+            alert(error)
             console.error('Error:', error)
         })    
 
@@ -1097,7 +1098,7 @@ const asn = {
         .then(res => res.text() )
 
         .then(text => {	
-            document.getElementById('rider').innerHTML = ""
+            document.getElementById('rider').innerHTML = "" 
             document.getElementById('rider').innerHTML = text
             
             util.scrollsTo('claims_grid_update')
