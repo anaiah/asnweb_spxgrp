@@ -959,9 +959,9 @@ const asn = {
 
     //===== this is the final button to prit pdf
     // check if pdf is already produced or not, if produced, don't download again
-    printPdf: async (batch)=> {
+    printPdf: (batch)=> {
         
-        let filename, whattofind = batch
+        let filename
         const butt1 = `Are you sure you want to Print?<br /><button type='button' id='btnYes' class='btn btn-primary'>Print</button>
                 &nbsp;<button type='button' id='btnNo' class='btn btn-primary'>No</button>`
                         
@@ -981,7 +981,7 @@ const asn = {
             }
         }).showToast();
 
-        $('#btnYes').on('click', async function () {
+        $('#btnYes').on('click', function () {
            
             var xxx = document.querySelector('.toastify')
             xxx.classList.add('lets-hide')
@@ -990,25 +990,9 @@ const asn = {
 
             const whoisId = util.getCookie('f_id')
             
-            let xfile, xbatch
+            //let filename
 
-            if(batch=="new"){
-                const response = await fetch(`${myIp}/getbatch`)
-
-                if (!response.ok) {
-                    throw new Error(`HTTP error! Status: ${response.status}`);
-                }
-                const data = await response.json(); // Parse response as JSON
-                console.log(data); // Do something with the data
-                xfile = `${data.batch}.pdf` 
-                xbatch = data.batch
-            }else{
-
-                xfile = `${batch}.pdf`
-                xbatch = batch
-            }
-            
-            fetch(`${myIp}/printpdf/${util.getCookie('grp_id')}/${whoisId}/${xbatch}/${whattofind}`, {
+            fetch(`${myIp}/printpdf/${util.getCookie('grp_id')}/${whoisId}/${batch}`, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'
@@ -1016,24 +1000,88 @@ const asn = {
                 body: JSON.stringify({ myObjects: asn.pdfCart }), // Convert the array to JSON
                 //cache: 'reload' // Remove if you don't need to reload
             })
-            .then(response => response.blob())
-            .then(blob => URL.createObjectURL(blob))
-            .then(url => {
+            .then(response => { 
+                const contentDisposition = response.headers.get('Content-Disposition');
+
+
+                console.log('contentDisposition',contentDisposition)
+                let filename = 'defaultName.txt'; // Default filename
+
+                // Parse filename from response header if available
+                if (contentDisposition && contentDisposition.includes('attachment')) {
+                const filenameMatch = contentDisposition.match(/filename="(.+)"/);
+                if (filenameMatch.length === 2) {
+                    filename = filenameMatch[1];
+                }
+                }
+
+                return response.blob()
+                // Get the content type from the response headers
+                /*
+                const contentType = response.headers.get('Content-Type');
+
+                if (contentType && contentType.includes('application/json')) {
+                    return response.json();
+                } else if (contentType && contentType.includes('image/') || contentType.includes('application/octet-stream')) {
+                    return response.blob();
+                } else {
+                    throw new Error('Unsupported content type: ' + contentType);
+                }
+                    */
+            })
+            .then(blob => {
+                let xfile 
+
+                if(asn.pdfCart.length > 0){
+                    xfile = `ASN-${asn.pdfCart[0].id}.pdf`
+                }else{
+                    xfile = batch
+                }//eif
+
+                const url = window.URL.createObjectURL(blob);
                 const a = document.createElement('a');
                 a.href = url;
-                a.download =  xfile ;//`${pdffile}`; // Set the file name for the download
+                a.download =  filename ;//`${pdffile}`; // Set the file name for the download
                 document.body.appendChild(a);
                 a.click();
                 a.remove();
-                window.URL.revokeObjectURL(url);
+                window.URL.revokeObjectURL(url); // Clean up the URL object
+
+                //***************************  CLEANUP DELETE PDF *************** */
+                //asn.deletepdf(xfile.split('_').join('-') ) //cleanup pdf
+                //*****************************END DELETE********************* */
+                
+                Toastify({
+                    text: 'PDF Ready for Download!!!' ,
+                    duration:3000,
+                    escapeMarkup:false, //to create html
+                    close:false,
+                    position:'center',
+                    offset:{
+                        x: 0,
+                        y:100//window.innerHeight/2 // vertical axis - can be a number or a string indicating unity. eg: '2em'
+                    },
+                    style: {
+                    background: "linear-gradient(to right, #00b09b, #96c93d)",
+                    }
+                }).showToast();
+                
+                //delete print cart
+                //============================reset cart printing
+                asn.pdfCart.length = 0
+                asn.obj = {}
+
+                // document.getElementById(id).classList.add('lets-hide')
+                // document.getElementById(id).classList.remove('lets-show')
+                document.getElementById('download-btn').disabled = true
+
+            
             })
             .catch((error) => {
                 //util.Toast(`Error:, ${error}`,1000)
                 alert(error)
                 console.error('Error:', error)
             })    
-
-            //asn.deletepdf(xfile)
         });//==============ENND BTUTTON ==============
 
         $('#btnNo').on('click', function () {

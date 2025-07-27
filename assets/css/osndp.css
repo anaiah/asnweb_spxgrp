@@ -94,6 +94,9 @@ input:focus:is-invalid {
   .lets-hide{
     visibility: hidden;
   }
+  .lets-show{
+    visibility:visible;
+  }
   #i-notif{
     color:red;
   }

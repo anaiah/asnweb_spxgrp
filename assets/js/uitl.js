@@ -6,9 +6,6 @@ this is for utilities
 modals,forms,utilities
 
 */
-//const myIp = "https://asn-api.onrender.com"
-
-const myIp = "http://192.168.191.221:10000"
 
 const requirements = document.querySelectorAll(".requirements")
 const specialChars = "!@#$%^&*()-_=+[{]}\\| :'\",<.>/?`~"
@@ -1240,10 +1237,10 @@ const util = {
             //=== POST NA!!!
             switch(frm){ 
                 case '#loginForm':
+                    console.log('Trying to Log.... ')
                     xmsg = "<div><i class='fa fa-spinner fa-pulse' ></i>  Searching Database please wait...</div>"
                     util.alertMsg( xmsg,'danger','loginPlaceHolder')
                     util.loginPost(frm ,frmModal,`${myIp}/loginpost/${objfrm.uid}/${objfrm.pwd}`)
-                  //  util.loginPost(frm ,frmModal,`https://asianow_apiV2.onrender.com/loginpost/${objfrm.uid}/${objfrm.pwd}`)
                 break
 				
 				case "#newempForm":
@@ -1329,7 +1326,8 @@ const util = {
                 util.setGroupCookie(data.fname, data.grp_id, data.email, data.voice, data.pic)/*=== SET GROUP COOKIE */
                 
                 // if(data.grp_id=="2"){//business dev0
-               location.href = '/main.html'
+               //location.href = '/spxmain.html'
+               location.href = 'spx/dashboard'
                 /*
                 }else if( data.grp_id=="1" || data.grp_id=="0"){//engr/architect/acctg
                     location.href = '/dashboard.html'
