@@ -961,7 +961,8 @@ const asn = {
     // check if pdf is already produced or not, if produced, don't download again
     printPdf: async (batch)=> {
         
-        let filename, whattofind = batch
+        let whattofind = batch
+
         const butt1 = `Are you sure you want to Print?<br /><button type='button' id='btnYes' class='btn btn-primary'>Print</button>
                 &nbsp;<button type='button' id='btnNo' class='btn btn-primary'>No</button>`
                         
@@ -998,6 +999,7 @@ const asn = {
                 if (!response.ok) {
                     throw new Error(`HTTP error! Status: ${response.status}`);
                 }
+                
                 const data = await response.json(); // Parse response as JSON
                 console.log(data); // Do something with the data
                 xfile = `${data.batch}.pdf` 
