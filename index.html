@@ -244,7 +244,7 @@
 
       document.getElementById('myBody').style.backgroundImage = `url('../shopee/assets/images/backgrounds/${bgimage[xx] }')`
         setTimeout(() => {
-            const audio  = new Audio('./intro.mp3')
+            const audio  = new Audio('..shopee/intro.mp3')
             audio.play().catch(error => {
                 console.error("Audio playback failed:", error);
             });
