@@ -1575,6 +1575,16 @@ const asn = {
                     fontFamily: 'Helvetica, Arial, sans-serif',
                     color: '#6699ff' // set your desired color
                 }
+            },
+            labels: {
+                formatter: function(val) {
+                if (val >= 1000000) {
+                    return (val / 1000000).toFixed(1) + 'M';
+                } else if (val >= 1000) {
+                    return (val / 1000).toFixed(1) + 'K';
+                }
+                return val;
+                }
             }    
         },
         fill: {
