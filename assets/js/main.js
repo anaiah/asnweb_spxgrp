@@ -952,11 +952,7 @@ const asn = {
         console.log('PRINT INCLUDE===', asn.pdfCart )
     },
 
-    //===========FOR  REPRINTING
-    reprintPdf:(batch) => {
-        //asn.createpdf(batch, whoisId)
-    },
-
+    
     //===== this is the final button to prit pdf
     // check if pdf is already produced or not, if produced, don't download again
     printPdf: async (batch)=> {
@@ -1430,6 +1426,176 @@ const asn = {
     },
     //==========END  GETMENU
 
+    //==========get atdchart
+    getChart: async()=>{
+
+        console.log('===getting  Chart====')
+        const response = await fetch(`${myIp}/getchart`)
+
+        if (!response.ok) {
+            throw new Error(`HTTP error! Status: ${response.status}`);
+        }
+        
+        const loadingDiv = document.getElementById('loading');
+        loadingDiv.style.display = 'block';
+
+        const results = await response.json(); // Parse response as JSON
+
+        asn.drawChart()
+
+        console.log( 'CHART DATA===',results )
+
+        const series = [
+                    { name: "With ATD", data: [] },
+                    { name: "No ATD", data: [] }
+                ];
+                
+                results.forEach(item => {
+                    series[0].data.push(parseInt(item.with_atd));
+                    series[1].data.push(parseInt(item.no_atd));
+                });
+
+                asn.chart1.updateSeries(series);
+                
+                let xcat = []
+
+                results.forEach(item => {
+                    if (!xcat.includes(item.region.trim())) {
+                        xcat.push(item.region.trim());
+                    }
+                });
+
+                console.log(xcat)
+                asn.chart1.updateOptions({ 
+                    xaxis: { categories: xcat }
+                });
+
+
+    },
+
+    chart1:null,
+
+    drawChart: async()=>{
+        let colors = [ '#0277bd','#d84315'] 
+        
+
+        var options = {
+          series:[], 
+          colors:colors,
+          chart: {
+            type: 'bar',
+            height: 350,
+            width: 630,
+            redrawOnParentResize: false,
+            redrawOnWindowResize: false,
+                    
+        },
+
+        
+        plotOptions: {
+            bar: {
+                dataLabels: {
+                    position: 'top',
+                    //orientation:'vertical'
+                }
+            }
+        },
+        
+        dataLabels: {
+            enabled: true,
+            dropShadow: {
+                enabled: true,
+                left: 1,
+                top: 1,
+                opacity: 0.5
+            },
+            formatter: function (val) {
+                if (val >= 1000000) {
+                    return (val / 1000000).toFixed(1) + 'M';
+                } else if (val >= 1000) {
+                    return (val / 1000).toFixed(1) + 'K';
+                }
+                
+                return val;
+            },
+            offsetY:-20,
+            style: {
+                fontSize: "12px",
+                colors: ["#d84315","#00695c"]
+            },
+            // style: {
+            //     cssClass: 'vertical-label' // optional, for more control
+            // },
+            // offsetX: 0,// or try negative or positive to move labels
+            // offsetY: 0
+        },
+        // plotOptions: {
+        //   bar: {
+        //     horizontal: false,
+        //     columnWidth: '55%',
+        //     borderRadius: 5,
+        //     borderRadiusApplication: 'end'
+        //   },
+        // },
+        // dataLabels: {
+        //     enabled: true,
+        //     useHTML: true,
+        //     formatter: function (val) {
+        //         return '<div style="display:inline-block; transform: rotate(90deg); white-space: nowrap;">' + val + '</div>';
+        //     },
+        //     style: {
+        //         fontSize: '12px'
+        //     },
+        //     offsetY: -20 // Adjust as needed
+        //     },
+        stroke: {
+          show: true,
+          width: 2,
+          colors: ['transparent']
+        },
+        xaxis: {
+                categories: [],
+
+                title: {
+                    text: 'REGION',
+                    style: {
+                        fontSize: '10px',
+                        fontWeight: 'bold',
+                        fontFamily: 'Helvetica, Arial, sans-serif',
+                        color: '#6699ff' // set your desired color
+                    }
+                }
+        },
+        yaxis: {
+            title: {
+                text: '',
+                style: {
+                    fontSize: '10px',
+                    fontWeight: 'bold',
+                    fontFamily: 'Helvetica, Arial, sans-serif',
+                    color: '#6699ff' // set your desired color
+                }
+            }    
+        },
+        fill: {
+          opacity: 1
+        },
+        tooltip: {
+          y: {
+            formatter: function (val) {
+              return val 
+            }
+          }
+        }
+        };
+
+        asn.chart1 = new ApexCharts(document.querySelector("#chartprint"), options);
+        asn.chart1.render();
+
+            
+    },
+
+
 	//==,= main run
     init : async () => {
 
@@ -1437,7 +1603,12 @@ const asn = {
         asn.pdfCart.length = 0
         asn.obj = {}
 
+        //===GET MENU
         asn.getmenu(util.getCookie('grp_id'))    
+        
+
+         //=== GET CHART
+        asn.getChart()
 
         //get top 5 
         asn.getTopHub()
@@ -1475,7 +1646,7 @@ const asn = {
         console.log('main.js SPEAK()')
         asn.speaks(  util.getCookie('f_voice')) //==FIRST welcome GREETING HERE ===
         
-        document.getElementById('img-profile').src=`../assets/images/profile/${util.getCookie('f_pic')}`
+        document.getElementById('img-profile').src=`../shopee/assets/images/profile/${util.getCookie('f_pic')}`
     
         //load the form to validate
         util.loadFormValidation('#newempForm')
@@ -1490,10 +1661,9 @@ const asn = {
 	}//END init
 } //======================= end admin obj==========//
 
-window.scrollTo(0,0);
-asn.init()
-
 document.addEventListener('DOMContentLoaded', function() {
+    window.scrollTo(0,0);
+    asn.init()
     
 });
 
