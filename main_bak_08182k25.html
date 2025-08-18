@@ -124,71 +124,51 @@
       
       <!--//CURRENT PROJECTS//-->
       <div class="container-fluid mb-1" id="current_projects">
-        <div class="mb-2 mt-3 ms-2">
-          <h5 class="card-title fw-semibold">
-            <i style="font-size:25px;" class="ti ti-user-search text-primary"></i>&nbsp;Search
-          </h5>
+        <div class=" mb-2 mt-3 sm-0 ms-2">
+          <h5 class="card-title fw-semibold"><i style="font-size:25px;" class="ti ti-user-exclamation text-primary"></i>&nbsp;Claims</h5>
         </div>
 
-        <form id="searchForm" name="searchForm" class="row gy-2 gx-3 ms-2" method="GET" novalidate>
-          <!-- Employee Number - specific width on desktop -->
-          <div class="col-12 col-md-3"> <!-- Adjust col-md-* as needed for desktop -->
+        <!-- for to act as "row" -->
+        <form id="searchForm" name="searchForm" class="row gy-2 gx-2 d-flex align-items-start ms-2" method="GET" novalidate>
+                    
+          <div class="col-sm-4">
             <div class="form-outline">
-              <input
-                value=""
-                placeholder="Search Employee Number"
-                minlength="4"
-                type="text"
-                class="form-control"
-                id="filter_number"
-                name="filter_number"
-              >
-              <div class="invalid-feedback">*Minimum Length of Input is 5</div>
-              <div class="valid-feedback">Looking Good!</div>
+              <!-- <label for="filter_number" class="text-nowrap form-label">Filter by Employee Number</label> -->
+              <input  value="" placeholder="Search Employee Number" minlength="4" type="text" onchange="" class="form-control" id="filter_number" name="filter_number">
+              <div class="invalid-feedback">
+                *Minimum Length of Input is 5
+              </div>
+              <div class="valid-feedback">
+                Looking Good!
+              </div>
             </div>
           </div>
-          <!-- Name - specific width on desktop -->
-          <div class="col-12 col-md-3"> <!-- Adjust col-md-* as needed for desktop -->
+
+          <div class="col-sm-4">
             <div class="form-outline">
-              <input
-                value=""
-                placeholder="Search for Name"
-                minlength="5"
-                type="text"
-                class="form-control"
-                id="filter_name"
-                name="filter_name"
-              >
-              <div class="invalid-feedback">*Minimum Length of Input is 5</div>
-              <div class="valid-feedback">Looking Good!</div>
+              <!-- <label for="filter_name" class="text-nowrap form-label">Filter by Employee Name</label> -->
+              <input value=""  placeholder="Search for Name" type="text" minlength="5" onchange="" class="form-control" id="filter_name" name="filter_name">
+              <div class="invalid-feedback">
+                *Minimum Length of Input is 5
+              </div>
+              <div class="valid-feedback">
+                Looking Good!
+              </div>
             </div>
           </div>
-          <!-- Dropdown Select - specific width on desktop -->
-          <div class="col-12 col-md-3"> <!-- Adjust col-md-* as needed for desktop -->
-            <div class="form-outline">
-              <select class="form-select" id="filter_type" name="filter_type" aria-label="Select Filter Type">
-                <option value="new"  selected>Select ATD PDF Type</option>
-                <option value="new">NEW ATD</option>
-                <option value="old">OLD / RE-PRINT ATD</option>
-                <!-- Add more options as needed -->
-              </select>
-            </div>
-          </div>
-          <!-- Search Button - specific width on desktop -->
-          <div class="col-12 col-md-3"> <!-- Adjust col-md-* as needed for desktop -->
-            <button
-              class="btn btn-primary w-100"
-              id="search-btn"
-              type="button"
-              onclick="javascript:asn.getRecord(document.getElementById('filter_number').value, document.getElementById('filter_name').value, document.getElementById('filter_type').value);"
-            >
-              <i class="ti ti-file-search"></i>&nbsp;&nbsp; Search
+
+          <div class="col-sm-2 align-self-start">
+          <div class="form-outline">
+            <button class="btn btn-primary"  id="search-btn" onclick="javascript:asn.getRecord(`${document.getElementById('filter_number').value}`,`${document.getElementById('filter_name').value}`)" type="button">
+              <i id="i-save" class="ti ti-file-search"></i> &nbsp;&nbsp; Search
             </button>
           </div>
-        </form>
-      </div>
+        </div>
 
-      <!--//END SEARCH FIELDS-->
+        </form>
+        <!-- end form -->
+      </div> 
+      <!-- end container fluid -->
 
       <!-- ENTER SEARCH RESULT HERE -->
       <div class="mb-0 ms-3 my-container mt-1" id="list_atd" style="display:none">
@@ -239,17 +219,17 @@
 
 
       <!--// PRINTED/DOWNLOADED ATDS-->
-      <!-- <div class="mb-0 mt-1 ms-3 my-container" >
+      <div class="mb-0 mt-1 ms-3 my-container" >
         <div class="col-lg-6  d-flex align-items-center">
           <div class="card shadow w-100">
             <div class="card-body p-2">
               <div class="mt-0 mb-1">
                 <h5 class="card-title fw-semibold">
                   <i style="font-size:20px;" class="ti ti-file-type-pdf text-primary"></i>&nbsp;Printed ATD</h5>
-              </div> -->
+              </div>
 
               <!--// GRID inside-->
-              <!-- <div  class="table-responsive">
+              <div  class="table-responsive">
                 <div id="pdfprint">
 
                 </div>
@@ -259,7 +239,7 @@
           </div>
         </div>
         
-      </div> -->
+      </div>
 
       <!--//=== ENTER TOP 10 HUB/RIDER HERE==== -->
       <div class="mt-1 ms-3 my-container" id="claims_pasaways">

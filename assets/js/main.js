@@ -803,9 +803,10 @@ const asn = {
         });
     },
 
-    getRecord: async (e_num,e_name) =>{
-        let xmsg
+    getRecord: async (e_num,e_name, filter_type) =>{
 
+        console.log('====filter',  filter_type)
+        let xmsg
         asn.pdfCart.length = 0
         asn.obj = {}
 
@@ -874,12 +875,12 @@ const asn = {
             let xurl = ""
             if(e_num!=="" && e_name==""){
                 //SEARCH BY EMP ID
-                xurl = `${myIp}/getrecord/${e_num}/blank/${util.getCookie('f_region')}/${util.getCookie('grp_id')}/${util.getCookie('f_email')}` 
+                xurl = `${myIp}/getrecord/${e_num}/blank/${util.getCookie('f_region')}/${util.getCookie('grp_id')}/${util.getCookie('f_email')}/${filter_type}` 
             }else if (e_num=="" && e_name!==""){
                 //SEARCH BY NAME
-                xurl = `${myIp}/getrecord/blank/${e_name}/${util.getCookie('f_region')}/${util.getCookie('grp_id')}/${util.getCookie('f_email')}` 
+                xurl = `${myIp}/getrecord/blank/${e_name}/${util.getCookie('f_region')}/${util.getCookie('grp_id')}/${util.getCookie('f_email')}/${filter_type}` 
             }else{
-                xurl = `${myIp}/getrecord/${e_num}/${e_name}/${util.getCookie('f_region')}/${util.getCookie('grp_id')}/${util.getCookie('f_email')}` 
+                xurl = `${myIp}/getrecord/${e_num}/${e_name}/${util.getCookie('f_region')}/${util.getCookie('grp_id')}/${util.getCookie('f_email')}/${filter_type}` 
             }
 
             await fetch( xurl ,{
@@ -1229,7 +1230,7 @@ const asn = {
                 case "7":
                     
                     util.scrollsTo('current_projects')
-                    asn.getprintPdf() // get printed/uploaded pdfs
+                    //asn.getprintPdf() // get printed/uploaded pdfs *** TAKE OUT GT PRINT PDF BECOZ OF CHART  ALREADY
                 break
                 default:
                     document.getElementById('list_atd').remove()
@@ -1446,7 +1447,7 @@ const asn = {
         console.log( 'CHART DATA===',results )
 
         const series = [
-                    { name: "With ATD", data: [] },
+                    { name: "Downloaded ATD", data: [] },
                     { name: "No ATD", data: [] }
                 ];
                 
@@ -1635,24 +1636,36 @@ const asn = {
             speechsynth.lang = "en-US"
             speechSynthesis.speak( speechsynth )
         };    
-        //yes
-
+              
         let authz = []
         authz.push(util.getCookie('grp_id') )
         authz.push(util.getCookie('fname'))
-        
-        console.log(authz[1])
+        authz.push(util.getCookie('f_id'))
+                
+        console.log('=== authz ',authz[1], authz[2])
 
         //==HANDSHAKE FIRST WITH SOCKET.IO
-        const userName = { token : authz[1] , mode: 1}//full name token
+        const userName = { token : authz[1] , emp_id: authz[2], mode: 1}//full name token
 
-        asn.socket = io.connect(`${myIp}`, {            //withCredentials: true,
+        asn.socket = io.connect(`${myIp}`, {
+            //withCredentials: true,
+            transports: ['websocket', 'polling'], // Same as server
+            upgrade: true, // Ensure WebSocket upgrade is attempted
+            rememberTransport: false, //Don't keep transport after refresh
             query:`userName=${JSON.stringify(userName)}`
             // extraHeaders: {
             //   "osndp-header": "osndp"
             // }
         });//========================initiate socket handshake ================
-            
+
+         asn.socket.on('connect', () => {
+            console.log('Connected to Socket.IO server using:', asn.socket.io.engine.transport.name); // Check the transport
+        });
+
+        asn.socket.on('disconnect', () => {
+            console.log('Disconnected from Socket.IO server');
+        });
+       
         console.log('main.js SPEAK()')
         asn.speaks(  util.getCookie('f_voice')) //==FIRST welcome GREETING HERE ===
         
