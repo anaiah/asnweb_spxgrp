@@ -803,6 +803,7 @@ const asn = {
         });
     },
 
+    //====function for searching records======
     getRecord: async (e_num,e_name, filter_type) =>{
 
         console.log('====filter',  filter_type)
@@ -870,7 +871,7 @@ const asn = {
             asn.obj = {}
 
             console.log('redy to search')
-            asn.speaks( 'Ready to Search!!!')
+            asn.speaks( 'Searching.... !!!')
 
             let xurl = ""
             if(e_num!=="" && e_name==""){
@@ -908,6 +909,38 @@ const asn = {
             })    
         }///eif
     },
+
+
+    //==================RESET PDF===============//
+    resetPdf:async(batch,downloadId)=>{
+        //console.log(downloadId, util.getCookie('f_id'))
+        
+        if( parseInt(downloadId) == parseInt(util.getCookie('f_id'))){
+
+            await fetch(`${myIp}/resetpdf/${batch}` ,{
+                cache:'reload'
+            })
+            .then(res => res.json() )
+
+            .then(data => {	
+
+                if(data.status){
+                    util.speak('RECORD SUCCESSFULLY UPDATED!')
+                }else{
+                    util.speak('RECORD UPDATE FAILED!!!')
+                }
+                
+                console.log('reset!',data)
+            })	
+            .catch((error) => {
+                //util.Toast(`Error:, ${error}`,1000)
+                console.error('Error:', error)
+            })  
+        }else{
+            util.speak('SORRY YOU HAVE NO AUTHORITY TO RESET THIS!')
+        }    
+    },
+
 
     //===Hide search Card
     hideSearch:() =>{
@@ -956,8 +989,22 @@ const asn = {
     
     //===== this is the final button to prit pdf
     // check if pdf is already produced or not, if produced, don't download again
-    printPdf: async (batch)=> {
-        
+    printPdf: async (batch, downloadId)=> {
+        console.log(downloadId)
+
+        switch( true ){
+            case ( parseInt(downloadId) > 0 && parseInt(downloadId) !== parseInt(util.getCookie('f_id')) ):
+                util.speak('SORRY...  YOU HAVE NO AUTHORITY TO DOWNLOAD AND PRINT THIS!')
+                return false
+
+            break;
+
+            case  (parseInt(downloadId)==0):
+            
+            break
+
+        }//end case
+
         let whattofind = batch
 
         const butt1 = `Are you sure you want to Print?<br /><button type='button' id='btnYes' class='btn btn-primary'>Print</button>
