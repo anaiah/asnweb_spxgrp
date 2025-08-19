@@ -1,5 +1,5 @@
 
 
-//const myIp = "http://10.234.49.180:10020"
+const myIp = "http://10.234.49.180:10020"
 
-const myIp = "https://asn-api.onrender.com"
+//const myIp = "https://asn-api.onrender.com"

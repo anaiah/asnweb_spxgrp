@@ -887,12 +887,25 @@ const asn = {
             await fetch( xurl ,{
                 cache:'reload'
             })
-            .then(res => res.text() )
+            .then(res => res.json() )
 
-            .then(text => {	
+            .then(data => {	
+                console.log( data.xdata)
+
+                // data.xdata.forEach(obj => {
+                //     //delete obj.city; // Remove 'city' property
                 
+                // });
+                asn.pdfCart = data.xdata.map(({ id, rider, emp_id: empid }) => ({
+                    id,
+                    rider,
+                    empid
+                }));
+
+                console.log('*** ALL CART ***', asn.pdfCart)
+
                 document.getElementById('search_claim').innerHTML = ""
-                document.getElementById('search_claim').innerHTML = text
+                document.getElementById('search_claim').innerHTML = data.text
 
                 const element = document.getElementById('list_atd');
 
@@ -929,7 +942,7 @@ const asn = {
                 }else{
                     util.speak('RECORD UPDATE FAILED!!!')
                 }
-                
+
                 console.log('reset!',data)
             })	
             .catch((error) => {
@@ -958,16 +971,16 @@ const asn = {
     addtoprint:(id,rider,empid)=>{
         asn.obj = {}
                
-        let index = asn.pdfCart.findIndex( x => x.id === id)
+        let index = asn.pdfCart.findIndex( x => x.id === parseInt(id) )
 
         if (index > -1) {  // Value found
             asn.pdfCart.splice(index, 1);  // Remove 1 element at the index
             document.getElementById(id).classList.add('lets-hide')
             document.getElementById(id).classList.remove('lets-show')
         }else{
-            asn.obj.id = id
+            asn.obj.id = parseInt(id)
             asn.obj.name = rider
-            asn.obj.empid = empid
+            asn.obj.emp_id = empid
 
             asn.pdfCart.push( asn.obj)
 
