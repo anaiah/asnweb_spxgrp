@@ -980,7 +980,7 @@ const asn = {
         }else{
             asn.obj.id = parseInt(id)
             asn.obj.name = rider
-            asn.obj.emp_id = empid
+            asn.obj.empid = empid
 
             asn.pdfCart.push( asn.obj)
 
