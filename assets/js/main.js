@@ -1211,17 +1211,19 @@ const asn = {
 
         let xparam = ""
 
+        const region = util.getCookie('f_region')
         const xregion = util.getCookie('f_xregion')
-        console.log('tophub ',xregion)
-        if( xregion !== null || xregion !==""){
-            xparam = `/${util.getCookie('f_xregion')}/${util.getCookie('grp_id')}/${util.getCookie('f_email')}`    
-        
-        }else{
+                
+        if( xregion === 'null' && region === "ALL"){
+            console.log('dito dapat')
             xparam = `/${util.getCookie('f_region')}/${util.getCookie('grp_id')}/${util.getCookie('f_email')}`    
-        
         }
-
         
+        if( xregion !== 'null' && region === "ALL"){
+            xparam = `/${util.getCookie('f_xregion')}/${util.getCookie('grp_id')}/${util.getCookie('f_email')}`    
+            console.log('HINDI dito dapat')
+        }
+        console.log( 'xregon==',    xparam, region, xregion)
         await fetch(`${myIp}/gethub${xparam}`,{
             cache:'reload'
         })
@@ -1251,16 +1253,19 @@ const asn = {
 
         let xparam = ""
         
-         const xregion = util.getCookie('f_xregion')
-        console.log('toprider ',xregion)
-        
-        if( xregion !== null || xregion !==""){
-            xparam = `/${util.getCookie('f_xregion')}/${util.getCookie('grp_id')}/${util.getCookie('f_email')}`    
-        
-        }else{
+       const region = util.getCookie('f_region')
+        const xregion = util.getCookie('f_xregion')
+                
+        if( xregion === 'null' && region === "ALL"){
+            console.log('dito dapat')
             xparam = `/${util.getCookie('f_region')}/${util.getCookie('grp_id')}/${util.getCookie('f_email')}`    
-        
         }
+        
+        if( xregion !== 'null' && region === "ALL"){
+            xparam = `/${util.getCookie('f_xregion')}/${util.getCookie('grp_id')}/${util.getCookie('f_email')}`    
+            console.log('HINDI dito dapat')
+        }
+        console.log( 'xregon==',    xparam, region, xregion)
 
 
         await fetch(`${myIp}/getrider${xparam}`,{
