@@ -178,3 +178,44 @@ input:focus:is-invalid {
   0% { transform: rotate(0deg); }
   100% { transform: rotate(360deg); }
 }
+
+@keyframes blink {
+  0%, 50%, 100% { opacity: 1; }
+  25%, 75% { opacity: 0; }
+}
+
+.blink {
+  animation: blink 1s infinite;
+}
+
+table.blueTable {
+font-family: "Courier New", Courier, monospace;
+border: 0px solid #1C6EA4;
+/*background-color: #fff8f8ff*/
+width: 100%;
+border-collapse: collapse;
+}
+table.blueTable td, table.blueTable th {
+border: 1px solid #AAAAAA;
+padding: 3px 2px;
+
+}
+table.blueTable tbody td {
+font-size:15px;
+color: #333333;
+border: 1px solid #D0E4F5;
+}
+table.blueTable thead {
+background: #C1B9B8;
+border-bottom: 0px solid black;
+}
+table.blueTable thead th {
+font-size: 15px;
+text-align:center;
+font-weight: bold;
+color: #3B3B3B;
+border-left: 1px solid #D0E4F5;
+}
+table.blueTable thead th:first-child {
+border-left: none;
+}

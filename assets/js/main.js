@@ -1211,7 +1211,16 @@ const asn = {
 
         let xparam = ""
 
-        xparam = `/${util.getCookie('f_region')}/${util.getCookie('grp_id')}/${util.getCookie('f_email')}`    
+        const xregion = util.getCookie('f_xregion')
+        console.log('tophub ',xregion)
+        if( xregion !== null || xregion !==""){
+            xparam = `/${util.getCookie('f_xregion')}/${util.getCookie('grp_id')}/${util.getCookie('f_email')}`    
+        
+        }else{
+            xparam = `/${util.getCookie('f_region')}/${util.getCookie('grp_id')}/${util.getCookie('f_email')}`    
+        
+        }
+
         
         await fetch(`${myIp}/gethub${xparam}`,{
             cache:'reload'
@@ -1242,8 +1251,18 @@ const asn = {
 
         let xparam = ""
         
-        xparam = `/${util.getCookie('f_region')}/${util.getCookie('grp_id')}/${util.getCookie('f_email')}` 
+         const xregion = util.getCookie('f_xregion')
+        console.log('toprider ',xregion)
         
+        if( xregion !== null || xregion !==""){
+            xparam = `/${util.getCookie('f_xregion')}/${util.getCookie('grp_id')}/${util.getCookie('f_email')}`    
+        
+        }else{
+            xparam = `/${util.getCookie('f_region')}/${util.getCookie('grp_id')}/${util.getCookie('f_email')}`    
+        
+        }
+
+
         await fetch(`${myIp}/getrider${xparam}`,{
             cache:'reload'
         })
@@ -1718,11 +1737,20 @@ const asn = {
             // }
         });//========================initiate socket handshake ================
 
-         asn.socket.on('connect', () => {
+        asn.socket.on('connect', () => {
+            const notif = document.querySelector('.notification');
+            notif.classList.replace('bg-danger','bg-primary');
+            notif.classList.remove('blink')
+            //document.getElementById('notif').innerHTML='Connected to Network!'
             console.log('Connected to Socket.IO server using:', asn.socket.io.engine.transport.name); // Check the transport
         });
 
         asn.socket.on('disconnect', () => {
+            util.speak('Warning... NETWORK DISCONNECTED!!!')
+            const notif = document.querySelector('.notification');
+            notif.classList.replace('bg-primary', 'bg-danger');
+            notif.classList.add('blink')
+            //document.getElementById('notif').innerHTML='Error! Network disconnected!'
             console.log('Disconnected from Socket.IO server');
         });
        

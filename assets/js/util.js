@@ -1311,10 +1311,8 @@ const util = {
                 //////// === hide ko muna voice ha? paki-balik pag prod na -->util.speak(data.voice)
                 util.alertMsg(data.message,'success','loginPlaceHolder')
                 
-                util.setGroupCookie(data.id, data.region, data.fname, data.grp_id, data.email, data.voice, data.pic)/*=== SET GROUP COOKIE */
+                util.setGroupCookie(data.id, data.region, data.xregion, data.fname, data.grp_id, data.email, data.voice, data.pic)/*=== SET GROUP COOKIE */
                 
-                // if(data.grp_id=="2"){//business dev0
-               //location.href = '/main.html'
                 location.href = '/spx/dashboard'
                         
             }else{
@@ -1331,8 +1329,10 @@ const util = {
         })
     },
 
-    setGroupCookie:(xid, xregion, xname,xgrp,xemail,xvoice,xpic)=>{
+    setGroupCookie:(xid, xregion, xxregion, xname,xgrp,xemail,xvoice,xpic)=>{
         util.setCookie("f_region",xregion,0)
+        util.setCookie("f_xregion",xxregion,0)
+        
         util.setCookie("fname",xname,0)
         util.setCookie("grp_id",xgrp,0)
         util.setCookie("f_email",xemail,0)
