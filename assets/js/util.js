@@ -1314,7 +1314,7 @@ const util = {
                 util.setGroupCookie(data.id, data.region, data.xregion, data.fname, data.grp_id, data.email, data.voice, data.pic)/*=== SET GROUP COOKIE */
                 
                 location.href = '/spx/dashboard'
-                        
+                         
             }else{
                 util.speak(data.voice)
                 util.alertMsg(data.message,'warning','loginPlaceHolder')
