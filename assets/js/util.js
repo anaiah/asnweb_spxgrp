@@ -780,6 +780,17 @@ const util = {
         const configObj = { keyboard: false, backdrop:'static' }
         
         switch( modalToShow ){
+              case "atdstatusModal":
+               // if(util.getCookie('grp_id')!=="2"){
+                    const atdstatusmodal =  new bootstrap.Modal(document.getElementById('atdstatusModal'),configObj);
+                    atdstatusmodal.show()  
+   
+                // }else{
+                //     util.speak('SORRY... YOU DO NOT HAVE ACCESS FOR THIS MENU!')
+                // }
+                
+            break;
+
             case "claimsModal":
                 if(util.getCookie('grp_id')!=="2"){
                     const claimsmodal =  new bootstrap.Modal(document.getElementById('claimsModal'),configObj);
