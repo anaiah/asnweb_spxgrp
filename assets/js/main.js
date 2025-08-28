@@ -1293,8 +1293,20 @@ const asn = {
     getClaimsUpdate: async() => {
 
         let xparam = ""
+
+        const region = util.getCookie('f_region')
+        const xregion = util.getCookie('f_xregion')
+                
+        if( xregion === 'null' && region === "ALL"){
+            console.log('dito dapat')
+            xparam = `/${util.getCookie('f_region')}/${util.getCookie('grp_id')}/${util.getCookie('f_email')}`    
+        }
         
-        xparam = `/${util.getCookie('f_region')}/${util.getCookie('grp_id')}/${util.getCookie('f_email')}`    
+        if( xregion !== 'null' && region === "ALL"){
+            xparam = `/${util.getCookie('f_xregion')}/${util.getCookie('grp_id')}/${util.getCookie('f_email')}`    
+            console.log('HINDI dito dapat')
+        }
+        
         
         await fetch(`${myIp}/claimsupdate${xparam}`,{
             cache:'reload'
@@ -1690,6 +1702,57 @@ const asn = {
             
     },
 
+    waitingIndicator : document.getElementById('waiting-indicator'),
+    
+    atdstatusmodal:null,
+
+    //===== listeners
+    listeners:()=>{
+        console.log('****** listeners loaded*******')
+        
+        //===atd status upload form
+        document.getElementById('atdstatusuploadForm').addEventListener('submit', async (event) => {
+            event.preventDefault(); // Prevent the default form submission
+
+            const fileInput = document.getElementById('atdstatus_upload_file');
+            const file = fileInput.files[0];
+
+            if (!file) {
+                alert('Please select an Excel file.');
+                return;
+            }
+
+            const formData = new FormData();
+            formData.append('excelFile', file); // Append the file to the FormData object
+
+            try {
+                const response = await fetch(`${myIp}/upload-atd-status`, { // Replace with your route
+                method: 'POST',
+                body: formData,
+                });
+
+                asn.waitingIndicator.style.display = 'block' //pls wait indicator
+
+                const data = await response.json();
+
+                if (response.ok) {
+                    util.speak( data.message )
+                    alert(data.message); // Success message from the server
+                    
+                    asn.atdstatusmodal.hide()
+                    asn.waitingIndicator.style.display ='none'
+                    // Optionally, refresh the page or update the UI
+                } else {
+                    alert(`Upload failed: ${data.error}`); // Error message from the server
+                }
+            } catch (error) {
+                console.error('Fetch error:', error);
+                alert('An error occurred during the upload.');
+            }
+            });
+
+
+    },
 
 	//==,= main run
     init : async () => {
@@ -1769,8 +1832,11 @@ const asn = {
         util.loadFormValidation('#searchForm')
         
         //load listeners
-        util.modalListeners('claimsModal')
+        util.modalListeners('claimsModal') //upload excel file
+        //util.modalListeners('atdstatusModal') // change atd status
         util.modalListeners('newempModal')
+
+        asn.listeners() // load listners
 
         console.log('praise God!')
 

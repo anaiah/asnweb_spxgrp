@@ -782,8 +782,8 @@ const util = {
         switch( modalToShow ){
               case "atdstatusModal":
                // if(util.getCookie('grp_id')!=="2"){
-                    const atdstatusmodal =  new bootstrap.Modal(document.getElementById('atdstatusModal'),configObj);
-                    atdstatusmodal.show()  
+                    asn.atdstatusmodal =  new bootstrap.Modal(document.getElementById('atdstatusModal'),configObj);
+                    asn.atdstatusmodal.show()  
    
                 // }else{
                 //     util.speak('SORRY... YOU DO NOT HAVE ACCESS FOR THIS MENU!')
@@ -842,14 +842,16 @@ const util = {
     modalListeners:(eModal)=>{
         switch (eModal){
 
+            case "atdstatusModal":
+
+            break;
+
             case "claimsModal":
                 //util.speak('CLAIMS MODAL SHOW!')
                 //for upload pdf
                 const frmclaimsupload = document.getElementById('claimsuploadForm')
                 frmclaimsupload.addEventListener("submit", e => {
                     const formx = e.target;
-
-
                     xmsg = "<div><i class='fa fa-spinner fa-pulse' ></i>  Uploading CSV to Database, Please Do Not Close!!!</div>"
                     util.alertMsg( xmsg,'danger','claimsPlaceHolder')
                     util.speak('UPLOADING TO DATABASE, PLEASE DO NOT CLOSE THIS WINDOW!')
