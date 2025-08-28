@@ -204,6 +204,7 @@ table.blueTable tbody td {
 font-size:15px;
 color: #333333;
 border: 1px solid #D0E4F5;
+padding-left: 10px;
 }
 table.blueTable thead {
 background: #C1B9B8;
