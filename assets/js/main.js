@@ -1544,12 +1544,16 @@ const asn = {
 
         const series = [
                     { name: "Downloaded ATD", data: [] },
-                    { name: "No ATD", data: [] }
+                    { name: "No ATD", data: [] },
+                    { name: "Signed", data: [] },
+                    
                 ];
                 
                 results.forEach(item => {
                     series[0].data.push(parseInt(item.with_atd));
                     series[1].data.push(parseInt(item.no_atd));
+                    series[2].data.push(parseInt(item.xsigned));
+                    
                 });
 
                 asn.chart1.updateSeries(series);
@@ -1573,9 +1577,8 @@ const asn = {
     chart1:null,
 
     drawChart: async()=>{
-        let colors = [ '#0277bd','#d84315'] 
+        let colors = [ '#0277bd','#d84315','#0adb68'] 
         
-
         var options = {
           series:[], 
           colors:colors,
@@ -1588,7 +1591,6 @@ const asn = {
                     
         },
 
-        
         plotOptions: {
             bar: {
                 dataLabels: {

@@ -232,6 +232,7 @@ border-left: none;
   z-index: 1000; /* Ensure it's on top of the map */
   display: none; /* Initially hide the indicator */
 }
+
 .waiting-indicator i {
   margin-right: 10px;
 }
