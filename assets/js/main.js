@@ -979,7 +979,7 @@ const asn = {
             document.getElementById(id).classList.remove('lets-show')
         }else{
             asn.obj.id = parseInt(id)
-            asn.obj.name = rider
+            asn.obj.rider = rider
             asn.obj.empid = empid
 
             asn.pdfCart.push( asn.obj)
@@ -1058,15 +1058,18 @@ const asn = {
                 }
                 
                 const data = await response.json(); // Parse response as JSON
-                console.log(data); // Do something with the data
+                console.log('batch id ', data); // Do something with the data
                 xfile = `${data.batch}.pdf` 
                 xbatch = data.batch
+
+                console.log('pdf cart ', asn.pdfCart)
             }else{
 
                 xfile = `${batch}.pdf`
                 xbatch = batch
             }
             
+
             fetch(`${myIp}/printpdf/${util.getCookie('grp_id')}/${whoisId}/${xbatch}/${whattofind}`, {
                 method: 'POST',
                 headers: {
