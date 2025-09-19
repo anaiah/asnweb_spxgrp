@@ -899,14 +899,9 @@ const asn = {
 
                 //****  THEE  NEW  SEARCH RESULT */
                 //set to datagrid
-                printPdf.setData( data.xdata )//set data to grid
+                printPdf.setData( data.xdata )
+                //****************************** */
                 
-                //====show  grid
-                document.getElementById('pdfprint').classList.remove('evaporate')
-                
-                //====== put  on download buttons
-                document.getElementById('download-buttons').innerHTML = data.btn
-
                 //***COPY ARRAY RESULT TO asn.pdfCart Array  ***** */
                 asn.pdfCart = data.xdata.map(({ id, rider, emp_id: empid }) => ({
                     id,
@@ -916,14 +911,14 @@ const asn = {
 
                 console.log('*** ALL CART ***', asn.pdfCart)
 
-                // document.getElementById('search_claim').innerHTML = ""
-                // document.getElementById('search_claim').innerHTML = data.text
+                document.getElementById('search_claim').innerHTML = ""
+                document.getElementById('search_claim').innerHTML = data.text
 
-                // const element = document.getElementById('list_atd');
+                const element = document.getElementById('list_atd');
 
-                // if (element) {
-                //     element.style.display = 'block'; // Or 'inline', 'inline-block', '' etc.
-                // }
+                if (element) {
+                    element.style.display = 'block'; // Or 'inline', 'inline-block', '' etc.
+                }
                                 
                 util.scrollsTo('i-save')
             
@@ -981,23 +976,15 @@ const asn = {
 
     //=== for selectting record IDs to include in printing
     addtoprint:(id,rider,empid)=>{
+        asn.obj = {}
 
-        asn.obj = {} //====reset obj every click=====
-
-        //==========FIRST REMOVE THE ID if IT'S ALREADY IN THE CART=====
+        //==========FIRST REMOVE THE ID if IT'S ALREADY IN THE CART=====//
         let index = asn.pdfCart.findIndex( x => x.id === parseInt(id) )
 
-        //remove if found
         if (index > -1) {  // Value found
-           
             asn.pdfCart.splice(index, 1);  // Remove 1 element at the index
-           
-            document.getElementById(id).classList.add('ti-circle-x')
-            document.getElementById(id).classList.remove('ti-circle-check')
-            document.getElementById(`btn-${id}`).textContent = 'Add Again!'
-            
-
-        //==========bring it back
+            document.getElementById(id).classList.add('lets-hide')
+            document.getElementById(id).classList.remove('lets-show')
         }else{
             asn.obj.id = parseInt(id)
             asn.obj.rider = rider
@@ -1005,25 +992,23 @@ const asn = {
 
             asn.pdfCart.push( asn.obj)
 
-             document.getElementById(`btn-${id}`).textContent = 'Remove'
-            
-            document.getElementById(id).classList.remove('ti-circle-x')
-            document.getElementById(id).classList.add('ti-circle-check')
-        }//eidf
-
-        /*
+            document.getElementById(id).classList.remove('lets-hide')
+            document.getElementById(id).classList.add('lets-show')
+        
+        }
+        
         if(asn.pdfCart.length>0){
             document.getElementById('download-btn').disabled = false
         }else{
             document.getElementById('download-btn').disabled = true
         }
-        */
+        
 
         console.log('PRINT INCLUDE===', asn.pdfCart )
     },
 
     
-    // ===== this is the final button to prit pdf
+    //===== this is the final button to prit pdf
     // check if pdf is already produced or not, if produced, don't download again
     printPdf: async (batch, downloadId)=> {
         console.log(downloadId)

@@ -5,12 +5,18 @@ var printPdf = new Tabulator("#pdfprint", {
     //ajaxURL: `${myIp}/claimsupdate/${util.getCookie('f_region')}/${util.getCookie('grp_id')}/${util.getCookie('f_email')}`, // URL of your API endpoint
     //ajaxContentType:"json",
    
-    height: "311px", // height of table
+    height: "360px", // height of table
     
-    layout:'fitDataFill',
+     layout:'fitColumns',
 
     htmlOutputConfig:{
         formatCells: true
+    },
+
+     //layout:"fitDataFill",
+    responsiveLayout:"collapse",
+    rowHeader:{
+        formatter:"responsiveCollapse",
     },
 
     rowFormatter:function(row){
@@ -24,18 +30,61 @@ var printPdf = new Tabulator("#pdfprint", {
             field: "rider", 
             formatter:"html", 
             headerSort:false, 
-            width:230,
+            width:330,
             headerHozAlign:"center", 
-            resizable:false
+            resizable:false,
+            formatter:(cell)=>{
+
+                if( cell.getData().pdf_batch!==null ){
+
+                    xpdfbatch =     `ATD # ${cell.getData().pdf_batch}<br>
+                    Downloaded by: ${(cell.getData().downloaded_by==null?'NO ID':cell.getData().downloaded_by)}`
+                    xpdfbutton =` <a href='javascript:void(0)' onclick="asn.printPdf('${cell.getData().pdf_batch}','${cell.getData().download_empid}')" class='btn btn-primary btn-sm'>RE-PRINT ${cell.getData().pdf_batch}</a>
+                    <a href='javascript:void(0)' onclick="asn.resetPdf('${cell.getData().pdf_batch}','${cell.getData().download_empid}')" class='btn btn-danger btn-sm'>RESET ${cell.getData().pdf_batch}</a>
+                    `
+                   
+                }else{
+                    xpdfbatch = "ATD PDF NOT YET PROCESSED"
+                    xpdfbutton =` <a href='javascript:void(0)' id ='btn-${cell.getData().id}' onclick="asn.addtoprint('${cell.getData().id}','${cell.getData().rider}','${cell.getData().emp_id}')" class='btn btn-danger btn-sm'>Remove </a>`
+                }//eif
+
+                return  `
+                    Record ID# ${cell.getData().id}<br>
+                    Record Count: ${cell.getData().id_count}<br>
+                    <b>${cell.getData().rider}</b>&nbsp;<i style='color:green;font-size:2em;' class='ti ti-circle-check ' id='${cell.getData().id}'></i><br>
+                    ${cell.getData().emp_id}<br>
+                    <span style='color:red'>${xpdfbatch}</span><br>
+                    ${xpdfbutton}&nbsp;`
+
+            },
         },  
-        { title: "Batch", 
-            field: "pdf_batch", 
+        { title: "Batch/Yr.", 
+            field: "batch_file", 
             formatter:"html", 
             headerSort:false, 
             headerHozAlign:"center",
             hozAlign:"center", 
             width:120,
-            resizable:false
+            resizable:false,
+            formatter:(cell)=>{
+                return`
+                    ${cell.getData().batch_file}, ${cell.getData().transaction_year}
+                `
+            }
+        },
+         { title: "Region/Hub", 
+            field: "region", 
+            formatter:"html", 
+            headerSort:false, 
+            headerHozAlign:"center",
+            hozAlign:"center", 
+            width:120,
+            resizable:false,
+            formatter:(cell)=>{
+                return`
+                     (${cell.getData().region || 'NO REGION'}, ${cell.getData().hub})
+                    `
+            }
         },
         { title: "Total", 
             field: "total",  

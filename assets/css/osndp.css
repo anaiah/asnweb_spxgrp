@@ -236,4 +236,7 @@ border-left: none;
 .waiting-indicator i {
   margin-right: 10px;
 }
+.evaporate {
+  display:none;
+}
 
