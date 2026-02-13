@@ -14,7 +14,7 @@ var printPdf = new Tabulator("#pdfprint", {
     },
 
      //layout:"fitDataFill",
-    responsiveLayout:"collapse",
+    responsiveLayout:"collapse",    
     rowHeader:{
         formatter:"responsiveCollapse",
     },

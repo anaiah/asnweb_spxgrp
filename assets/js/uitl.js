@@ -1327,7 +1327,10 @@ const util = {
                 
                 // if(data.grp_id=="2"){//business dev0
                //location.href = '/spxmain.html'
-               location.href = 'spx/dashboard'
+               
+               location.href = `${window.location.origin}/dashboard` 
+               
+               //'spx/dashboard'
                 /*
                 }else if( data.grp_id=="1" || data.grp_id=="0"){//engr/architect/acctg
                     location.href = '/dashboard.html'
