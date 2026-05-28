@@ -804,14 +804,14 @@ const asn = {
     },
 
     //====function for searching records======
-    getRecord: async (e_num,e_name, filter_type) =>{
+    getRecord: async (e_num,e_name, filter_type, hub) =>{
 
         console.log('====filter',  filter_type)
         let xmsg
         asn.pdfCart.length = 0
         asn.obj = {}
 
-        if(e_num=="" && e_name==""){
+        if(e_num=="" && e_name=="" && hub==""){
             console.log('both blank')
             xmsg = "<div class='text-wrap' style='width: 20rem;'>PLS CHECK YOUR INPUT, YOU CAN SEARCH BY EMPLOYEE NUMBER OR BY EMPLOYEE NAME!</div>"
             
@@ -880,18 +880,14 @@ const asn = {
 
             document.getElementById('searchField').classList.remove('d-none') // show card
 
+            // Clean fallback strategy using logical OR (||)
+            const searchNum = e_num || 'blank';
+            const searchName = e_name || 'blank';
+            const searchHub = hub || 'blank'; // Easily handle your new hub parameter
 
-            let xurl = ""
-            if(e_num!=="" && e_name==""){
-                //SEARCH BY EMP ID
-                xurl = `${myIp}/getrecord/${e_num}/blank/${util.getCookie('f_region')}/${util.getCookie('grp_id')}/${util.getCookie('f_email')}/${filter_type}` 
-            }else if (e_num=="" && e_name!==""){
-                //SEARCH BY NAME
-                xurl = `${myIp}/getrecord/blank/${e_name}/${util.getCookie('f_region')}/${util.getCookie('grp_id')}/${util.getCookie('f_email')}/${filter_type}` 
-            }else{
-                xurl = `${myIp}/getrecord/${e_num}/${e_name}/${util.getCookie('f_region')}/${util.getCookie('grp_id')}/${util.getCookie('f_email')}/${filter_type}` 
-            }
-
+            // Build path cleanly using template literals
+            const xurl = `${myIp}/getrecord/${searchNum}/${searchName}/${searchHub}/${util.getCookie('f_region')}/${util.getCookie('grp_id')}/${util.getCookie('f_email')}/${filter_type}`;
+            
             await fetch( xurl ,{
                 cache:'reload'
             })

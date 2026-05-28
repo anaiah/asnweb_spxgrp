@@ -174,13 +174,31 @@
               </select>
             </div>
           </div>
+          
+          <!-- Dropdown Select - hub -->
+          <div class="col-12 col-md-3"> <!-- Adjust col-md-* as needed for desktop -->
+            <div class="form-outline">
+              <input
+                value=""
+                placeholder="Search for Hub"
+                minlength="5"
+                type="text"
+                class="form-control"
+                id="filter_hub"
+                name="filter_hub"
+              >
+              <div class="invalid-feedback">*Minimum Length of Input is 5</div>
+              <div class="valid-feedback">Looking Good!</div>
+            </div>
+          </div>
+
           <!-- Search Button - specific width on desktop -->
           <div class="col-12 col-md-3"> <!-- Adjust col-md-* as needed for desktop -->
             <button
               class="btn btn-primary w-100"
               id="search-btn"
               type="button"
-              onclick="javascript:asn.getRecord(document.getElementById('filter_number').value, document.getElementById('filter_name').value, document.getElementById('filter_type').value);"
+              onclick="javascript:asn.getRecord(document.getElementById('filter_number').value, document.getElementById('filter_name').value, document.getElementById('filter_type').value, document.getElementById('filter_hub').value);"
             >
               <i class="ti ti-file-search"></i>&nbsp;&nbsp; Search
             </button>
@@ -1026,12 +1044,12 @@
   
   <script src="../shopee/assets/js/ipconfig.js?v=2"></script>
   
-  <script src="../shopee/assets/js/util.js?v=2"></script>
-  <script src="../shopee/assets/js/main.js?v=2"></script>
+  <script src="../shopee/assets/js/util.js?v=3"></script>
+  <script src="../shopee/assets/js/main.js?v=3"></script>
   
-  <script src="../shopee/assets/js/gridtab.js?v=2"></script>
+  <script src="../shopee/assets/js/gridtab.js?v=3"></script>
   
-  <script src="../shopee/assets/js/gridtab2.js?v=2"></script>
+  <script src="../shopee/assets/js/gridtab2.js?v=3"></script>
  
 </body>
 
