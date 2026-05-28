@@ -199,29 +199,36 @@ var printPdf = new Tabulator("#pdfprint", {
         */
     ],
 
-    locale:"en-us",
-    langs:{
-        "en-us":{
-            "pagination":{
-                "page_size":"Page Size", //label for the page size select element
-                "first":"<i class='ti ti-player-skip-back-filled'></i>", //text for the first page button
-                "first_title":"First Page", //tooltip text for the first page button
-                "last":"<i class='ti ti-player-skip-forward-filled'></i>",
-                "last_title":"Last Page",
-                "prev":"Prev",
-                "prev_title":"Prev Page",
-                "next":"Next",
-                "next_title":"Next Page",
-            },
+    locale: "en-us",
+    langs: {
+        "en-us": {
+            "pagination": {
+                "page_size": "Page Size",
+                "first": "&#9194;",       // Shows ⏮ (Media Skip Back block)
+                "first_title": "First Page",
+                "last": "&#9193;",        // Shows ⏭ (Media Skip Forward block)
+                "last_title": "Last Page",
+                "prev": "&#9664; Prev",   // Shows ◀ Prev (Solid triangle arrow)
+                "prev_title": "Prev Page",
+                "next": "Next &#9654;",   // Shows Next ▶ (Solid triangle arrow)
+                "next_title": "Next Page"
+            }
         }
     },
     
-    pagination:true, //enable pagination
-    paginationMode:"local", //enable remote pagination
-    paginationSize: 10, //optional parameter to request a certain number of rows per page
-    // paginationCounter:function(pageSize, currentRow, currentPage, totalRows, totalPages){
-    //     return `<i class='ti ti-database-search'></i>&nbsp;Showing ${pageSize}  rows of ${totalRows} total`;
-    // }
+    pagination: true,
+    paginationMode: "local", 
+    paginationSize: 10,
+    paginationSizeSelector: [10, 25, 50, 100], 
+    /*
+    paginationCounter: function(pageSize, currentRow, currentPage, totalRows, totalPages) {
+        if (totalRows === 0) return "<i class='fa-solid fa-database'></i> No records found";
+        
+        return `<i class='fa-solid fa-magnifying-glass'></i> Showing <b>${currentRow}</b> - <b>${Math.min(currentRow + pageSize - 1, totalRows)}</b> of <b>${totalRows}</b> entries`;
+    }
+*/
+
+
 });
 
 

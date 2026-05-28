@@ -878,6 +878,9 @@ const asn = {
             console.log('redy to search')
             asn.speaks( 'Searching.... !!!')
 
+            document.getElementById('searchField').classList.remove('d-none') // show card
+
+            
             let xurl = ""
             if(e_num!=="" && e_name==""){
                 //SEARCH BY EMP ID
