@@ -880,7 +880,7 @@ const asn = {
 
             document.getElementById('searchField').classList.remove('d-none') // show card
 
-            
+
             let xurl = ""
             if(e_num!=="" && e_name==""){
                 //SEARCH BY EMP ID
@@ -1860,7 +1860,7 @@ const asn = {
         });
 
         asn.socket.on('disconnect', () => {
-            util.speak('Warning... NETWORK DISCONNECTED!!!')
+            ///util.speak('Warning... NETWORK DISCONNECTED!!!')
             const notif = document.querySelector('.notification');
             notif.classList.replace('bg-primary', 'bg-danger');
             notif.classList.add('blink')
