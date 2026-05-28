@@ -1550,7 +1550,8 @@ const asn = {
     //==========END  GETMENU
 
     //==========get atdchart
-    getChart: async () => {
+    getChart: async()=>{
+
         console.log('===getting  Chart====')
         const response = await fetch(`${myIp}/getchart`)
 
@@ -1565,55 +1566,39 @@ const asn = {
 
         asn.drawChart()
 
-        console.log('CHART DATA===', results)
+        console.log( 'CHART DATA===',results )
 
-        // 1. Reconstruct categories cleanly first
-        let xcat = [];
-        results.forEach(item => {
-            const regionName = item.region ? item.region.trim() : 'NO REGION';
-            if (!xcat.includes(regionName)) {
-                xcat.push(regionName);
-            }
-        });
-
-        // 2. Build series data mapped explicitly to ensure correct indexing
         const series = [
-            { name: "Downloaded ATD", data: [] },
-            { name: "No ATD", data: [] },
-            { name: "Signed", data: [] },
-        ];
+                    { name: "Downloaded ATD", data: [] },
+                    { name: "No ATD", data: [] },
+                    { name: "Signed", data: [] },
+                    
+                ];
                 
-        results.forEach(item => {
-            // Fallback to 0 if parsed value becomes NaN
-            series[0].data.push(parseInt(item.with_atd) || 0);
-            series[1].data.push(parseInt(item.no_atd) || 0);
-            series[2].data.push(parseInt(item.xsigned) || 0);
-        });
+                results.forEach(item => {
+                    series[0].data.push(parseInt(item.with_atd));
+                    series[1].data.push(parseInt(item.no_atd));
+                    series[2].data.push(parseInt(item.xsigned));
+                    
+                });
 
-        console.log("XCAT LENGTH:", xcat.length);
-        console.log("SERIES DATA LENGTH:", series[0].data.length);
+                asn.chart1.updateSeries(series);
+                
+                let xcat = []
 
-        // 3. Update BOTH series and options together to prevent rendering mismatches
-        asn.chart1.updateOptions({ 
-            xaxis: { 
-                categories: xcat,
-                labels: {
-                    show: true,
-                    rotate: -45,          // Rotates labels so they don't overlap
-                    rotateAlways: false,   // Only rotates if they crowd
-                    hideOverlappingLabels: false, // <-- THIS IS THE FIX: Prevents hiding CVIS
-                    minHeight: 50         // Gives extra room for rotated text
-                }
-            }
-        });
+                results.forEach(item => {
+                    if (!xcat.includes(item.region.trim())) {
+                        xcat.push(item.region.trim());
+                    }
+                });
 
-        
-        asn.chart1.updateSeries(series);
+                console.log(xcat)
+                asn.chart1.updateOptions({ 
+                    xaxis: { categories: xcat }
+                });
 
-        // Hide loading div once rendering tasks are passed
-        loadingDiv.style.display = 'none';
+
     },
-
 
     chart1:null,
 
