@@ -6,6 +6,7 @@ author : Carlo O. Dominguez
 
 //
 //speech synthesis
+import { xlsReport } from './mod-report.js';
 
 const asn = {
 	
@@ -804,134 +805,257 @@ const asn = {
     },
 
     //====function for searching records======
-    getRecord: async (e_num,e_name, filter_type, hub) =>{
+    // getRecord: async (e_num,e_name, filter_type, hub, xyear) =>{
 
-        console.log('====filter',  filter_type)
-        let xmsg
-        asn.pdfCart.length = 0
-        asn.obj = {}
+    //     console.log('====filter',  filter_type)
+    //     let xmsg
+    //     asn.pdfCart.length = 0
+    //     asn.obj = {}
 
-        if(e_num=="" && e_name=="" && hub==""){
-            console.log('both blank')
-            xmsg = "<div class='text-wrap' style='width: 20rem;'>PLS CHECK YOUR INPUT, YOU CAN SEARCH BY EMPLOYEE NUMBER OR BY EMPLOYEE NAME!</div>"
+    //     if(e_num=="" && e_name=="" && hub==""){
+    //         console.log('both blank')
+    //         xmsg = "<div class='text-wrap' style='width: 20rem;'>PLS CHECK YOUR INPUT, YOU CAN SEARCH BY EMPLOYEE NUMBER OR BY EMPLOYEE NAME!</div>"
             
-            asn.speaks('PLEASE CHECK YOUR INPUT, YOU CAN SEARCH BY EMPLOYEE NUMBER OR BY EMPLOYEE NAME!')
+    //         asn.speaks('PLEASE CHECK YOUR INPUT, YOU CAN SEARCH BY EMPLOYEE NUMBER OR BY EMPLOYEE NAME!')
+            
+    //         Toastify({
+    //             text: xmsg ,
+    //             duration:3000,
+    //             escapeMarkup:false, //to create html
+    //             close:false,
+    //             position:'center',
+    //             offset:{
+    //                 x: 0,
+    //                 y:100//window.innerHeight/2 // vertical axis - can be a number or a string indicating unity. eg: '2em'
+    //             },
+    //             style: {
+    //               background: "linear-gradient(to right, #00b09b, #96c93d)",
+    //             }
+    //         }).showToast();
+    //         return false
+        
+    //     }
+
+    //     let xclass = [], aForm = ['filter_number','filter_name']
+    //     xclass.push(document.getElementById('filter_number').className ) 
+    //     xclass.push(document.getElementById('filter_name').className)
+
+    //     let nn = xclass.indexOf('form-control is-invalid')
+        
+    //     if ( nn > -1 ){
+    //         xmsg = "<div class='text-wrap' style='width: 20rem;'>PLS CHECK YOUR INPUT, THERE'S ERROR!</div>"
+            
+    //         asn.speaks(`PLEASE CHECK YOUR INPUT, THERE'S AN ERROR!!!`)
+
+    //         Toastify({
+    //             text: xmsg ,
+    //             duration:3000,
+    //             escapeMarkup:false, //to create html
+    //             close:false,
+    //             position:'center', 
+    //             offset:{
+    //                 x: 0,
+    //                 y:100//window.innerHeight/2 // vertical axis - can be a number or a string indicating unity. eg: '2em'
+    //             },
+    //             style: {
+    //                 background: "linear-gradient(to right, #00b09b, #96c93d)",
+    //             }
+    //         }).showToast();
+
+    //         document.getElementById( aForm[nn] ).classList.remove('is-invalid')
+    //         document.getElementById( aForm[nn] ).value=""
+
+    //         return false         
+    //     }else{
+
+    //         //************************ */
+    //         //* IF  ALL  IS OK,  THEN  
+    //         // FIRE  SEARCH
+    //         //************************ */
+            
+    //         asn.pdfCart.length = 0
+    //         asn.obj = {}
+
+    //         console.log('redy to search')
+    //         asn.speaks( 'Searching.... !!!')
+
+    //         document.getElementById('searchField').classList.remove('d-none') // show card
+
+    //         // Clean fallback strategy using logical OR (||)
+    //         const searchNum = e_num || 'blank';
+    //         const searchName = e_name || 'blank';
+    //         const searchHub = hub || 'blank'; // Easily handle your new hub parameter
+
+    //         // Build path cleanly using template literals
+    //         const xurl = `${myIp}/getrecord/${searchNum}/${searchName}/${searchHub}/${util.getCookie('f_region')}/${util.getCookie('grp_id')}/${util.getCookie('f_email')}/${filter_type}`;
+            
+    //         await fetch( xurl ,{
+    //             cache:'reload'
+    //         })
+    //         .then(res => res.json() )
+
+    //         .then(data => {	
+    //             console.log( data.xdata)
+
+    //             //****  THEE  NEW  SEARCH RESULT */
+    //             //set to datagrid
+    //             printPdf.setData( data.xdata )//set data to grid
+                
+    //             //====show  grid
+    //             document.getElementById('pdfprint').classList.remove('evaporate')
+                
+    //             //====== put  on download buttons
+    //             document.getElementById('download-buttons').innerHTML = data.btn
+
+    //             //***COPY ARRAY RESULT TO asn.pdfCart Array  ***** */
+    //             asn.pdfCart = data.xdata.map(({ id, rider, emp_id: empid }) => ({
+    //                 id,
+    //                 rider,
+    //                 empid
+    //             }));
+
+    //             console.log('*** ALL CART ***', asn.pdfCart)
+
+    //             // document.getElementById('search_claim').innerHTML = ""
+    //             // document.getElementById('search_claim').innerHTML = data.text
+
+    //             // const element = document.getElementById('list_atd');
+
+    //             // if (element) {
+    //             //     element.style.display = 'block'; // Or 'inline', 'inline-block', '' etc.
+    //             // }
+                                
+    //             util.scrollsTo('i-save')
+            
+    //         })	
+    //         .catch((error) => {
+    //             //util.Toast(`Error:, ${error}`,1000)
+    //             console.error('Error:', error)
+    //         })    
+    //     }///eif
+    // },
+    getRecord: async (e_num, e_name, filter_type, hub, xyear) => {
+        console.log('==== Processing Record Search Filter Mode:', filter_type, xyear);
+        
+        // 1. Reset target array states immediately
+        asn.pdfCart.length = 0;
+        asn.obj = {};
+
+        // 2. CHECK FOR ALL BLANK FIELDS (Validation Safeguard)
+        if (!e_num && !e_name && !hub) {
+            console.log('Validation Error: All inputs left blank.');
+            const errorMsg = "<div class='text-wrap' style='width: 20rem;'>PLS CHECK YOUR INPUT, YOU CAN SEARCH BY EMPLOYEE NUMBER OR BY EMPLOYEE NAME!</div>";
+            
+            asn.speaks('PLEASE CHECK YOUR INPUT, YOU CAN SEARCH BY EMPLOYEE NUMBER OR BY EMPLOYEE NAME!');
             
             Toastify({
-                text: xmsg ,
-                duration:3000,
-                escapeMarkup:false, //to create html
-                close:false,
-                position:'center',
-                offset:{
-                    x: 0,
-                    y:100//window.innerHeight/2 // vertical axis - can be a number or a string indicating unity. eg: '2em'
-                },
-                style: {
-                  background: "linear-gradient(to right, #00b09b, #96c93d)",
-                }
+                text: errorMsg,
+                duration: 3000,
+                escapeMarkup: false,
+                close: false,
+                position: 'center',
+                offset: { x: 0, y: 100 },
+                style: { background: "linear-gradient(to right, #00b09b, #96c93d)" }
             }).showToast();
-            return false
-        
+            
+            return false;
         }
 
-        let xclass = [], aForm = ['filter_number','filter_name']
-        xclass.push(document.getElementById('filter_number').className ) 
-        xclass.push(document.getElementById('filter_name').className)
+        // 3. IS-INVALID INTERIOR INPUT VALIDATION CHECK
+        const numInput  = document.getElementById('filter_number');
+        const nameInput = document.getElementById('filter_name');
 
-        let nn = xclass.indexOf('form-control is-invalid')
-        
-        if ( nn > -1 ){
-            xmsg = "<div class='text-wrap' style='width: 20rem;'>PLS CHECK YOUR INPUT, THERE'S ERROR!</div>"
-            
-            asn.speaks(`PLEASE CHECK YOUR INPUT, THERE'S AN ERROR!!!`)
+        const isNumInvalid  = numInput && numInput.classList.contains('is-invalid');
+        const isNameInvalid = nameInput && nameInput.classList.contains('is-invalid');
+
+        if (isNumInvalid || isNameInvalid) {
+            const validationMsg = "<div class='text-wrap' style='width: 20rem;'>PLS CHECK YOUR INPUT, THERE'S ERROR!</div>";
+            asn.speaks(`PLEASE CHECK YOUR INPUT, THERE'S AN ERROR!!!`);
 
             Toastify({
-                text: xmsg ,
-                duration:3000,
-                escapeMarkup:false, //to create html
-                close:false,
-                position:'center', 
-                offset:{
-                    x: 0,
-                    y:100//window.innerHeight/2 // vertical axis - can be a number or a string indicating unity. eg: '2em'
-                },
-                style: {
-                    background: "linear-gradient(to right, #00b09b, #96c93d)",
-                }
+                text: validationMsg,
+                duration: 3000,
+                escapeMarkup: false,
+                close: false,
+                position: 'center',
+                offset: { x: 0, y: 100 },
+                style: { background: "linear-gradient(to right, #00b09b, #96c93d)" }
             }).showToast();
 
-            document.getElementById( aForm[nn] ).classList.remove('is-invalid')
-            document.getElementById( aForm[nn] ).value=""
+            // Clear out the offending elements instantly
+            if (isNumInvalid) {
+                numInput.classList.remove('is-invalid');
+                numInput.value = "";
+            }
+            if (isNameInvalid) {
+                nameInput.classList.remove('is-invalid');
+                nameInput.value = "";
+            }
 
-            return false         
-        }else{
+            return false;         
+        }
 
-            //************************ */
-            //* IF  ALL  IS OK,  THEN  
-            // FIRE  SEARCH
-            //************************ */
-            
-            asn.pdfCart.length = 0
-            asn.obj = {}
+        // ========================================================
+        // 4. ALL CHECKS PASS -> RUN SEARCH LIFECYCLE
+        // ========================================================
+        console.log('Validation passed. Executing database record fetch profile...');
+        asn.speaks('Searching.... !!!');
 
-            console.log('redy to search')
-            asn.speaks( 'Searching.... !!!')
+        // Capture structural elements safely
+        const searchCard      = document.getElementById('searchField');
+        const gridPrintContainer = document.getElementById('pdfprint');
+        const downloadActionBox = document.getElementById('download-buttons');
 
-            document.getElementById('searchField').classList.remove('d-none') // show card
+        if (searchCard) searchCard.classList.remove('d-none'); // Un-hide dashboard component card
 
-            // Clean fallback strategy using logical OR (||)
-            const searchNum = e_num || 'blank';
-            const searchName = e_name || 'blank';
-            const searchHub = hub || 'blank'; // Easily handle your new hub parameter
+        // Map inputs with robust string segment replacements
+        const searchNum  = e_num ? e_num.trim() : 'blank';
+        const searchName = e_name ? e_name.trim() : 'blank';
+        const searchHub  = hub ? hub.trim() : 'blank';
+        const targetYear = xyear ;
 
-            // Build path cleanly using template literals
-            const xurl = `${myIp}/getrecord/${searchNum}/${searchName}/${searchHub}/${util.getCookie('f_region')}/${util.getCookie('grp_id')}/${util.getCookie('f_email')}/${filter_type}`;
-            
-            await fetch( xurl ,{
-                cache:'reload'
-            })
-            .then(res => res.json() )
+        const region  = util.getCookie('f_region') || 'NA';
+        const grpId   = util.getCookie('grp_id') || 'NA';
+        const fEmail  = util.getCookie('f_email') || 'NA';
 
-            .then(data => {	
-                console.log( data.xdata)
+        // 5. Construct URL path structure including your xyear parameter at the tail end
+        // Pattern: /getrecord/:num/:name/:hub/:region/:groupId/:email/:filterType/:year
+        const xurl = `${myIp}/getrecord/${encodeURIComponent(searchNum)}/${encodeURIComponent(searchName)}/${encodeURIComponent(searchHub)}/${encodeURIComponent(region)}/${encodeURIComponent(grpId)}/${encodeURIComponent(fEmail)}/${encodeURIComponent(filter_type)}/${encodeURIComponent(targetYear)}`;
+        console.log('*****getRecord() - Constructed URL:', xurl);
 
-                //****  THEE  NEW  SEARCH RESULT */
-                //set to datagrid
-                printPdf.setData( data.xdata )//set data to grid
+        try {
+            const response = await fetch(xurl, { cache: 'reload' });
+
+            if (!response.ok) {
+                throw new Error(`HTTP data collection error network status code: ${response.status}`);
+            }
+
+            const data = await response.json();
+            console.log('Record Database Response Package:', data);
+
+            // Set content onto datagrid instance safely
+            if (data.xdata) {
+                printPdf.setData(data.xdata);
                 
-                //====show  grid
-                document.getElementById('pdfprint').classList.remove('evaporate')
-                
-                //====== put  on download buttons
-                document.getElementById('download-buttons').innerHTML = data.btn
-
-                //***COPY ARRAY RESULT TO asn.pdfCart Array  ***** */
+                // Copy values into array reference cache container maps
                 asn.pdfCart = data.xdata.map(({ id, rider, emp_id: empid }) => ({
                     id,
                     rider,
                     empid
                 }));
+                console.log('*** Syncing Local Cart Registry Arrays ***', asn.pdfCart);
+            }
 
-                console.log('*** ALL CART ***', asn.pdfCart)
+            // Un-hide grid viewport animations and bind structural buttons markup strings
+            if (gridPrintContainer) gridPrintContainer.classList.remove('evaporate');
+            if (downloadActionBox) downloadActionBox.innerHTML = data.btn || '';
 
-                // document.getElementById('search_claim').innerHTML = ""
-                // document.getElementById('search_claim').innerHTML = data.text
+            // Transition scroll viewpoint safely to finish
+            util.scrollsTo('i-save');
 
-                // const element = document.getElementById('list_atd');
-
-                // if (element) {
-                //     element.style.display = 'block'; // Or 'inline', 'inline-block', '' etc.
-                // }
-                                
-                util.scrollsTo('i-save')
-            
-            })	
-            .catch((error) => {
-                //util.Toast(`Error:, ${error}`,1000)
-                console.error('Error:', error)
-            })    
-        }///eif
+        } catch (error) {
+            console.error('Failed executing getRecord endpoint payload operations safely:', error);
+        }
     },
 
 
@@ -1232,138 +1356,190 @@ const asn = {
     },
 
     //==get top 5 hub pasaway
-    getTopHub: async()=>{
+    getTopHub: async (xyear) => {
+        console.log('=== Getting Top Hub ====');
 
-        let xparam = ""
+        // 1. Gather all cookies cleanly at the beginning into variables
+        const region   = util.getCookie('f_region');
+        const xregion  = util.getCookie('f_xregion');
+        const grpId    = util.getCookie('grp_id') || 'NA';
+        const fEmail   = util.getCookie('f_email') || 'NA';
+        const hubPanel = document.getElementById('hub');
 
-        const region = util.getCookie('f_region')
-        const xregion = util.getCookie('f_xregion')
-                
-        if( xregion === 'null' && region === "ALL"){
-            console.log('dito dapat')
-            xparam = `/${util.getCookie('f_region')}/${util.getCookie('grp_id')}/${util.getCookie('f_email')}`    
+        // Use a safe fallback string if xyear happens to be null or empty
+        const targetYear = xyear ; 
+
+        let targetRegion = region; // Default fallback assignment
+
+        // 2. Evaluate structural route requirements cleanly
+        if (region === "ALL") {
+            if (xregion !== 'null' && xregion) {
+                targetRegion = xregion;
+                console.log('Using sub-region parameter mapping tracking:', targetRegion);
+            } else {
+                console.log('Using primary region fallback parameters:', targetRegion);
+            }
         }
-        
-        if( xregion !== 'null' && region === "ALL"){
-            xparam = `/${util.getCookie('f_xregion')}/${util.getCookie('grp_id')}/${util.getCookie('f_email')}`    
-            console.log('HINDI dito dapat')
+
+        // Construct path variables safely: /Region/GroupID/EmailAddress/Year
+        // encodeURIComponent protects characters like spaces or '@' symbols in the URL string
+        const xparam = `/${encodeURIComponent(targetRegion)}/${encodeURIComponent(grpId)}/${encodeURIComponent(fEmail)}/${encodeURIComponent(targetYear)}`;
+        console.log('Final Request Endpoint String Matrix Parameters:', { xparam, region, xregion, targetYear });
+
+        try {
+            // 3. Fire server network request matching reload attributes
+            const response = await fetch(`${myIp}/gethub${xparam}`, { cache: 'reload' });
+
+            if (!response.ok) {
+                throw new Error(`HTTP network response failure! Status: ${response.status}`);
+            }
+
+            const htmlText = await response.text();
+
+            // 4. Update DOM layout segments directly in a single-pass swap
+            if (hubPanel) {
+                hubPanel.innerHTML = htmlText;
+            } else {
+                console.warn("Target element container ID #hub was missing from active view.");
+            }
+
+            // Execute scroll transitions and kick off down-stream analytics pipeline updates
+            util.scrollsTo('hub');
+
+            asn.getTopRider(xyear); // Chain next data retrieval for top riders based on the same year parameter
+
+        } catch (error) {
+            console.error('Failed processing top hub analytics parameters safely:', error);
         }
-        console.log( 'xregon==',    xparam, region, xregion)
-        await fetch(`${myIp}/gethub${xparam}`,{
-            cache:'reload'
-        })
-        .then(res => res.text() )
-
-        .then(text => {	
-        //    // console.log('what the text? ',text)
-        //     osndp.notif('',true)
-            document.getElementById('hub').innerHTML = ""
-            document.getElementById('hub').innerHTML = text
-        //     document.getElementById('project-badge').innerHTML = parseInt(document.getElementById('reccount').innerHTML)
-        //     console.log( '**rec count** ',document.getElementById('reccount').innerHTML)
-            
-            util.scrollsTo('hub')
-
-            asn.getTopRider()
-        
-        })	
-        .catch((error) => {
-            //util.Toast(`Error:, ${error}`,1000)
-            console.error('Error:', error)
-        })    
     },
 
     // =====get top 5 rider pasaway
-    getTopRider: async() => {
+      // ===== Get Top 5 Rider Pasaway =====
+    getTopRider: async (xyear) => {
+        console.log('=== Getting Top Rider ====');
 
-        let xparam = ""
+        // 1. Gather all cookies cleanly at the beginning into variables
+        const region      = util.getCookie('f_region');
+        const xregion     = util.getCookie('f_xregion');
+        const grpId       = util.getCookie('grp_id') || 'NA';
+        const fEmail      = util.getCookie('f_email') || 'NA';
+        const riderPanel  = document.getElementById('rider');
         
-       const region = util.getCookie('f_region')
-        const xregion = util.getCookie('f_xregion')
-                
-        if( xregion === 'null' && region === "ALL"){
-            console.log('dito dapat')
-            xparam = `/${util.getCookie('f_region')}/${util.getCookie('grp_id')}/${util.getCookie('f_email')}`    
+        // Use a safe fallback string if xyear happens to be null or empty
+        const targetYear  = xyear ; 
+
+        let targetRegion = region; // Default fallback assignment
+
+        // 2. Evaluate structural route requirements cleanly
+        if (region === "ALL") {
+            if (xregion !== 'null' && xregion) {
+                targetRegion = xregion;
+                console.log('Using sub-region parameter mapping tracking:', targetRegion);
+            } else {
+                console.log('Using primary region fallback parameters:', targetRegion);
+            }
         }
-        
-        if( xregion !== 'null' && region === "ALL"){
-            xparam = `/${util.getCookie('f_xregion')}/${util.getCookie('grp_id')}/${util.getCookie('f_email')}`    
-            console.log('HINDI dito dapat')
+
+        // Construct path variables safely: /Region/GroupID/EmailAddress/Year
+        // encodeURIComponent protects characters like spaces or '@' symbols in the URL string
+        const xparam = `/${encodeURIComponent(targetRegion)}/${encodeURIComponent(grpId)}/${encodeURIComponent(fEmail)}/${encodeURIComponent(targetYear)}`;
+        console.log('Final Rider Request Endpoint Parameters:', { xparam, region, xregion, targetYear });
+
+        try {
+            // 3. Fire server network request matching reload attributes
+            const response = await fetch(`${myIp}/getrider${xparam}`, { cache: 'reload' });
+
+            if (!response.ok) {
+                throw new Error(`HTTP network response failure! Status: ${response.status}`);
+            }
+
+            const htmlText = await response.text();
+
+            // 4. Update DOM layout segments directly in a single-pass swap
+            if (riderPanel) {
+                riderPanel.innerHTML = htmlText;
+            } else {
+                console.warn("Target element container ID #rider was missing from active view.");
+            }
+
+            // Execute scroll transitions and kick off down-stream analytics pipeline updates
+            util.scrollsTo('claims_grid_update');
+            asn.getClaimsUpdate(xyear); // <-- Passed targetYear down into the next cascade loop step
+
+        } catch (error) {
+            console.error('Failed processing top rider analytics parameters safely:', error);
         }
-        console.log( 'xregon==',    xparam, region, xregion)
-
-
-        await fetch(`${myIp}/getrider${xparam}`,{
-            cache:'reload'
-        })
-        .then(res => res.text() )
-
-        .then(text => {	
-            document.getElementById('rider').innerHTML = "" 
-            document.getElementById('rider').innerHTML = text
-            
-            util.scrollsTo('claims_grid_update')
-            
-            asn.getClaimsUpdate() //===fire getclaimsupdate()
-       
-        })	
-        .catch((error) => {
-            //util.Toast(`Error:, ${error}`,1000)
-            console.error('Error:', error)
-        })    
     },
 
 
-    // get overall uploaded
-    getClaimsUpdate: async() => {
+    // get overall uploaded called via getTopRider() to update the claims 
+    // grid with the same year parameter
+    getClaimsUpdate: async (xyear) => {
+        console.log('=== Getting Claims Update ====', xyear);
 
-        let xparam = ""
+        // 1. Gather cookies cleanly into local variables at the start
+        const region   = util.getCookie('f_region');
+        const xregion  = util.getCookie('f_xregion');
+        const grpId    = util.getCookie('grp_id') || 'NA';
+        const fEmail   = util.getCookie('f_email') || 'NA';
+        
+        // Use a safe fallback string if xyear happens to be null or empty
+        const targetYear = xyear ; 
 
-        const region = util.getCookie('f_region')
-        const xregion = util.getCookie('f_xregion')
-                
-        if( xregion === 'null' && region === "ALL"){
-            console.log('dito dapat')
-            xparam = `/${util.getCookie('f_region')}/${util.getCookie('grp_id')}/${util.getCookie('f_email')}`    
+        let targetRegion = region; // Default fallback assignment
+
+        // 2. Evaluate structural route requirements cleanly
+        if (region === "ALL") {
+            if (xregion !== 'null' && xregion) {
+                targetRegion = xregion;
+                console.log('Using sub-region parameter mapping tracking:', targetRegion);
+            } else {
+                console.log('Using primary region fallback parameters:', targetRegion);
+            }
         }
-        
-        if( xregion !== 'null' && region === "ALL"){
-            xparam = `/${util.getCookie('f_xregion')}/${util.getCookie('grp_id')}/${util.getCookie('f_email')}`    
-            console.log('HINDI dito dapat')
-        }
-        
-        
-        await fetch(`${myIp}/claimsupdate${xparam}`,{
-            cache:'reload'
-        })
-        .then( (res) => res.json() )
 
-        .then( (data)  => {	
+        // Construct path variables safely: /Region/GroupID/EmailAddress/Year
+        // encodeURIComponent protects characters like spaces or '@' symbols in the URL string
+        const xparam = `/${encodeURIComponent(targetRegion)}/${encodeURIComponent(grpId)}/${encodeURIComponent(fEmail)}/${encodeURIComponent(targetYear)}`;
+        console.log('Final Claims Update Endpoint Parameters:', { xparam, region, xregion, targetYear });
 
-            console.log( 'claimsupdte()==', data )
+        try {
+            // 3. Fire server network request matching reload attributes
+            const response = await fetch(`${myIp}/claimsupdate${xparam}`, { cache: 'reload' });
 
-            claims_grid.setData( data )
+            if (!response.ok) {
+                throw new Error(`HTTP network response failure! Status: ${response.status}`);
+            }
 
-            switch(util.getCookie('grp_id') ){
-                case "2"://jennelle
+            const data = await response.json();
+            console.log('Claims Update Data Response:', data);
+
+            // 4. Update your data grid cleanly using your dynamic grid instance setter
+            claims_grid.setData(data);
+
+            // 5. Evaluate page view layout scrolling & element pruning rules based on group ID
+            switch (grpId) {
+                case "2": // Jennelle
                 case "3":
                 case "6":
                 case "7":
-                    
-                    util.scrollsTo('current_projects')
-                    //asn.getprintPdf() // get printed/uploaded pdfs *** TAKE OUT GT PRINT PDF BECOZ OF CHART  ALREADY
-                break
+                    util.scrollsTo('current_projects');
+                    break;
                 default:
-                    document.getElementById('list_atd').remove()
-                break
+                    const listAtdElement = document.getElementById('list_atd');
+                    if (listAtdElement) {
+                        listAtdElement.remove();
+                    } else {
+                        console.warn("Element #list_atd was already removed or missing from view.");
+                    }
+                    break;
             }
 
-        })	
-        .catch((error) => {
-            //util.Toast(`Error:, ${error}`,1000)
-            console.error('Error:', error)
-        })    
+        } catch (error) {
+            console.error('Failed processing claims update data parameters safely:', error);
+        }
     },
+
 
     //get pie chart comparison of
     // with ATD and no ATDs
@@ -1549,70 +1725,94 @@ const asn = {
     //==========END  GETMENU
 
     //==========get atdchart
-    getChart: async () => {
-        console.log('===getting  Chart====')
-        const response = await fetch(`${myIp}/getchart`)
 
-        if (!response.ok) {
-            throw new Error(`HTTP error! Status: ${response.status}`);
+    getChart: async ( xyear ) => {
+        console.log('===getting  Chart====');
+
+        // 1. Declare and capture your target elements safely inside the function scope
+        const loadingElement = document.getElementById("loading");
+        const chartContainer = document.getElementById("chartprint"); // <-- FIX 1: Declared chartContainer
+
+        // Exit early if elements are missing from the page to prevent crashes
+        if (!loadingElement || !chartContainer) {
+            console.error("Required chart DOM elements are missing.");
+            return;
         }
-        
-        const loadingDiv = document.getElementById('loading');
-        loadingDiv.style.display = 'block';
 
-        const results = await response.json(); // Parse response as JSON
+        try {
+            // 2. SHOW SPIN SCREEN & Dim container
+            loadingElement.classList.remove("d-none");
+            chartContainer.style.opacity = "0.4";
 
-        asn.drawChart()
+            const response = await fetch(`${myIp}/getchart/${xyear}`);
 
-        console.log('CHART DATA===', results)
-
-        // 1. Reconstruct categories cleanly first
-        let xcat = [];
-        results.forEach(item => {
-            const regionName = item.region ? item.region.trim() : 'NO REGION';
-            if (!xcat.includes(regionName)) {
-                xcat.push(regionName);
+            if (!response.ok) {
+                throw new Error(`HTTP error! Status: ${response.status}`);
             }
-        });
+            
+            const results = await response.json(); // Parse response as JSON
 
-        // 2. Build series data mapped explicitly to ensure correct indexing
-        const series = [
-            { name: "Downloaded ATD", data: [] },
-            { name: "No ATD", data: [] },
-            { name: "Signed", data: [] },
-        ];
-                
-        results.forEach(item => {
-            // Fallback to 0 if parsed value becomes NaN
-            series[0].data.push(parseInt(item.with_atd) || 0);
-            series[1].data.push(parseInt(item.no_atd) || 0);
-            series[2].data.push(parseInt(item.xsigned) || 0);
-        });
+            asn.drawChart(); //=====actual drawing of chart
 
-        console.log("XCAT LENGTH:", xcat.length);
-        console.log("SERIES DATA LENGTH:", series[0].data.length);
+            console.log('CHART DATA===', results);
 
-        // 3. Update BOTH series and options together to prevent rendering mismatches
-        asn.chart1.updateOptions({ 
-            xaxis: { 
-                categories: xcat,
-                labels: {
-                    show: true,
-                    rotate: -45,          // Rotates labels so they don't overlap
-                    rotateAlways: false,   // Only rotates if they crowd
-                    hideOverlappingLabels: false, // <-- THIS IS THE FIX: Prevents hiding CVIS
-                    minHeight: 50         // Gives extra room for rotated text
+            // 1. Reconstruct categories cleanly first
+            let xcat = [];
+            results.forEach(item => {
+                const regionName = item.region ? item.region.trim() : 'NO REGION';
+                if (!xcat.includes(regionName)) {
+                    xcat.push(regionName);
                 }
+            });
+
+            // 2. Build series data mapped explicitly to ensure correct indexing
+            const series = [
+                { name: "Downloaded ATD", data: [] },
+                { name: "No ATD", data: [] },
+                { name: "Signed", data: [] },
+            ];
+                    
+            results.forEach(item => {
+                // Fallback to 0 if parsed value becomes NaN
+                series[0].data.push(parseInt(item.with_atd) || 0);
+                series[1].data.push(parseInt(item.no_atd) || 0);
+                series[2].data.push(parseInt(item.xsigned) || 0);
+            });
+
+            console.log("XCAT LENGTH:", xcat.length);
+            console.log("SERIES DATA LENGTH:", series[0].data.length);
+
+            // 3. Update BOTH series and options together to prevent rendering mismatches
+            if (asn.chart1) {
+                asn.chart1.updateOptions({ 
+                    xaxis: { 
+                        categories: xcat,
+                        labels: {
+                            show: true,
+                            rotate: -45,          
+                            rotateAlways: false,   
+                            hideOverlappingLabels: false, 
+                            minHeight: 50         
+                        }
+                    }
+                });
+
+                asn.chart1.updateSeries(series);
+            } else {
+                console.error("asn.chart1 instance is not initialized yet.");
             }
-        });
 
-        
-        asn.chart1.updateSeries(series);
-
-        // Hide loading div once rendering tasks are passed
-        loadingDiv.style.display = 'none';
+        } catch (error) {
+            // This catches any network, parsing, or undefined variable errors safely
+            console.error("An error occurred during chart processing:", error);
+        } finally {
+            // =============================================================
+            // FIX 2: THIS IS GUARANTEED TO RUN EVEN IF THE CODE CRASHES
+            // =============================================================
+            loadingElement.classList.add("d-none");
+            chartContainer.style.opacity = "1"; 
+        }
     },
-
 
     chart1:null,
 
@@ -1796,9 +1996,66 @@ const asn = {
 
     },
 
+    ///downlload offense of 10k above
+    downloadReport: async( type ) =>{
+        if(type=="cuml"){
+            xlsReport.downloadReport()
+        //}else{    
+          //  xlsReport.downloadReport(year)
+        }
+    },
+
+    yearProcessor:()=>{
+         //process year dropdown
+        const selectElement = document.getElementById("year_select");
+        
+        console.log('processing year select')
+        // 1. Get the current calendar year dynamically from the system clock
+        const currentYear = new Date().getFullYear(); 
+        const startYear = 2025;
+
+        // 2. Clear out any hardcoded mockup options inside the container element
+        selectElement.innerHTML = "";
+
+        // 3. Loop from 2025 up to the current calendar year
+        for (let year = startYear; year <= currentYear; year++) {
+            const option = document.createElement("option");
+            option.value = year;
+            option.textContent = year;
+
+            // 4. If the option matches the current year, set it to selected automatically
+            if (year === currentYear) {
+            option.selected = true;
+            }
+
+            // Append the newly minted year option directly to our dropdown list
+            selectElement.appendChild(option);
+        }
+
+        // ==========================================
+        // 3. LISTEN FOR CHANGES
+        // ==========================================
+        selectElement.addEventListener("change", function(e) {
+            const selectedYear = e.target.value;
+            
+            asn.getChart( selectedYear ) //get chart with selected year
+            //get top 5 
+            asn.getTopHub( selectedYear )
+        
+            console.log("User changed Year to Process to:", selectedYear);
+
+            // Placeholder actions: Call your charts or grid refresh data here
+            // Example: refreshAtdChart(selectedYear);
+        });
+    
+    },
+
 	//==,= main run
     init : async () => {
 
+        asn.yearProcessor() ;  //process  year dropdown
+
+        const xyear = document.getElementById('year_select').value
         //reset cart printing
         asn.pdfCart.length = 0
         asn.obj = {}
@@ -1806,12 +2063,11 @@ const asn = {
         //===GET MENU
         asn.getmenu(util.getCookie('grp_id'))    
         
-
          //=== GET CHART
-        asn.getChart()
+        asn.getChart( xyear ) //get chart with selected year
 
         //get top 5 
-        asn.getTopHub()
+        asn.getTopHub( xyear )
         
         //change form action 
         document.getElementById('claimsuploadForm').action=`${myIp}/xlsclaims` //change also in util.modalListeners()
@@ -1882,13 +2138,16 @@ const asn = {
 
         console.log('praise God!')
 
+   
+
 	}//END init
 } //======================= end admin obj==========//
+window.asn = asn // globalize asn for console access
 
 document.addEventListener('DOMContentLoaded', function() {
     window.scrollTo(0,0);
     asn.init()
-    
+  
 });
 
   

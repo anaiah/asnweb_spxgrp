@@ -198,7 +198,7 @@
               class="btn btn-primary w-100"
               id="search-btn"
               type="button"
-              onclick="javascript:asn.getRecord(document.getElementById('filter_number').value, document.getElementById('filter_name').value, document.getElementById('filter_type').value, document.getElementById('filter_hub').value);"
+              onclick="javascript:asn.getRecord(document.getElementById('filter_number').value, document.getElementById('filter_name').value, document.getElementById('filter_type').value, document.getElementById('filter_hub').value, document.getElementById('year_select').value );"
             >
               <i class="ti ti-file-search"></i>&nbsp;&nbsp; Search
             </button>
@@ -239,26 +239,44 @@
       <!--//CHART WITH ATDS/NO ATDS-->
 
       <div class="mb-0 mt-1 ms-3 container-fluid" >
-        <div class="col-lg-8 d-flex align-items-center">
-          <div class="card shadow w-100">
-            <div class="card-body p-2">
-              <div class="mt-0 mb-1">
-                <h5 class="card-title fw-semibold">
-                  <i style="font-size:20px;" class="ti ti-chart-bar text-primary"></i>&nbsp;ATD</h5>
-              </div>
+        <div class="mb-3">
+            <!-- 1. Added the Label -->
+            <label for="year_select" class="form-label small fw-semibold text-muted">Year to Process</label>
+            
+            <!-- 2. Clean select element with dynamic w-auto sizing -->
+            <select class="form-select w-auto" id="year_select" name="year_select" required>
+              <!-- Options will be dynamically injected here by JavaScript -->
+            </select>
+        </div>
 
-              <!--// GRID inside-->
-              <div  class="table-responsive">
-                <div id="chartprint">
-                  <div id="loading">
-                    <div class="spinner"></div>
-                    <p>Loading, Please Wait...</p>
-                  </div>
+        <div class="col-lg-8 d-flex align-items-center">
+
+            <div class="card shadow w-100">
+              <div class="card-body p-2">
+                <div class="mt-0 mb-1">
+                  <h5 class="card-title fw-semibold">
+                    <i style="font-size:20px;" class="ti ti-chart-bar text-primary"></i>&nbsp;ATD
+                  </h5>
                 </div>
-              </div> 
-              
+
+                <!-- Container wrapper with relative position to anchor our absolute positioning -->
+                <div class="table-responsive position-relative">
+                  
+                  <!-- 1. MOVED LOADING LAYER OUTSIDE: Safe from ApexCharts rendering wipes -->
+                  <div id="loading" class="d-none position-absolute top-50 start-50 translate-middle text-center w-100 h-100 d-flex flex-column align-items-center justify-content-center" style="z-index: 10; background: rgba(255,255,255,0.7); min-height: 150px;">
+                    <div class="spinner-border text-primary" role="status"></div>
+                    <p class="mt-2 fw-medium text-secondary small">Loading, Please Wait...</p>
+                  </div>
+
+                  <!-- 2. PRISTINE CANVAS TARGET: ApexCharts now has this entirely to itself -->
+                  <div id="chartprint"></div>
+                  
+                </div>  
+              </div>
             </div>
-          </div>
+
+
+          <!-- end of chart -->
         </div>
         
       </div>
@@ -1045,7 +1063,8 @@
   <script src="../shopee/assets/js/ipconfig.js?v=2"></script>
   
   <script src="../shopee/assets/js/util.js?v=3"></script>
-  <script src="../shopee/assets/js/main.js?v=3"></script>
+
+  <script type="module" src="../shopee/assets/js/main.js?v=4"></script>
   
   <script src="../shopee/assets/js/gridtab.js?v=3"></script>
   
